@@ -2,20 +2,20 @@
 
 **Text embeddings** are numerical representations of text that capture semantic meaning, enabling machines to understand relationships and similarities between different pieces of text. In essence, they transform text into vectors in a continuous space, where texts with similar meanings are positioned closer together. Text embeddings are widely used in applications such as natural language processing, information retrieval, and recommendation systems.
 
-In this guide, we will demonstrate how to deploy embedding models in GPUStack and generate text embeddings using the deployed models.
+In this guide, we will demonstrate how to deploy embedding models in {{ brand.name }} and generate text embeddings using the deployed models.
 
 ## Prerequisites
 
 Before you begin, ensure that you have the following:
 
-- GPUStack is installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
+- {{ brand.name }} is installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
 - Access to Hugging Face for downloading the model files.
 
 ## Step 1: Deploy the Model
 
 Follow these steps to deploy the model from Catalog:
 
-1. Navigate to the `Catalog` page in the GPUStack UI.
+1. Navigate to the `Catalog` page in the {{ brand.name }} UI.
 2. In the model list page, use dropdown to filter with `Embedding`.
 3. Review the model description, maximum context length and supported sizes.
 
@@ -27,7 +27,7 @@ After deployment, you can monitor the model deployment's status on the `Deployme
 
 ## Step 2: Generate an API Key
 
-We will use the GPUStack API to generate text embeddings, and an API key is required:
+We will use the {{ brand.name }} API to generate text embeddings, and an API key is required:
 
 1. Hover over the user avatar and navigate to the `API Keys` page.
 2. Click the `New API Key` button.
@@ -36,14 +36,14 @@ We will use the GPUStack API to generate text embeddings, and an API key is requ
 
 ## Step 3: Generate Text Embeddings
 
-With the model deployed and an API key, you can generate text embeddings via the GPUStack API. Here is an example script using `curl`:
+With the model deployed and an API key, you can generate text embeddings via the {{ brand.name }} API. Here is an example script using `curl`:
 
 ```bash
 export SERVER_URL=<your-server-url>
-export GPUSTACK_API_KEY=<your-api-key>
+export {{ brand.env_prefix }}_API_KEY=<your-api-key>
 curl $SERVER_URL/v1/embeddings \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer ${GPUSTACK_API_KEY}" \
+-H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
 -d '{
   "model": "qwen3-embedding-4b",
   "input": "The food was delicious and the waiter...",
@@ -51,7 +51,7 @@ curl $SERVER_URL/v1/embeddings \
 }'
 ```
 
-Replace `<your-server-url>` with the URL of your GPUStack server and `<your-api-key>` with the API key you generated in the previous step.
+Replace `<your-server-url>` with the URL of your {{ brand.name }} server and `<your-api-key>` with the API key you generated in the previous step.
 
 Example response:
 

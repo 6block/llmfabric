@@ -1,8 +1,8 @@
 # Using Vision Language Models
 
-**Vision Language Models** can process both visual (image) and language (text) data simultaneously, making them versatile tools for various applications, such as image captioning, visual question answering, and more. In this guide, you will learn how to deploy and interact with Vision Language Models (VLMs) in GPUStack.
+**Vision Language Models** can process both visual (image) and language (text) data simultaneously, making them versatile tools for various applications, such as image captioning, visual question answering, and more. In this guide, you will learn how to deploy and interact with Vision Language Models (VLMs) in {{ brand.name }}.
 
-The procedure for deploying and interacting with these models in GPUStack is similar. The main difference is the parameters you need to set when deploying the models. For more information on the parameters you can set, please refer to [Backend Parameters](../user-guide/built-in-inference-backends.md#parameters-reference_1) .
+The procedure for deploying and interacting with these models in {{ brand.name }} is similar. The main difference is the parameters you need to set when deploying the models. For more information on the parameters you can set, please refer to [Backend Parameters](../user-guide/built-in-inference-backends.md#parameters-reference_1) .
 
 In this guide, we will cover the deployment of the following models:
 
@@ -23,32 +23,32 @@ Before you begin, ensure that you have the following:
 
     An Ubuntu node equipped with one H100 (80GB) GPU is used throughout this guide.
 
-## Step 1: Install GPUStack
+## Step 1: Install {{ brand.name }}
 
-Please follow the [Installation Documentation](../installation/requirements.md) to install GPUStack.
+Please follow the [Installation Documentation](../installation/requirements.md) to install {{ brand.name }}.
 
-## Step 2: Log in to GPUStack UI
+## Step 2: Log in to {{ brand.name }} UI
 
 After the server starts, run the following command to get the default admin password:
 
 ```bash
-docker exec gpustack cat /var/lib/gpustack/initial_admin_password
+docker exec {{ brand.executable_name }} cat {{ brand.data_dir }}/initial_admin_password
 ```
 
-Open your browser and navigate to `http://your_host_ip` to access the GPUStack UI. Use the default username `admin` and the password you retrieved above to log in.
+Open your browser and navigate to `http://your_host_ip` to access the {{ brand.name }} UI. Use the default username `admin` and the password you retrieved above to log in.
 
 ## Step 3: Deploy Vision Language Models with vLLM
 
 ### Deploy Qwen3-VL
 
-1. Navigate to the `Deployments` page in the GPUStack UI.
+1. Navigate to the `Deployments` page in the {{ brand.name }} UI.
 2. Click on the `Deploy Model` button, then select `Hugging Face` in the dropdown.
 3. Search for `Qwen/Qwen3-VL-4B-Instruct` in the search bar.
 4. Click the `Save` button. The default configurations should work as long as you have enough GPU resources.
 
 ### Deploy Llama3.2-Vision
 
-1. Navigate to the `Deployments` page in the GPUStack UI.
+1. Navigate to the `Deployments` page in the {{ brand.name }} UI.
 2. Click on the `Deploy Model` button, then select `Hugging Face` in the dropdown.
 3. Search for `meta-llama/Llama-3.2-11B-Vision-Instruct` in the search bar.
 4. Expand the `Advanced` section in configurations and scroll down to the `Backend Parameters` section.
@@ -62,7 +62,7 @@ Open your browser and navigate to `http://your_host_ip` to access the GPUStack U
 
 ### Deploy Pixtral
 
-1. Navigate to the `Deployments` page in the GPUStack UI.
+1. Navigate to the `Deployments` page in the {{ brand.name }} UI.
 2. Click on the `Deploy Model` button, then select `Hugging Face` in the dropdown.
 3. Search for `mistralai/Pixtral-12B-2409` in the search bar.
 4. Expand the `Advanced` section in configurations and scroll down to the `Backend Parameters` section.
@@ -75,7 +75,7 @@ Open your browser and navigate to `http://your_host_ip` to access the GPUStack U
 
 ### Deploy Phi3.5-Vision
 
-1. Navigate to the `Deployments` page in the GPUStack UI.
+1. Navigate to the `Deployments` page in the {{ brand.name }} UI.
 2. Click on the `Deploy Model` button, then select `Hugging Face` in the dropdown.
 3. Search for `microsoft/Phi-3.5-vision-instruct` in the search bar.
 4. Expand the `Advanced` section in configurations and scroll down to the `Backend Parameters` section.
@@ -87,7 +87,7 @@ Open your browser and navigate to `http://your_host_ip` to access the GPUStack U
 
 ## Step 4: Interact with Vision Language Models
 
-1. Navigate to the `Chat` page in the GPUStack UI.
+1. Navigate to the `Chat` page in the {{ brand.name }} UI.
 2. Select the deployed model from the top-right dropdown.
 3. Click on the `Upload Image` button above the input text area and upload an image.
 4. Enter a prompt in the input text area. For example, "Describe the image."

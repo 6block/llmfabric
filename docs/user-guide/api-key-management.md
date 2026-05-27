@@ -1,6 +1,6 @@
 # API Key Management
 
-GPUStack supports authentication using API keys. Each GPUStack user can generate and manage their own API keys.
+{{ brand.name }} supports authentication using API keys. Each {{ brand.name }} user can generate and manage their own API keys.
 
 ## Create API Key
 
@@ -36,13 +36,13 @@ GPUStack supports authentication using API keys. Each GPUStack user can generate
 
 ## Use API Key
 
-GPUStack supports using the API key as a bearer token. The following is an example using curl:
+{{ brand.name }} supports using the API key as a bearer token. The following is an example using curl:
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
-curl http://your_gpustack_server_url/v1/chat/completions \
+export {{ brand.env_prefix }}_API_KEY=your_api_key
+curl http://your_{{ brand.executable_name }}_server_url/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
   -d '{
     "model": "qwen3",
     "messages": [

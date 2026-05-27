@@ -1,6 +1,6 @@
 # User Management
 
-GPUStack has two user roles: `Admin` and `User`.
+{{ brand.name }} has two user roles: `Admin` and `User`.
 
 Admins can manage clusters, resources, models, users, and system settings.
 
@@ -8,13 +8,13 @@ Users can manage their own API keys and access the model APIs.
 
 ## Default Admin
 
-On bootstrap, GPUStack creates a default admin user.
+On bootstrap, {{ brand.name }} creates a default admin user.
 
 The initial password is saved in `<data-dir>/initial_admin_password`.
 
-In the default setup, this file is located at `/var/lib/gpustack/initial_admin_password` inside the server container.
+In the default setup, this file is located at `{{ brand.data_dir }}/initial_admin_password` inside the server container.
 
-You can set a custom password for the default admin by using the `--bootstrap-password` flag when starting `GPUStack`.
+You can set a custom password for the default admin by using the `--bootstrap-password` flag when starting `{{ brand.name }}`.
 
 ## Create User
 

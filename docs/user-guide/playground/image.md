@@ -1,6 +1,6 @@
 # Image Playground
 
-The Image Playground is a dedicated space for testing and experimenting with GPUStack’s image generation APIs. It allows users to interactively explore the capabilities of different models, customize parameters, and review code examples for seamless API integration.
+The Image Playground is a dedicated space for testing and experimenting with {{ brand.name }}’s image generation APIs. It allows users to interactively explore the capabilities of different models, customize parameters, and review code examples for seamless API integration.
 
 ## Generate Image
 
@@ -26,7 +26,7 @@ Click `Download Image` to save the edited image.
 
 ## Select Model
 
-You can select available models in GPUStack by clicking the model dropdown at the top-right corner of the playground UI.
+You can select available models in {{ brand.name }} by clicking the model dropdown at the top-right corner of the playground UI.
 
 ## Parameters
 

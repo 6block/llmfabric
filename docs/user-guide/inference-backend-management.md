@@ -1,6 +1,6 @@
 # Inference Backend Management
 
-GPUStack allows admins to configure inference backends and backend versions.
+{{ brand.name }} allows admins to configure inference backends and backend versions.
 
 This article serves as an operational guide for the Inference Backend page. For supported built-in backends and their capabilities, see [Built-in Inference Backends](built-in-inference-backends.md).
 
@@ -8,9 +8,9 @@ For guidelines for configuring custom backends and examples of custom backends t
 
 ## Backend Sources
 
-GPUStack supports three types of inference backends:
+{{ brand.name }} supports three types of inference backends:
 
-- **Built-in**: Pre-configured backends maintained by GPUStack (e.g., vLLM, MindIE, VoxBox). These cannot be deleted.
+- **Built-in**: Pre-configured backends maintained by {{ brand.name }} (e.g., vLLM, MindIE, VoxBox). These cannot be deleted.
 - **Community**: Backends shared by the Community Backend Marketplace. You can enable them as needed.
 - **Custom**: Backends you create with your own configurations. These can be freely added, edited, and deleted.
 
@@ -115,7 +115,7 @@ These are essentially custom backends with a "community" source label, allowing 
 
 !!! note
 
-    vLLM has changed the entrypoint of its Docker image since v0.11.1. Therefore, when adding a custom version for vLLM v0.11.1 or later, you must specify the `Override Image Entrypoint` and `Execution Command` field; otherwise, the model will fail to start. If you use newer versions of `gpustack/runner` images, you don't need to set the `Execution Command` field.
+    vLLM has changed the entrypoint of its Docker image since v0.11.1. Therefore, when adding a custom version for vLLM v0.11.1 or later, you must specify the `Override Image Entrypoint` and `Execution Command` field; otherwise, the model will fail to start. If you use newer versions of `{{ brand.runtime_image_namespace }}/runner` images, you don't need to set the `Execution Command` field.
 
 ### Example: Add a Custom Version to the Built-in SGLang Inference Backend
 

@@ -4,11 +4,11 @@
 
 ## Deploy the Model
 
-Please refer to the **[Model Deployment](../user-guide/model-deployment-management.md#deploy-model)** section in the GPUStack documentation to complete model deployment.
+Please refer to the **[Model Deployment](../user-guide/model-deployment-management.md#deploy-model)** section in the {{ brand.name }} documentation to complete model deployment.
 
 ## API Access Info
 
-1. Log in to the GPUStack Web UI
+1. Log in to the {{ brand.name }} Web UI
 2. Navigate to the **Routes** page
 3. From the menu on the right side of the target model, select **API Access Info**
 
@@ -25,9 +25,9 @@ Record the following information (if an API Key has not been created yet, follow
 Follow the official n8n documentation to complete a self-hosted installation, or use the n8n Cloud service directly:
 [https://docs.n8n.io/hosting/](https://docs.n8n.io/hosting/)
 
-## Integrating GPUStack in n8n
+## Integrating {{ brand.name }} in n8n
 
-Since GPUStack provides an OpenAI-compatible API, you can directly use the OpenAI nodes in n8n for configuration:
+Since {{ brand.name }} provides an OpenAI-compatible API, you can directly use the OpenAI nodes in n8n for configuration:
 
 1. Add a **Credential** in n8n
 
@@ -39,7 +39,7 @@ Since GPUStack provides an OpenAI-compatible API, you can directly use the OpenA
 
    ![](../assets/integrations/n8n-05-02.png)
 
-2. Use the GPUStack Credential
+2. Use the {{ brand.name }} Credential
 
    ![](../assets/integrations/n8n-06.png)
    ![](../assets/integrations/n8n-07.png)

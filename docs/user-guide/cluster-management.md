@@ -1,6 +1,6 @@
 # Cluster Management
 
-GPUStack supports cluster-based worker management and provides multiple cluster types. You can provision a cluster through a `Cloud Provider` such as `DigitalOcean`, or create a self-hosted cluster and add workers using `Docker` run commands. Alternatively, you can register all nodes in a self-hosted `Kubernetes` cluster as GPUStack workers.
+{{ brand.name }} supports cluster-based worker management and provides multiple cluster types. You can provision a cluster through a `Cloud Provider` such as `DigitalOcean`, or create a self-hosted cluster and add workers using `Docker` run commands. Alternatively, you can register all nodes in a self-hosted `Kubernetes` cluster as {{ brand.name }} workers.
 
 ## Create Cluster
 
@@ -47,7 +47,7 @@ The kubernetes can be registerred after the cluster is created.
 
 ### Creating DigitalOcean Cluster
 
-1. In the `Basic Configuration` step, the `Name` field is required and `Description` is optional. Create or select a Cloud Credential for communicating with the DigitalOcean API. Select a Region that supports GPU Droplets. You must also configure the `GPUStack Server URL`, which will be accessible from the newly created DigitalOcean Droplets.
+1. In the `Basic Configuration` step, the `Name` field is required and `Description` is optional. Create or select a Cloud Credential for communicating with the DigitalOcean API. Select a Region that supports GPU Droplets. You must also configure the `{{ brand.name }} Server URL`, which will be accessible from the newly created DigitalOcean Droplets.
 2. Click `Next`.
 3. Adding one or more `Worker Pools`. For each pool, `Name`, `Instance Type`, `OS Image`, `Replicas`, `Batch Size`, `Labels` and `Volumes` can be specified.
 4. Click `Save` after the worker pools are configured.
@@ -95,16 +95,16 @@ debug: false
 tools_download_base_url: https://mirror.your_company.com
 # ========= directories ===========
 pipx_path: "/usr/local/bin/pipx"
-cache_dir: "/var/lib/gpustack/cache"
-log_dir: "/var/lib/gpustack/log"
-bin_dir: "/var/lib/gpustack/bin"
+cache_dir: "{{ brand.data_dir }}/cache"
+log_dir: "{{ brand.data_dir }}/log"
+bin_dir: "{{ brand.data_dir }}/bin"
 # ========= container & image ===========
 system_default_container_registry: "docker.io"
-image_name_override: "gpustack/gpustack:main"
-image_repo: "gpustack/gpustack"
+image_name_override: "{{ brand.docker_image }}:main"
+image_repo: "{{ brand.docker_image }}"
 # ========= service & networking ===========
 service_discovery_name: "worker"
-namespace: "gpustack-system"
+namespace: "{{ brand.executable_name }}-system"
 worker_port: 10150
 worker_metrics_port: 10151
 disable_worker_metrics: false
@@ -120,4 +120,4 @@ huggingface_token: xxxxxx
 enable_hf_transfer: false
 ```
 
-The above YAML lists all currently supported options for the `Worker Configuration YAML`. For the meaning of each option, refer to the full GPUStack [config file documentation](../cli-reference/start.md#config-file).
+The above YAML lists all currently supported options for the `Worker Configuration YAML`. For the meaning of each option, refer to the full {{ brand.name }} [config file documentation](../cli-reference/start.md#config-file).

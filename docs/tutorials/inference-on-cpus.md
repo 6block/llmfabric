@@ -1,6 +1,6 @@
 # Running Inference on CPUs
 
-GPUStack supports inference on CPUs, offering flexibility when GPU resources are limited or when model sizes exceed allocatable GPU memory. The following CPU inference modes are available:
+{{ brand.name }} supports inference on CPUs, offering flexibility when GPU resources are limited or when model sizes exceed allocatable GPU memory. The following CPU inference modes are available:
 
 - **Hybrid CPU+GPU Inference**: Enables partial acceleration by offloading portions of large models to the CPU when VRAM capacity is insufficient.
 - **Full CPU Inference**: Runs entirely on CPU when no GPU resources are available.
@@ -9,7 +9,7 @@ GPUStack supports inference on CPUs, offering flexibility when GPU resources are
 
     Available for custom backends only.
 
-    When CPU offloading is enabled, GPUStack will allocate CPU memory if GPU resources are insufficient. You must correctly configure the inference backend to use hybrid CPU+GPU or full CPU inference.
+    When CPU offloading is enabled, {{ brand.name }} will allocate CPU memory if GPU resources are insufficient. You must correctly configure the inference backend to use hybrid CPU+GPU or full CPU inference.
 
     It is strongly recommended to use CPU inference only on CPU workers.
 
@@ -23,7 +23,7 @@ Backend: `Custom`
 
 Image Name: `ghcr.io/huggingface/text-embeddings-inference:cpu-1.8`
 
-Execution Command: `--model-id BAAI/bge-large-en-v1.5 --huggingface-hub-cache /var/lib/gpustack/cache/huggingface --port {{port}}`
+Execution Command: `--model-id BAAI/bge-large-en-v1.5 --huggingface-hub-cache {{ brand.data_dir }}/cache/huggingface --port {{port}}`
 
 !!! note
 
@@ -31,9 +31,9 @@ Execution Command: `--model-id BAAI/bge-large-en-v1.5 --huggingface-hub-cache /v
 
     `ghcr.io/huggingface/text-embeddings-inference:cpu-1.8` is the CPU inference image for TEI. See: [TEI Supported Hardware](https://huggingface.co/docs/text-embeddings-inference/supported_models#supported-hardware).
 
-    `--huggingface-hub-cache /var/lib/gpustack/cache/huggingface` sets the location of the HuggingFace Hub cache for TEI to the path where GPUStack stores downloaded HuggingFace models. The default path is `/var/lib/gpustack/cache/huggingface`. See: [TEI CLI Arguments](https://huggingface.co/docs/text-embeddings-inference/cli_arguments).
+    `--huggingface-hub-cache {{ brand.data_dir }}/cache/huggingface` sets the location of the HuggingFace Hub cache for TEI to the path where {{ brand.name }} stores downloaded HuggingFace models. The default path is `{{ brand.data_dir }}/cache/huggingface`. See: [TEI CLI Arguments](https://huggingface.co/docs/text-embeddings-inference/cli_arguments).
 
-    `{{port}}` is a placeholder that represents the port automatically assigned by GPUStack.
+    `{{port}}` is a placeholder that represents the port automatically assigned by {{ brand.name }}.
 
 ![TEI CPU Inference](../assets/tutorials/inference-on-cpus/tei-cpu-inference.png)
 

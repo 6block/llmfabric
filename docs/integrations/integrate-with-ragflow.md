@@ -1,21 +1,21 @@
 # Integrate with RAGFlow
 
-RAGFlow can integrate with GPUStack to leverage locally deployed LLMs, embeddings, reranking, Speech-to-Text and Text-to-Speech capabilities.
+RAGFlow can integrate with {{ brand.name }} to leverage locally deployed LLMs, embeddings, reranking, Speech-to-Text and Text-to-Speech capabilities.
 
 ## Deploying Models
 
-1. In GPUStack UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
+1. In {{ brand.name }} UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
 
 - qwen3-8b
 - qwen2.5-vl-3b-instruct
 - bge-m3
 - bge-reranker-v2-m3
 
-![gpustack-models](../assets/integrations/integration-gpustack-models.png)
+![{{ brand.name }} models](../assets/integrations/integration-gpustack-models.png)
 
 2. In the model’s Operations, open `API Access Info` to see how to integrate with this model.
 
-![gpustack-api-access-info](../assets/integrations/integration-gpustack-api-access-info.png)
+![{{ brand.name }} API access info](../assets/integrations/integration-gpustack-api-access-info.png)
 
 ## Create an API Key
 
@@ -25,15 +25,15 @@ RAGFlow can integrate with GPUStack to leverage locally deployed LLMs, embedding
 
 3. Copy the API key and save it for later use.
 
-## Integrating GPUStack into RAGFlow
+## Integrating {{ brand.name }} into RAGFlow
 
-1. Access the RAGFlow UI, go to the top right corner and click the avatar, select `Model Providers > GPUStack`, then select `Add the model` and fill in:
+1. Access the RAGFlow UI, go to the top right corner and click the avatar, select `Model Providers > {{ brand.name }}`, then select `Add the model` and fill in:
 
 - Model type: Select the model type based on the model.
 
-- Model name: The name must match the model name deployed on GPUStack.
+- Model name: The name must match the model name deployed on {{ brand.name }}.
 
-- Base URL: `http://your-gpustack-url/v1`, the URL should not include the path and do not use `localhost`, as it refers to the container’s internal network. If you’re using a custom port, make sure to include it. Also, ensure the URL is accessible from inside the RAGFlow container (you can test this with `curl`).
+- Base URL: `http://your-{{ brand.executable_name }}-url/v1`, the URL should not include the path and do not use `localhost`, as it refers to the container’s internal network. If you’re using a custom port, make sure to include it. Also, ensure the URL is accessible from inside the RAGFlow container (you can test this with `curl`).
 
 - API-Key: Input the API key you copied from previous steps.
 

@@ -1,10 +1,10 @@
 # Running DeepSeek R1 671B with Distributed Ascend MindIE
 
-This tutorial guides you through the process of configuring and running the original **DeepSeek R1 671B** using **Distributed Ascend MindIE** on a GPUStack cluster.
+This tutorial guides you through the process of configuring and running the original **DeepSeek R1 671B** using **Distributed Ascend MindIE** on a {{ brand.name }} cluster.
 
 Due to the extremely large size of the model, distributed inference across multiple workers is usually required.
 
-GPUStack enables easy setup and orchestration of distributed inference using Ascend MindIE, making it possible to run massive models like DeepSeek R1 with minimal manual configuration.
+{{ brand.name }} enables easy setup and orchestration of distributed inference using Ascend MindIE, making it possible to run massive models like DeepSeek R1 with minimal manual configuration.
 
 ## Prerequisites
 
@@ -21,65 +21,65 @@ Before you begin, make sure the following requirements are met:
 </div>
 
 - All nodes need to support Huawei Collective Communication adaptive Protocol (HCCP), installed Huawei Collective Communication Library (HCCL), and enabled Huawei Cache Coherence System (HCCS).
-- Model files should be downloaded to the same path on each node. While GPUStack supports on-the-fly model downloading, pre-downloading is recommended as it can be time consuming depending on the network speed.
+- Model files should be downloaded to the same path on each node. While {{ brand.name }} supports on-the-fly model downloading, pre-downloading is recommended as it can be time consuming depending on the network speed.
 
 !!! note
 
     - In this tutorial, we assume a setup of 4 nodes, each equipped with 8 910B3 NPUs and connected via 200G Huawei Cache Conherence Network (HCCN).
     - Altas NPUs do not support the FP8 precision originally used by DeepSeek R1. Hence, we use the BF16 version from [Unsloth](https://huggingface.co/unsloth/DeepSeek-R1-BF16).
 
-## Step 1: Install GPUStack Server
+## Step 1: Install {{ brand.name }} Server
 
-According to the [Installation](../installation/installation.md), you can use the following command to start the GPUStack server:
+According to the [Installation](../installation/installation.md), you can use the following command to start the {{ brand.name }} server:
 
 ```bash
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
     --restart unless-stopped \
     -p 80:80 \
-    --volume gpustack-data:/var/lib/gpustack \
+    --volume {{ brand.volume_name }}:{{ brand.data_dir }} \
     --volume /path/to/your/model:/path/to/your/model \
-    gpustack/gpustack
+    {{ brand.docker_image }}
 ```
 
 !!! note
 
     - Replace `/path/to/your/model` with the actual path on your system where the DeepSeek R1 model files are stored.
 
-After GPUStack server is up and running, run the following commands to get the initial admin password:
+After {{ brand.name }} server is up and running, run the following commands to get the initial admin password:
 
 ```bash
-sudo docker exec gpustack \
-    cat /var/lib/gpustack/initial_admin_password
+sudo docker exec {{ brand.executable_name }} \
+    cat {{ brand.data_dir }}/initial_admin_password
 
 ```
 
-## Step 2: Access GPUStack UI
+## Step 2: Access {{ brand.name }} UI
 
-Login to the GPUStack UI using the `admin` user and the obtained password.
+Login to the {{ brand.name }} UI using the `admin` user and the obtained password.
 
 ```
-http://your_gpustack_server_ip_or_hostname
+http://your_{{ brand.executable_name }}_server_ip_or_hostname
 ```
 
-## Step 3: Install GPUStack Workers
+## Step 3: Install {{ brand.name }} Workers
 
-Navigate to the `Workers` page in the GPUStack UI, click `Add Worker` button to get the command for adding workers.
+Navigate to the `Workers` page in the {{ brand.name }} UI, click `Add Worker` button to get the command for adding workers.
 
-And then on **each worker node**, run the worker adding command to start a GPUStack worker:
+And then on **each worker node**, run the worker adding command to start a {{ brand.name }} worker:
 
 ```bash
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
     --restart unless-stopped \
     --privileged \
     --env "ASCEND_VISIBLE_DEVICES=$(sudo ls /dev/davinci* | head -1 | grep -o '[0-9]\+' || echo "0")" \
     --network host \
     --volume /var/run/docker.sock:/var/run/docker.sock \
-    --volume gpustack-data:/var/lib/gpustack \
+    --volume {{ brand.volume_name }}:{{ brand.data_dir }} \
     --volume /path/to/your/model:/path/to/your/model \
     --runtime ascend \
-    gpustack/gpustack \
-    --server-url http://your_gpustack_server_ip_or_hostname \
-    --token your_gpustack_cluster_token
+    {{ brand.docker_image }} \
+    --server-url http://your_{{ brand.executable_name }}_server_ip_or_hostname \
+    --token your_{{ brand.executable_name }}_cluster_token
 
 ```
 
@@ -89,7 +89,7 @@ sudo docker run -d --name gpustack \
     - Replace `/path/to/your/model` with the actual path on your system where the DeepSeek R1 model files are stored.
     - Ensure the `hccn_tool` tool is installed and configured correctly on your system. This is required for discvoring the HCCN network communication.
 
-After all workers are added, return to the GPUStack UI.
+After all workers are added, return to the {{ brand.name }} UI.
 
 Navigate to the `Workers` page to verify that all workers are in the Ready state and their GPUs are listed.
 
@@ -126,7 +126,7 @@ After the model is running, navigate to the `Workers` page to check GPU utilizat
 
 ## Step 6: Run Inference via Playground
 
-Once the model is deployed and running, you can test it using the GPUStack Playground.
+Once the model is deployed and running, you can test it using the {{ brand.name }} Playground.
 
 1. Navigate to the `Playground` -> `Chat`.
 2. If only one model is deployed, it will be selected by default. Otherwise, use the dropdown menu to choose `DeepSeek-R1`.
@@ -138,6 +138,6 @@ You can also use the `Compare` tab to test concurrent inference scenarios.
 
 ![playground-compare](../assets/tutorials/running-deepseek-r1-671b-with-distributed-ascend-mindie/playground-compare.png)
 
-You have now successfully deployed and run DeepSeek R1 671B using Distributed Ascend MindIE on a GPUStack cluster. Explore the model's performance and capabilities in your own applications.
+You have now successfully deployed and run DeepSeek R1 671B using Distributed Ascend MindIE on a {{ brand.name }} cluster. Explore the model's performance and capabilities in your own applications.
 
-For further assistance, feel free to reach out to the GPUStack community or support team.
+For further assistance, feel free to reach out to the {{ brand.name }} community or support team.

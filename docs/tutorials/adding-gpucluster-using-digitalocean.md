@@ -1,6 +1,6 @@
 # Adding a GPU Cluster Using DigitalOcean
 
-When creating a cluster, GPUStack can leverage DigitalOcean to create workers and add them to the GPUStack cluster.
+When creating a cluster, {{ brand.name }} can leverage DigitalOcean to create workers and add them to the {{ brand.name }} cluster.
 
 ## Preparation
 
@@ -10,7 +10,7 @@ You need to sign up for a DigitalOcean account and create a Personal Access Toke
 
 > Note: The token scope must be set to Full Access. If you select permissions using Custom Scopes, you may encounter issues deleting droplets.
 
-When starting the GPUStack Server, you need to specify the `--server-external-url` parameter. This parameter is used to configure the worker's `--server-url` after the droplet is created and the worker is started. If your server is running behind a proxy, please set the proxy address to ensure that droplets running on the public network can access the GPUStack Server API using this address after startup.
+When starting the {{ brand.name }} Server, you need to specify the `--server-external-url` parameter. This parameter is used to configure the worker's `--server-url` after the droplet is created and the worker is started. If your server is running behind a proxy, please set the proxy address to ensure that droplets running on the public network can access the {{ brand.name }} Server API using this address after startup.
 
 ## Create DigitalOcean Cluster
 
@@ -50,7 +50,7 @@ Currently, only Nvidia series GPU Droplets are supported, as AMD GPU Droplets ar
 - For Debian distributions, the droplet is bootstrapped with the `nvidia-open` driver, CUDA 12.8, and nvidia-container-toolkit 1.17.8-1 via cloud-init.
 - For Ubuntu distributions, the droplet is bootstrapped with the `nvidia-driver-570` driver, CUDA 12.8, and nvidia-container-toolkit 1.17.8-1 via cloud-init.
 
-Labels and volumes are supported to set in worker pool to provision worker. The volumes created and attached for droplet won't be mount into worker container automatically. You can modify the run worker script in `/opt/gpustack-run-worker.sh` to mount the volumes as needed.
+Labels and volumes are supported to set in worker pool to provision worker. The volumes created and attached for droplet won't be mount into worker container automatically. You can modify the run worker script in `/opt/{{ brand.executable_name }}-run-worker.sh` to mount the volumes as needed.
 
 Click `Save` if all set.
 

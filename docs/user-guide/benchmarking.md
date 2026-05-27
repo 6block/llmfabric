@@ -1,6 +1,6 @@
 # Benchmarking
 
-GPUStack can run benchmarks against running model instances. Benchmarks are executed by workers in a dedicated benchmark container image, with results and logs stored on the worker.
+{{ brand.name }} can run benchmarks against running model instances. Benchmarks are executed by workers in a dedicated benchmark container image, with results and logs stored on the worker.
 
 ## Prerequisites
 

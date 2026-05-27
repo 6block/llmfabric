@@ -3,12 +3,12 @@ hide:
   - toc
 ---
 
-# gpustack download-tools
+# {{ brand.executable_name }} download-tools
 
 Download dependency tools, including gguf-parser, and fastfetch.
 
 ```bash
-gpustack download-tools [OPTIONS]
+{{ brand.executable_name }} download-tools [OPTIONS]
 ```
 
 ## Configurations

@@ -38,7 +38,7 @@ Click the `Clear` button to clear all the prompts.
 
 ### Select Model
 
-You can select available models in GPUStack by clicking the model dropdown at the top-right corner of the playground. Please refer to [Model Deployment Management](../model-deployment-management.md) to learn about how to deploy models.
+You can select available models in {{ brand.name }} by clicking the model dropdown at the top-right corner of the playground. Please refer to [Model Deployment Management](../model-deployment-management.md) to learn about how to deploy models.
 
 ### Customize Parameters
 
@@ -80,7 +80,7 @@ Click the `Clear` button to clear all the prompts.
 
 ### Select Model
 
-You can select available models in GPUStack by clicking the model dropdown at the top-left corner of each model panel.
+You can select available models in {{ brand.name }} by clicking the model dropdown at the top-left corner of each model panel.
 
 ### Customize Parameters
 

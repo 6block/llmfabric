@@ -1,6 +1,6 @@
 # Model Deployment Management
 
-You can manage model deployments in GPUStack by navigating to the `Models - Deployments` page. A model deployment in GPUStack contains one or multiple replicas of model instances. On deployment, GPUStack automatically computes resource requirements for the model instances from model metadata and schedules them to available workers accordingly.
+You can manage model deployments in {{ brand.name }} by navigating to the `Models - Deployments` page. A model deployment in {{ brand.name }} contains one or multiple replicas of model instances. On deployment, {{ brand.name }} automatically computes resource requirements for the model instances from model metadata and schedules them to available workers accordingly.
 
 ## Deploy Model
 
@@ -44,8 +44,8 @@ You can deploy a model from a local path. The model path can be a directory (e.g
 
 !!! note
 
-    1. GPUStack uses the model files to estimate resource requirements. If the model path is not accessible on the server, GPUStack will attempt to access it from the workers.
-    2. GPUStack does not automatically synchronize model files. You must ensure the model path is accessible on the target workers (e.g., using NFS, rsync, etc.). You can also use the worker selector configuration to deploy the model to specific workers.
+    1. {{ brand.name }} uses the model files to estimate resource requirements. If the model path is not accessible on the server, {{ brand.name }} will attempt to access it from the workers.
+    2. {{ brand.name }} does not automatically synchronize model files. You must ensure the model path is accessible on the target workers (e.g., using NFS, rsync, etc.). You can also use the worker selector configuration to deploy the model to specific workers.
 
 To deploy a local path model:
 
@@ -67,7 +67,7 @@ To deploy a local path model:
 
 ### Backend
 
-Currently, GPUStack supports some built-in backends: vLLM, SGLang, MindIE and VoxBox.
+Currently, {{ brand.name }} supports some built-in backends: vLLM, SGLang, MindIE and VoxBox.
 
 For more details, please refer to the [Inference Backends](built-in-inference-backends.md) section.
 
@@ -84,7 +84,7 @@ Select a backend version. The version availability depend on the selected backen
 
 !!! note
 
-    After editing the model deployment, the configuration will not be applied to existing model instances. You need to delete the existing model instances. GPUStack will recreate new instances based on the updated model configuration.
+    After editing the model deployment, the configuration will not be applied to existing model instances. You need to delete the existing model instances. {{ brand.name }} will recreate new instances based on the updated model configuration.
 
 ## Stop Model Deployment
 
@@ -122,7 +122,7 @@ Starting a model deployment is equivalent to scaling up the model to one replica
 
 !!! note
 
-    After a model instance is deleted, GPUStack will recreate a new instance to satisfy the expected replicas of the deployment if necessary.
+    After a model instance is deleted, {{ brand.name }} will recreate a new instance to satisfy the expected replicas of the deployment if necessary.
 
 ## View Model Instance Logs
 
@@ -133,11 +133,11 @@ Starting a model deployment is equivalent to scaling up the model to one replica
 
 ## Performance-Related Configuration
 
-GPUStack provides the following configuration options to optimize model inference performance.
+{{ brand.name }} provides the following configuration options to optimize model inference performance.
 
 ### Extended KV Cache
 
-You can enable extended KV cache to offload the KV cache to CPU memory or remote storage. This feature is particularly useful for setups with limited GPU memory requiring long context lengths. Under the hood, GPUStack leverages [LMCache](https://github.com/LMCache/LMCache) to provide this functionality.
+You can enable extended KV cache to offload the KV cache to CPU memory or remote storage. This feature is particularly useful for setups with limited GPU memory requiring long context lengths. Under the hood, {{ brand.name }} leverages [LMCache](https://github.com/LMCache/LMCache) to provide this functionality.
 
 Available options:
 
@@ -160,7 +160,7 @@ This feature works for certain backends and frameworks only.
 
 #### Auto
 
-GPUStack automatically schedules model instances to appropriate GPUs/Workers based on current resource availability.
+{{ brand.name }} automatically schedules model instances to appropriate GPUs/Workers based on current resource availability.
 
 - **Placement Strategy**
 
@@ -192,11 +192,11 @@ Manual: Select the number of GPUs each replica should use from the dropdown.
 
 ## Advanced Configuration
 
-GPUStack supports tailored configurations for model deployment.
+{{ brand.name }} supports tailored configurations for model deployment.
 
 ### Model Category
 
-The model category helps you organize and filter models. By default, GPUStack automatically detects the model category based on the model's metadata. You can also customize the category by selecting it from the dropdown list.
+The model category helps you organize and filter models. By default, {{ brand.name }} automatically detects the model category based on the model's metadata. You can also customize the category by selecting it from the dropdown list.
 
 ### Backend Parameters
 
@@ -220,7 +220,7 @@ Environment variables used when running the model. These variables are passed to
 
     Available for custom backends only.
 
-When CPU offloading is enabled, GPUStack will allocate CPU memory if GPU resources are insufficient. You must correctly configure the inference backend to use hybrid CPU+GPU or full CPU inference.
+When CPU offloading is enabled, {{ brand.name }} will allocate CPU memory if GPU resources are insufficient. You must correctly configure the inference backend to use hybrid CPU+GPU or full CPU inference.
 
 ### Allow Distributed Inference Across Workers
 
@@ -232,11 +232,11 @@ Enable distributed inference across multiple workers. The primary Model Instance
 
 ### Auto-Restart on Error
 
-Enable automatic restart of the model instance if it encounters an error. This feature ensures high availability and reliability of the model instance. If an error occurs, GPUStack will automatically attempt to restart the model instance using an exponential backoff strategy. The delay between restart attempts increases exponentially, up to a maximum interval of 5 minutes. This approach prevents the system from being overwhelmed by frequent restarts in the case of persistent errors.
+Enable automatic restart of the model instance if it encounters an error. This feature ensures high availability and reliability of the model instance. If an error occurs, {{ brand.name }} will automatically attempt to restart the model instance using an exponential backoff strategy. The delay between restart attempts increases exponentially, up to a maximum interval of 5 minutes. This approach prevents the system from being overwhelmed by frequent restarts in the case of persistent errors.
 
 ### Enable Generic Proxy
 
-While it is common practice to integrate with the OpenAI compatible APIs, users may have different requirements for their use cases. GPUStack supports any inference APIs other than the OpenAI-compatible ones and make it more flexible for AI application development.
+While it is common practice to integrate with the OpenAI compatible APIs, users may have different requirements for their use cases. {{ brand.name }} supports any inference APIs other than the OpenAI-compatible ones and make it more flexible for AI application development.
 
 Below is an example of how to use the generic proxy with curl to access model instances:
 
@@ -244,17 +244,17 @@ Below is an example of how to use the generic proxy with curl to access model in
 curl http://<server-url>/model/proxy/embed \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <GPUSTACK_API_KEY>" \
-  -H "X-GPUStack-Model: bge-m3" \
+  -H "Authorization: Bearer <{{ brand.env_prefix }}_API_KEY>" \
+  -H "X-{{ brand.name }}-Model: bge-m3" \
   -d '{"inputs":["What is Deep Learning?", "Deep Learning is not..."]}'
 ```
 
-When using the generic proxy endpoint, the path prefix `/model/proxy` will be removed before forwarding the request. You must provide either the `X-GPUStack-Model` header or the `model` attribute in the JSON body. On the model inference server, the request will look like:
+When using the generic proxy endpoint, the path prefix `/model/proxy` will be removed before forwarding the request. You must provide either the `X-{{ brand.name }}-Model` header or the `model` attribute in the JSON body. On the model inference server, the request will look like:
 
 ```bash
 curl http://<inference-server-url>/embed \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "X-GPUStack-Model: bge-m3" \
+  -H "X-{{ brand.name }}-Model: bge-m3" \
   -d '{"inputs":["What is Deep Learning?", "Deep Learning is not..."]}'
 ```

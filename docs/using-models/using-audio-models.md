@@ -1,14 +1,14 @@
 # Using Audio Models
 
-GPUStack supports running both Speech-to-Text and Text-to-Speech models. Speech-to-Text models convert audio inputs in various languages into written text, while Text-to-Speech models transform written text into natural and expressive speech.
+{{ brand.name }} supports running both Speech-to-Text and Text-to-Speech models. Speech-to-Text models convert audio inputs in various languages into written text, while Text-to-Speech models transform written text into natural and expressive speech.
 
-In this guide, we will walk you through deploying and using Speech-to-Text and Text-to-Speech models in GPUStack.
+In this guide, we will walk you through deploying and using Speech-to-Text and Text-to-Speech models in {{ brand.name }}.
 
 ## Prerequisites
 
 Before you begin, ensure that you have the following:
 
-- GPUStack is installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
+- {{ brand.name }} is installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
 - Access to Hugging Face or ModelScope for downloading the model files.
 
 ## Running Speech-to-Text Model
@@ -17,7 +17,7 @@ Before you begin, ensure that you have the following:
 
 Follow these steps to deploy the model from the Model Catalog:
 
-1. Navigate to the `Model Catalog` page in the GPUStack UI.
+1. Navigate to the `Model Catalog` page in the {{ brand.name }} UI.
 2. Select `Speech-to-Text` in the category filter, then select the `Whisper-Large-V3-Turbo` model.
 3. Leave everything as default and click the `Save` button to deploy the model.
 
@@ -41,10 +41,10 @@ In the `Speech to Text` playground,
 You can also use the API to get streaming transcriptions. Here's an example using curl:
 
 ```bash
-# Replace ${SERVER_URL} with your GPUStack server URL and ${YOUR_GPUSTACK_API_KEY} with your API key.
+# Replace ${SERVER_URL} with your {{ brand.name }} server URL and ${YOUR_{{ brand.env_prefix }}_API_KEY} with your API key.
 curl ${SERVER_URL}/v1/audio/transcriptions \
   -H "Content-Type: multipart/form-data" \
-  -H "Authorization: Bearer ${YOUR_GPUSTACK_API_KEY}" \
+  -H "Authorization: Bearer ${YOUR_{{ brand.env_prefix }}_API_KEY}" \
   -F model="whisper-large-v3-turbo" \
   -F file="@/path/to/audio-file;type=audio/mpeg" \
   -F language="en" \
@@ -59,7 +59,7 @@ This will return streaming transcription results as they become available.
 
 Follow these steps to deploy the model from the Model Catalog:
 
-1. Navigate to the `Model Catalog` page in the GPUStack UI.
+1. Navigate to the `Model Catalog` page in the {{ brand.name }} UI.
 2. Select `Text-to-Speech` in the category filter, then select the `Qwen3-TTS-12Hz-1.7B-CustomVoice` model.
 3. Leave everything as default and click the `Save` button to deploy the model.
 
@@ -85,10 +85,10 @@ In the `Text to Speech` playground,
 You can also use the API to get streaming audio output. Here's an example using curl:
 
 ```bash
-# Replace ${SERVER_URL} with your GPUStack server URL and ${YOUR_GPUSTACK_API_KEY} with your API key.
+# Replace ${SERVER_URL} with your {{ brand.name }} server URL and ${YOUR_{{ brand.env_prefix }}_API_KEY} with your API key.
 curl ${SERVER_URL}/v1/audio/speech \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer ${YOUR_GPUSTACK_API_KEY}" \
+  -H "Authorization: Bearer ${YOUR_{{ brand.env_prefix }}_API_KEY}" \
   -d '{
     "model": "qwen3-tts-12hz-1.7b-customvoice",
     "voice": "Vivian",
@@ -104,11 +104,11 @@ This will stream the audio output directly and play it using the `play` command.
 
 ## Voice Cloning Using Qwen3-TTS
 
-GPUStack also supports voice cloning with Text-to-Speech models. Here's how to use it:
+{{ brand.name }} also supports voice cloning with Text-to-Speech models. Here's how to use it:
 
 ### Step 1: Deploy Voice Cloning Model
 
-1. Navigate to the `Model Catalog` page in the GPUStack UI.
+1. Navigate to the `Model Catalog` page in the {{ brand.name }} UI.
 2. Select `Text-to-Speech` in the category filter, then select the `Qwen3-TTS-12Hz-1.7B-Base` model.
 3. Leave everything as default and click the `Save` button to deploy the model.
 

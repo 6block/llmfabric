@@ -2,7 +2,7 @@
 
 Tool calling allows you to connect models to external tools and systems. This is useful for many things such as empowering AI assistants with capabilities, or building deep integrations between your applications and the models.
 
-In this tutorial, you’ll learn how to set up and use tool calling within GPUStack to extend your AI’s capabilities.
+In this tutorial, you’ll learn how to set up and use tool calling within {{ brand.name }} to extend your AI’s capabilities.
 
 !!! note
 
@@ -13,7 +13,7 @@ In this tutorial, you’ll learn how to set up and use tool calling within GPUSt
 
 Before proceeding, ensure the following:
 
-- GPUStack is installed and running.
+- {{ brand.name }} is installed and running.
 - A Linux worker node with a GPU is available. We'll use [Qwen2.5-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) as the model for this tutorial. The model requires a GPU with at least 18GB VRAM.
 - Access to Hugging Face for downloading the model files.
 
@@ -27,7 +27,7 @@ LLMs that support tool calling are marked with the `tools` capability in the cat
 
 When you deploy GGUF models using llama-box, tool calling is enabled by default for models that support it.
 
-1. Navigate to the `Deployments` page in the GPUStack UI and click the `Deploy Model` button. In the dropdown, select `Hugging Face` as the source for your model.
+1. Navigate to the `Deployments` page in the {{ brand.name }} UI and click the `Deploy Model` button. In the dropdown, select `Hugging Face` as the source for your model.
 2. Enable the `GGUF` checkbox to filter models by GGUF format.
 3. Use the search bar to find the `Qwen/Qwen2.5-7B-Instruct-GGUF` model.
 4. Click the `Save` button to deploy the model.
@@ -38,7 +38,7 @@ When you deploy GGUF models using llama-box, tool calling is enabled by default 
 
 When you deploy models using vLLM, you need to enable tool calling with additional parameters.
 
-1. Navigate to the `Deployments` page in the GPUStack UI and click the `Deploy Model` button. In the dropdown, select `Hugging Face` as the source for your model.
+1. Navigate to the `Deployments` page in the {{ brand.name }} UI and click the `Deploy Model` button. In the dropdown, select `Hugging Face` as the source for your model.
 2. Use the search bar to find the `Qwen/Qwen2.5-7B-Instruct` model.
 3. Expand the `Advanced` section in configurations and scroll down to the `Backend Parameters` section.
 4. Click on the `Add Parameter` button and add the following parameters:
@@ -54,7 +54,7 @@ After deployment, you can monitor the model's status on the `Deployments` page.
 
 ## Step 2: Generate an API Key
 
-We will use the GPUStack API to interact with the model. To do this, you need to generate an API key:
+We will use the {{ brand.name }} API to interact with the model. To do this, you need to generate an API key:
 
 1. Hover over the user avatar and navigate to the `API Keys` page.
 2. Click the `New API Key` button.
@@ -63,14 +63,14 @@ We will use the GPUStack API to interact with the model. To do this, you need to
 
 ## Step 3: Do Inference
 
-With the model deployed and an API key, you can call the model via the GPUStack API. Here is an example script using `curl` (replace `<your-server-url>` with your GPUStack server URL and `<your-api-key>` with the API key generated in the previous step):
+With the model deployed and an API key, you can call the model via the {{ brand.name }} API. Here is an example script using `curl` (replace `<your-server-url>` with your {{ brand.name }} server URL and `<your-api-key>` with the API key generated in the previous step):
 
 ```bash
-export GPUSTACK_SERVER_URL=<your-server-url>
-export GPUSTACK_API_KEY=<your-api-key>
-curl $GPUSTACK_SERVER_URL/v1-openai/chat/completions \
+export {{ brand.env_prefix }}_SERVER_URL=<your-server-url>
+export {{ brand.env_prefix }}_API_KEY=<your-api-key>
+curl ${{ brand.env_prefix }}_SERVER_URL/v1-openai/chat/completions \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer $GPUSTACK_API_KEY" \
+-H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
 -d '{
   "model": "qwen2.5-7b-instruct",
   "messages": [

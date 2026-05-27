@@ -1,18 +1,18 @@
 # Project information
-site_name: GPUStack
-site_url: https://docs.gpustack.ai
-site_author: GPUStack.ai
+site_name: 6block
+site_url: https://6block.ai
+site_author: 6block
 site_description: >-
-  GPUStack is an open-source GPU cluster manager designed for efficient AI model deployment.
+  LLMFabric is an open-source GPU cluster manager designed for efficient AI model deployment.
   It lets you run models efficiently on your own GPU hardware by choosing the best inference engines,
   scheduling GPU resources, analyzing model architectures, and automatically configuring deployment parameters.
 
 # Repository
-repo_name: gpustack/gpustack
-repo_url: https://github.com/gpustack/gpustack
+repo_name: 6block/llmfabric
+repo_url: https://github.com/6block/llmfabric
 
 # Copyright
-copyright: Copyright &copy; 2026 GPUStack.ai
+copyright: Copyright &copy; 2026 6block.ai
 
 theme:
   name: material
@@ -60,6 +60,7 @@ theme:
     repo: fontawesome/brands/github
   language: en
 plugins:
+  - macros
   - glightbox
   - search
   - redirects:
@@ -81,19 +82,35 @@ plugins:
         remove_comments: true
 extra:
   generator: false
+  brand:
+    name: "LLMFabric"
+    executable_name: "llmfabric"
+    env_prefix: "LLMFABRIC"
+    data_dir: "/var/lib/llmfabric"
+    volume_name: "llmfabric-data"
+    company: "6block"
+    docs_url: "https://docs.llmfabric.ai"
+    support_email: "contact@6block.ai"
+    github_org: "6block"
+    github_repo: "6block/llmfabric"
+    docker_image: "6block/llmfabric"
+    runtime_image_namespace: "6block"
+    runtime_name: "llmfabric-runtime"
+    dockerhub_url: "https://hub.docker.com/r/6block/llmfabric"
+    pypi_url: "https://pypi.org/project/llmfabric/"
   version:
     provider: mike
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/gpustack
+      link: https://github.com/6block
     - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/gpustack
+      link: https://hub.docker.com/r/6block/llmfabric
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/gpustack/
+      link: https://pypi.org/project/llmfabric/
     - icon: fontawesome/brands/discord
       link: https://discord.gg/QAzGncGs
     - icon: fontawesome/brands/weixin
-      link: https://github.com/gpustack/gpustack/blob/main/docs/assets/wechat-group-qrcode.jpg
+      link: https://github.com/6block/llmfabric/blob/main/docs/assets/wechat-group-qrcode.jpg
 extra_javascript:
   - image-selector/assets/extra.js
   - https://unpkg.com/katex@0/dist/katex.min.js

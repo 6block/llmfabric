@@ -1,21 +1,21 @@
 # Integrate with Dify
 
-Dify can integrate with GPUStack to leverage locally deployed LLMs, embeddings, reranking, image generation, Speech-to-Text and Text-to-Speech capabilities.
+Dify can integrate with {{ brand.name }} to leverage locally deployed LLMs, embeddings, reranking, image generation, Speech-to-Text and Text-to-Speech capabilities.
 
 ## Deploying Models
 
-1. In GPUStack UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
+1. In {{ brand.name }} UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
 
 - qwen3-8b
 - qwen2.5-vl-3b-instruct
 - bge-m3
 - bge-reranker-v2-m3
 
-![gpustack-models](../assets/integrations/integration-gpustack-models.png)
+![{{ brand.name }} models](../assets/integrations/integration-gpustack-models.png)
 
 2. In the model’s Operations, open `API Access Info` to see how to integrate with this model.
 
-![gpustack-api-access-info](../assets/integrations/integration-gpustack-api-access-info.png)
+![{{ brand.name }} API access info](../assets/integrations/integration-gpustack-api-access-info.png)
 
 ## Create an API Key
 
@@ -25,19 +25,19 @@ Dify can integrate with GPUStack to leverage locally deployed LLMs, embeddings, 
 
 3. Copy the API key and save it for later use.
 
-## Integrating GPUStack into Dify
+## Integrating {{ brand.name }} into Dify
 
-1. Access the Dify UI, go to the top right corner and click on `PLUGINS`, select `Install from Marketplace`, search for the GPUStack plugin, and choose to install it.
+1. Access the Dify UI, go to the top right corner and click on `PLUGINS`, select `Install from Marketplace`, search for the {{ brand.name }} plugin, and choose to install it.
 
 ![dify-install-gpustack-plugin](../assets/integrations/integration-dify-install-gpustack-plugin.png)
 
-2. After installed, go to `Settings > Model Provider > GPUStack`, then select `Add Model` and fill in:
+2. After installed, go to `Settings > Model Provider > {{ brand.name }}`, then select `Add Model` and fill in:
 
 - Model Type: Select the model type based on the model.
 
-- Model Name: The name must match the model name deployed on GPUStack.
+- Model Name: The name must match the model name deployed on {{ brand.name }}.
 
-- Server URL: `http://your-gpustack-url`, do not use `localhost`, as it refers to the container’s internal network. If you’re using a custom port, make sure to include it. Also, ensure the URL is accessible from inside the Dify container (you can test this with `curl`).
+- Server URL: `http://your-{{ brand.executable_name }}-url`, do not use `localhost`, as it refers to the container’s internal network. If you’re using a custom port, make sure to include it. Also, ensure the URL is accessible from inside the Dify container (you can test this with `curl`).
 
 - API Key: Input the API key you copied from previous steps.
 

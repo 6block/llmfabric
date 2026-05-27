@@ -1,6 +1,6 @@
 # Audio Playground
 
-The Audio Playground is a dedicated space for testing and experimenting with GPUStack’s Text-to-Speech (TTS) and Speech-to-Text (STT) APIs. It allows users to interactively convert text to audio and audio to text, customize parameters, and review code examples for seamless API integration.
+The Audio Playground is a dedicated space for testing and experimenting with {{ brand.name }}’s Text-to-Speech (TTS) and Speech-to-Text (STT) APIs. It allows users to interactively convert text to audio and audio to text, customize parameters, and review code examples for seamless API integration.
 
 ## Text to Speech
 
@@ -14,7 +14,7 @@ Enter the text you want to convert, then click the `Submit` button to generate t
 
 ### Select Model
 
-Select an available TTS model in GPUStack by clicking the model dropdown at the top-right corner of the playground UI.
+Select an available TTS model in {{ brand.name }} by clicking the model dropdown at the top-right corner of the playground UI.
 
 ### Customize Parameters
 
@@ -47,7 +47,7 @@ You can provide audio for transcription in two ways:
     2. For access via `http://{host IP}`, the URL must be added to your browser's trusted list.
 
           **Example:**
-          In Chrome, navigate to `chrome://flags/`, add the GPUStack URL to "Insecure origins treated as secure", and enable this option.
+          In Chrome, navigate to `chrome://flags/`, add the {{ brand.name }} URL to "Insecure origins treated as secure", and enable this option.
 
 ![speech-to-text](../../assets/playground/audio-permission.png)
 
@@ -55,7 +55,7 @@ You can provide audio for transcription in two ways:
 
 ### Select Model
 
-Select an available STT model in GPUStack by clicking the model dropdown at the top-right corner of the playground UI.
+Select an available STT model in {{ brand.name }} by clicking the model dropdown at the top-right corner of the playground UI.
 
 ### Copy Text
 

@@ -1,11 +1,11 @@
 # Integrate with Claude Code
 
-Claude Code is an agentic coding tool from Anthropic. Since model deployments on GPUStack are compatible with the Anthropic API, you can easily connect Claude Code to your GPUStack deployment and use it for code generation tasks. In this guide, we will walk through the steps to integrate Claude Code with GPUStack and test the integration by asking Claude to create a Flappy Bird game.
+Claude Code is an agentic coding tool from Anthropic. Since model deployments on {{ brand.name }} are compatible with the Anthropic API, you can easily connect Claude Code to your {{ brand.name }} deployment and use it for code generation tasks. In this guide, we will walk through the steps to integrate Claude Code with {{ brand.name }} and test the integration by asking Claude to create a Flappy Bird game.
 
 ## Prerequisites
 
 - One or more GPUs with at least 100 GB of VRAM in total
-- GPUStack installed and running
+- {{ brand.name }} installed and running
 - Access to Hugging Face or ModelScope to download model files
 
 !!! note
@@ -14,7 +14,7 @@ Claude Code is an agentic coding tool from Anthropic. Since model deployments on
 
 ## Deploy the Model
 
-1. In the GPUStack UI, navigate to the **Model Catalog** page.
+1. In the {{ brand.name }} UI, navigate to the **Model Catalog** page.
 
 2. Search for `Qwen3-Coder-Next` and deploy the model using the default configuration.
 
@@ -44,12 +44,12 @@ To easily switch between different model providers, you can use CC-Switch or sim
 
 Install [CC-Switch](https://github.com/farion1231/cc-switch) following its documentation.
 
-## Configure Claude Code with GPUStack
+## Configure Claude Code with {{ brand.name }}
 
 1. Open CC-Switch and add a custom provider with the following settings:
 
-   - **Provider Name**: `GPUStack`
-   - **API Endpoint**: Your GPUStack server URL
+   - **Provider Name**: `{{ brand.name }}`
+   - **API Endpoint**: Your {{ brand.name }} server URL
    - **API Key**: The API key you created earlier
 
 2. Configure all models to use `qwen3-coder-next`.
@@ -81,4 +81,4 @@ Install [CC-Switch](https://github.com/farion1231/cc-switch) following its docum
 
 ## Conclusion
 
-In this guide, we successfully integrated Claude Code with GPUStack and used it to generate a Flappy Bird game. You can now explore more complex coding tasks with Claude Code and leverage the power of GPUStack for efficient model serving.
+In this guide, we successfully integrated Claude Code with {{ brand.name }} and used it to generate a Flappy Bird game. You can now explore more complex coding tasks with Claude Code and leverage the power of {{ brand.name }} for efficient model serving.

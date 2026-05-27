@@ -1,14 +1,14 @@
 # Using Custom Inference Backends
 
-This guide explains how to add custom inference backends in GPUStack, including using verified community configurations and creating your own from scratch.
+This guide explains how to add custom inference backends in {{ brand.name }}, including using verified community configurations and creating your own from scratch.
 
 For parameter descriptions, see the [User Guide](../user-guide/inference-backend-management.md).
 
 ## Backend Types
 
-GPUStack supports three types of inference backends:
+{{ brand.name }} supports three types of inference backends:
 
-- **Built-in**: Pre-configured backends (vLLM, MindIE, VoxBox, SGLang...) maintained by GPUStack, automatically optimized for different hardware.
+- **Built-in**: Pre-configured backends (vLLM, MindIE, VoxBox, SGLang...) maintained by {{ brand.name }}, automatically optimized for different hardware.
 - **Community**: Pre-verified custom backend configurations. These are essentially CustomBackends labeled "community" to simplify manual setup.
 - **Custom**: Backends you configure yourself with custom Docker images and commands.
 

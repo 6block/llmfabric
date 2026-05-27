@@ -1,6 +1,6 @@
 # Built-in Inference Backends
 
-GPUStack supports the following inference backends:
+{{ brand.name }} supports the following inference backends:
 
 - [vLLM](#vllm)
 - [SGLang](#sglang)
@@ -17,7 +17,7 @@ This pre-selection only populates the default value in the deployment form. The 
 
 !!! Note
 
-    For all supported inference backends, we have pre-built Docker images available at [DockerHub](https://hub.docker.com/r/gpustack/runner). When users deploy models, the system will automatically pull and run the corresponding images.
+    For all supported inference backends, we have pre-built Docker images available at [DockerHub]({{ brand.dockerhub_url }}/runner). When users deploy models, the system will automatically pull and run the corresponding images.
 
 ## vLLM
 
@@ -31,13 +31,13 @@ vLLM seamlessly supports most state-of-the-art open-source models, including:
 - Embedding Models (e.g. `Qwen3-Embedding`)
 - Reranker Models (e.g. `Qwen3-Reranker`)
 
-By default, GPUStack estimates the VRAM requirement for the model instance based on the model's metadata.
+By default, {{ brand.name }} estimates the VRAM requirement for the model instance based on the model's metadata.
 
 You can customize the parameters to fit your needs. The following vLLM parameters might be useful:
 
 - `--gpu-memory-utilization` (default: 0.9): The fraction of GPU memory to use for the model instance.
-- `--max-model-len`: Model context length. For large-context models, GPUStack automatically sets this parameter to `8192` to simplify model deployment, especially in resource constrained environments. You can customize this parameter to fit your needs.
-- `--tensor-parallel-size`: Number of tensor parallel replicas. By default, GPUStack sets this parameter given the GPU resources available and the estimation of the model's memory requirement. You can customize this parameter to fit your needs.
+- `--max-model-len`: Model context length. For large-context models, {{ brand.name }} automatically sets this parameter to `8192` to simplify model deployment, especially in resource constrained environments. You can customize this parameter to fit your needs.
+- `--tensor-parallel-size`: Number of tensor parallel replicas. By default, {{ brand.name }} sets this parameter given the GPU resources available and the estimation of the model's memory requirement. You can customize this parameter to fit your needs.
 
 For more details, please refer to [vLLM CLI Reference](https://docs.vllm.ai/en/stable/cli/serve/).
 
@@ -56,11 +56,11 @@ Please refer to the vLLM [documentation](https://docs.vllm.ai/en/stable/models/s
 - **Video Tasks**: Video generation and editing (e.g., `Wan2.2`)
 - **Audio Tasks**: Speech synthesis, voice cloning, and more (e.g., `Qwen3-TTS`)
 
-GPUStack integrates with vLLM-Omni to deliver a seamless experience for deploying and managing omni-modal models. When a model is deployed via the vLLM backend, GPUStack automatically detects whether it is omni-modal based on its metadata and sets the required parameters for vLLM-Omni.
+{{ brand.name }} integrates with vLLM-Omni to deliver a seamless experience for deploying and managing omni-modal models. When a model is deployed via the vLLM backend, {{ brand.name }} automatically detects whether it is omni-modal based on its metadata and sets the required parameters for vLLM-Omni.
 
 #### Distributed Inference Across Workers (Experimental)
 
-vLLM supports distributed inference across multiple workers using [Ray](https://ray.io). You can enable a Ray cluster in GPUStack by checking the `Allow Distributed Inference Across Workers` option when deploying a model. This allows vLLM to run distributed inference across multiple workers.
+vLLM supports distributed inference across multiple workers using [Ray](https://ray.io). You can enable a Ray cluster in {{ brand.name }} by checking the `Allow Distributed Inference Across Workers` option when deploying a model. This allows vLLM to run distributed inference across multiple workers.
 
 !!! warning "Known Limitations"
 
@@ -86,15 +86,15 @@ See the full list of supported parameters for vLLM [here](https://docs.vllm.ai/e
 
 It is designed to deliver low-latency and high-throughput inference across a wide range of setups, from a single GPU to large distributed clusters.
 
-By default, GPUStack estimates the VRAM requirement for the model instance based on model metadata.
+By default, {{ brand.name }} estimates the VRAM requirement for the model instance based on model metadata.
 
-When needed, GPUStack also sets several parameters automatically for large-context models. Common SGLang parameters include:
+When needed, {{ brand.name }} also sets several parameters automatically for large-context models. Common SGLang parameters include:
 
 - `--mem-fraction-static` (default: `0.9`): The per-GPU allocatable VRAM fraction. The scheduler uses this value for resource matching and candidate selection. You can override it via the model's `backend_parameters`.
-- `--context-length`: Model context length. For large-context models, if the automatically estimated context length exceeds device capability, GPUStack sets this parameter to `8192` to simplify deployment in resource-constrained environments. You can customize this parameter as needed.
-- `--tp-size`: Tensor parallel size. When not explicitly provided, GPUStack infers and sets this parameter based on the selected GPUs.
-- `--pp-size`: Pipeline parallel size. In multi-node deployments, GPUStack determines a combination of `--tp-size` and `--pp-size` according to the model and cluster configuration.
-- Multi-node arguments: `--nnodes`, `--node-rank`, `--dist-init-addr`. When distributed inference is enabled, GPUStack injects these arguments to initialize multi-node communication.
+- `--context-length`: Model context length. For large-context models, if the automatically estimated context length exceeds device capability, {{ brand.name }} sets this parameter to `8192` to simplify deployment in resource-constrained environments. You can customize this parameter as needed.
+- `--tp-size`: Tensor parallel size. When not explicitly provided, {{ brand.name }} infers and sets this parameter based on the selected GPUs.
+- `--pp-size`: Pipeline parallel size. In multi-node deployments, {{ brand.name }} determines a combination of `--tp-size` and `--pp-size` according to the model and cluster configuration.
+- Multi-node arguments: `--nnodes`, `--node-rank`, `--dist-init-addr`. When distributed inference is enabled, {{ brand.name }} injects these arguments to initialize multi-node communication.
 
 For more details, please refer to [SGLang documentation](https://docs.sglang.ai/index.html).
 
@@ -108,7 +108,7 @@ SGLang also supports image models. The ones we have verified include: Qwen-Image
 
 #### Distributed Inference Across Workers (Experimental)
 
-You can enable distributed SGLang inference across multiple workers in GPUStack.
+You can enable distributed SGLang inference across multiple workers in {{ brand.name }}.
 
 !!! warning "Known Limitations"
 
@@ -151,7 +151,7 @@ See the full list of supported parameters for SGLang [here](https://docs.sglang.
 
 MindIE supports various models listed [here](https://www.hiascend.com/software/mindie/modellist).
 
-Within GPUStack, support [large language models (LLMs)](https://www.hiascend.com/software/mindie/modellist) and [multimodal language models (VLMs)](https://www.hiascend.com/software/mindie/modellist).
+Within {{ brand.name }}, support [large language models (LLMs)](https://www.hiascend.com/software/mindie/modellist) and [multimodal language models (VLMs)](https://www.hiascend.com/software/mindie/modellist).
 
 However, _embedding models_ and _multimodal generation models_ are not supported yet.
 
@@ -159,7 +159,7 @@ However, _embedding models_ and _multimodal generation models_ are not supported
 
 MindIE owns a variety of features outlined [here](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_llm0001.html).
 
-At present, GPUStack supports a subset of these capabilities, including
+At present, {{ brand.name }} supports a subset of these capabilities, including
 [Quantization](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_llm0279.html),
 [Extending Context Size](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_llm0295.html),
 [Distributed Inference](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_llm0296.html),
@@ -189,7 +189,7 @@ At present, GPUStack supports a subset of these capabilities, including
 
 MindIE has configurable [parameters](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_service0285.html) and [environment variables](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_llm0416.html).
 
-To avoid directly configuring JSON, GPUStack provides a set of command line parameters as below.
+To avoid directly configuring JSON, {{ brand.name }} provides a set of command line parameters as below.
 
 | Parameter                                            | Default | Range                    | Scope                                  | Description                                                                                                                                                                                                                                                                     |
 |------------------------------------------------------|---------|--------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -253,35 +253,35 @@ To avoid directly configuring JSON, GPUStack provides a set of command line para
 
 !!! note
 
-    GPUStack allows users to inject custom environment variables during model deployment, however, some variables may be conflicted with GPUStack managment.
+    {{ brand.name }} allows users to inject custom environment variables during model deployment, however, some variables may be conflicted with {{ brand.name }} managment.
 
-    Hence, GPUStack will override/prevent those variables. Please compare the model instance logs' output with your expectations.
+    Hence, {{ brand.name }} will override/prevent those variables. Please compare the model instance logs' output with your expectations.
 
 ## VoxBox
 
-[VoxBox](https://github.com/gpustack/vox-box) is an inference engine designed for deploying Text-to-Speech and Speech-to-Text models. It also provides an API that is fully compatible with the OpenAI audio API.
+[VoxBox](https://github.com/{{ brand.github_org }}/vox-box) is an inference engine designed for deploying Text-to-Speech and Speech-to-Text models. It also provides an API that is fully compatible with the OpenAI audio API.
 
 ### Supported Models
 
 | Model                           | Type           | Link                                                                                                                                                                | Supported Platforms |
 | ------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| Faster-whisper-large-v3         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-large-v3), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-large-v3)                 | AMD64,ARM64         |
-| Faster-whisper-large-v2         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-large-v2), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-large-v2)                 | AMD64,ARM64         |
-| Faster-whisper-large-v1         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-large-v1), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-large-v1)                 | AMD64,ARM64         |
-| Faster-whisper-medium           | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-medium), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-medium)                     | AMD64,ARM64         |
-| Faster-whisper-medium.en        | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-medium.en), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-medium.en)               | AMD64,ARM64         |
-| Faster-whisper-small            | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-small), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-small)                       | AMD64,ARM64         |
-| Faster-whisper-small.en         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-small.en), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-small.en)                 | AMD64,ARM64         |
-| Faster-distil-whisper-large-v3  | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-distil-whisper-large-v3), [ModelScope](https://modelscope.cn/models/gpustack/faster-distil-whisper-large-v3)   | AMD64,ARM64         |
-| Faster-distil-whisper-large-v2  | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-distil-whisper-large-v2), [ModelScope](https://modelscope.cn/models/gpustack/faster-distil-whisper-large-v2)   | AMD64,ARM64         |
-| Faster-distil-whisper-medium.en | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-distil-whisper-medium.en), [ModelScope](https://modelscope.cn/models/gpustack/faster-distil-whisper-medium.en) | AMD64,ARM64         |
-| Faster-whisper-tiny             | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-tiny), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-tiny)                         | AMD64,ARM64         |
-| Faster-whisper-tiny.en          | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-tiny.en), [ModelScope](https://modelscope.cn/models/gpustack/faster-whisper-tiny.en)                   | AMD64,ARM64         |
-| CosyVoice-300M-Instruct         | Text-to-Speech | [Hugging Face](https://huggingface.co/gpustack/CosyVoice-300M-Instruct), [ModelScope](https://modelscope.cn/models/gpustack/CosyVoice-300M-Instruct)                | AMD64               |
-| CosyVoice-300M-SFT              | Text-to-Speech | [Hugging Face](https://huggingface.co/gpustack/CosyVoice-300M-SFT), [ModelScope](https://modelscope.cn/models/iic/CosyVoice-300M-SFT)                               | AMD64               |
-| CosyVoice-300M                  | Text-to-Speech | [Hugging Face](https://huggingface.co/gpustack/CosyVoice-300M), [ModelScope](https://modelscope.cn/models/gpustack/CosyVoice-300M)                                  | AMD64               |
+| Faster-whisper-large-v3         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-large-v3), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-large-v3)                 | AMD64,ARM64         |
+| Faster-whisper-large-v2         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-large-v2), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-large-v2)                 | AMD64,ARM64         |
+| Faster-whisper-large-v1         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-large-v1), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-large-v1)                 | AMD64,ARM64         |
+| Faster-whisper-medium           | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-medium), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-medium)                     | AMD64,ARM64         |
+| Faster-whisper-medium.en        | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-medium.en), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-medium.en)               | AMD64,ARM64         |
+| Faster-whisper-small            | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-small), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-small)                       | AMD64,ARM64         |
+| Faster-whisper-small.en         | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-small.en), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-small.en)                 | AMD64,ARM64         |
+| Faster-distil-whisper-large-v3  | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-distil-whisper-large-v3), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-distil-whisper-large-v3)   | AMD64,ARM64         |
+| Faster-distil-whisper-large-v2  | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-distil-whisper-large-v2), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-distil-whisper-large-v2)   | AMD64,ARM64         |
+| Faster-distil-whisper-medium.en | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-distil-whisper-medium.en), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-distil-whisper-medium.en) | AMD64,ARM64         |
+| Faster-whisper-tiny             | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-tiny), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-tiny)                         | AMD64,ARM64         |
+| Faster-whisper-tiny.en          | Speech-to-Text | [Hugging Face](https://huggingface.co/Systran/faster-whisper-tiny.en), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/faster-whisper-tiny.en)                   | AMD64,ARM64         |
+| CosyVoice-300M-Instruct         | Text-to-Speech | [Hugging Face](https://huggingface.co/{{ brand.github_org }}/CosyVoice-300M-Instruct), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/CosyVoice-300M-Instruct)                | AMD64               |
+| CosyVoice-300M-SFT              | Text-to-Speech | [Hugging Face](https://huggingface.co/{{ brand.github_org }}/CosyVoice-300M-SFT), [ModelScope](https://modelscope.cn/models/iic/CosyVoice-300M-SFT)                               | AMD64               |
+| CosyVoice-300M                  | Text-to-Speech | [Hugging Face](https://huggingface.co/{{ brand.github_org }}/CosyVoice-300M), [ModelScope](https://modelscope.cn/models/{{ brand.github_org }}/CosyVoice-300M)                                  | AMD64               |
 | CosyVoice-300M-25Hz             | Text-to-Speech | [ModelScope](https://modelscope.cn/models/iic/CosyVoice-300M-25Hz)                                                                                                  | AMD64               |
-| CosyVoice2-0.5B                 | Text-to-Speech | [Hugging Face](https://huggingface.co/gpustack/CosyVoice2-0.5B), [ModelScope](https://modelscope.cn/models/iic/CosyVoice2-0.5B)                                     | AMD64               |
+| CosyVoice2-0.5B                 | Text-to-Speech | [Hugging Face](https://huggingface.co/{{ brand.github_org }}/CosyVoice2-0.5B), [ModelScope](https://modelscope.cn/models/iic/CosyVoice2-0.5B)                                     | AMD64               |
 | Dia-1.6B                        | Text-to-Speech | [Hugging Face](https://huggingface.co/nari-labs/Dia-1.6B), [ModelScope](https://modelscope.cn/models/nari-labs/Dia-1.6B)                                            | AMD64               |
 
 ### Supported Features

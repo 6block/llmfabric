@@ -1,6 +1,6 @@
 # Model Provider Management
 
-GPUStack leverages Higress capabilities to provide Public MaaS integration. On the `Model` - `Provider` page, you can manage the integration of public model services.
+{{ brand.name }} leverages Higress capabilities to provide Public MaaS integration. On the `Model` - `Provider` page, you can manage the integration of public model services.
 
 The currently supported providers are:
 

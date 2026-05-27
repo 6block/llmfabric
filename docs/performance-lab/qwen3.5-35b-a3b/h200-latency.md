@@ -30,7 +30,7 @@ Comparison of benchmark results before and after optimization:
     4. Although using quantization may impact accuracy. FP8 quantization can achieve less than 1% accuracy drop for most models. See the [evaluation results](https://github.com/Tencent/AngelSlim/blob/main/README_en.md#-benchmark) for more details. Therefore, it is highly recommended to use FP8 quantization for low-latency serving scenarios.
     5. Speculative decoding can significantly reduce latency for low-concurrency requests. However, the acceleration effect may vary depending on the data distribution of different benchmark datasets and the choice of draft models. For example, the chosen draft model here is trained on English data, which may lead to suboptimal performance on other languages.
 
-If there are any missing points or updates reflecting new changes, please [let us know](https://github.com/gpustack/gpustack/issues/new/choose).
+If there are any missing points or updates reflecting new changes, please [let us know](https://github.com/{{ brand.github_repo }}/issues/new/choose).
 
 ## Experimental Setup
 
@@ -49,11 +49,11 @@ NVIDIA H200
 
 ### Benchmark Method
 
-This project uses GPUStack's one-click benchmark capability for serving workloads. The benchmark tests in this document were executed with that workflow.
+This project uses {{ brand.name }}'s one-click benchmark capability for serving workloads. The benchmark tests in this document were executed with that workflow.
 
-GPUStack's benchmark implementation is built on top of [guidellm](https://github.com/vllm-project/guidellm) via the wrapper project [benchmark-runner](https://github.com/gpustack/benchmark-runner).
+{{ brand.name }}'s benchmark implementation is built on top of [guidellm](https://github.com/vllm-project/guidellm) via the wrapper project [benchmark-runner](https://github.com/{{ brand.runtime_image_namespace }}/benchmark-runner).
 
-GPUStack handles model deployment, benchmark job submission, and result collection for the benchmark configurations listed below.
+{{ brand.name }} handles model deployment, benchmark job submission, and result collection for the benchmark configurations listed below.
 
 #### Benchmark Profiles
 
@@ -91,7 +91,7 @@ total_requests: 1000
 
 ### Open-Source Replacement
 
-If you do not use GPUStack, you can replace the GPUStack benchmark workflow with direct `guidellm benchmark` commands.
+If you do not use {{ brand.name }}, you can replace the {{ brand.name }} benchmark workflow with direct `guidellm benchmark` commands.
 
 For profiles with `dataset_name: ShareGPT`:
 

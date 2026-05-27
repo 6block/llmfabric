@@ -1,17 +1,17 @@
 # Integrate with CherryStudio
 
-CherryStudio integrates with GPUStack to leverage locally hosted LLMs, embeddings and reranking capabilities.
+CherryStudio integrates with {{ brand.name }} to leverage locally hosted LLMs, embeddings and reranking capabilities.
 
 ## Deploying Models
 
-1. In GPUStack UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
+1. In {{ brand.name }} UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
 
     - qwen3-instruct-2507
     - qwen2.5-vl-7b
     - bge-m3
     - bge-reranker-v2-m3
 
-   ![GPUStack models](../assets/integrations/integration-gpustack-models2.png)
+   ![{{ brand.name }} models](../assets/integrations/integration-gpustack-models2.png)
 
 2. In the model’s Operations, open `API Access Info` to see how to integrate with this model:
 
@@ -25,17 +25,17 @@ CherryStudio integrates with GPUStack to leverage locally hosted LLMs, embedding
 
 3. Copy the API key and save it for later use.
 
-## Integrating GPUStack into CherryStudio
+## Integrating {{ brand.name }} into CherryStudio
 
-1. Open CherryStudio, go to `Settings` → `Model Provider`, find GPUStack, enable it, and configure it as shown:
+1. Open CherryStudio, go to `Settings` → `Model Provider`, find {{ brand.name }}, enable it, and configure it as shown:
 
     - `API Key`: Input the API key you copied from previous steps.
 
     - `API Host`: `Access URL` in the `API Access Info` panel.
 
-   ![CherryStudio GPUStack setup](../assets/integrations/integration-cherrystudio-01.png)
+   ![CherryStudio {{ brand.name }} setup](../assets/integrations/integration-cherrystudio-01.png)
 
-2. In the GPUStack provider configuration, click "Manage" and enable the models you need:
+2. In the {{ brand.name }} provider configuration, click "Manage" and enable the models you need:
 
    ![Manage models](../assets/integrations/integration-cherrystudio-02.png)
 

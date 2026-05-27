@@ -1,6 +1,6 @@
 # Model Route Management
 
-GPUStack provides model route management capabilities. Through model routes, you can implement model aliases, traffic distribution, disaster recovery, and unified entry for both public and private models.
+{{ brand.name }} provides model route management capabilities. Through model routes, you can implement model aliases, traffic distribution, disaster recovery, and unified entry for both public and private models.
 
 ## Create Route
 

@@ -4,7 +4,7 @@
 
 ### Hybrid Cluster Support
 
-GPUStack supports heterogeneous clusters spanning NVIDIA, AMD, Ascend NPUs, Hygon DCUs, Moore Threads, Iluvatar, MetaX, Cambricon and T-head PPUs, and works across both AMD64 and ARM64 architectures.
+{{ brand.name }} supports heterogeneous clusters spanning NVIDIA, AMD, Ascend NPUs, Hygon DCUs, Moore Threads, Iluvatar, MetaX, Cambricon and T-head PPUs, and works across both AMD64 and ARM64 architectures.
 
 ### Distributed Inference Support
 
@@ -34,66 +34,66 @@ GPUStack supports heterogeneous clusters spanning NVIDIA, AMD, Ascend NPUs, Hygo
 
 ### How can I change the registered worker name?
 
-You can set it to a custom name using the `--worker-name` flag when running GPUStack:
+You can set it to a custom name using the `--worker-name` flag when running {{ brand.name }}:
 
 ```diff
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
     ...
-    gpustack/gpustack \
+    {{ brand.docker_image }} \
 +    --worker-name New-Name
 ```
 
 ### How can I change the registered worker IP?
 
-You can set it to a custom IP using the `--worker-ip` flag when running GPUStack:
+You can set it to a custom IP using the `--worker-ip` flag when running {{ brand.name }}:
 
 ```diff
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
     ...
-    gpustack/gpustack \
+    {{ brand.docker_image }} \
 +    --worker-ip xx.xx.xx.xx
 ```
 
-### Where are GPUStack's data stored?
+### Where are {{ brand.name }}'s data stored?
 
-When running the GPUStack container, the Docker volume is mounted using `--volume/-v` parameter. The default data path is under the Docker data directory, specifically in the volumes subdirectory, and the default path is:
+When running the {{ brand.name }} container, the Docker volume is mounted using `--volume/-v` parameter. The default data path is under the Docker data directory, specifically in the volumes subdirectory, and the default path is:
 
 ```bash
-/var/lib/docker/volumes/gpustack-data/_data
+/var/lib/docker/volumes/{{ brand.volume_name }}/_data
 ```
 
 You can check it by the following method:
 
 ```bash
 docker volume ls
-docker volume inspect gpustack-data
+docker volume inspect {{ brand.volume_name }}
 ```
 
-If you need to change it to a custom path, modify the mount configuration when running container. For example, to mount the host directory `/data/gpustack`:
+If you need to change it to a custom path, modify the mount configuration when running container. For example, to mount the host directory `/data/{{ brand.executable_name }}`:
 
 ```diff
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
     ...
     --volume /var/run/docker.sock:/var/run/docker.sock \
--    --volume gpustack-data:/var/lib/gpustack \
-+    --volume /data/gpustack:/var/lib/gpustack \
+-    --volume {{ brand.volume_name }}:{{ brand.data_dir }} \
++    --volume /data/{{ brand.executable_name }}:{{ brand.data_dir }} \
     ...
-    gpustack/gpustack
+    {{ brand.docker_image }}
 ```
 
 ### Where are model files stored?
 
-When running the GPUStack container, the Docker volume is mounted using `--volume/-v` parameter. The default cache path is under the Docker data directory, specifically in the volumes subdirectory, and the default path is:
+When running the {{ brand.name }} container, the Docker volume is mounted using `--volume/-v` parameter. The default cache path is under the Docker data directory, specifically in the volumes subdirectory, and the default path is:
 
 ```bash
-/var/lib/docker/volumes/gpustack-data/_data/cache
+/var/lib/docker/volumes/{{ brand.volume_name }}/_data/cache
 ```
 
 You can check it by the following method:
 
 ```bash
 docker volume ls
-docker volume inspect gpustack-data
+docker volume inspect {{ brand.volume_name }}
 ```
 
 If you need to change it to a custom path, modify the mount configuration when running container.
@@ -101,12 +101,12 @@ If you need to change it to a custom path, modify the mount configuration when r
 For example, to mount the host directory `/data/model-cache`:
 
 ```diff
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
     ...
-    --volume gpustack-data:/var/lib/gpustack \
-+    --volume /data/model-cache:/var/lib/gpustack/cache \
+    --volume {{ brand.volume_name }}:{{ brand.data_dir }} \
++    --volume /data/model-cache:{{ brand.data_dir }}/cache \
     ...
-    gpustack/gpustack
+    {{ brand.docker_image }}
 ```
 
 ---
@@ -120,10 +120,10 @@ To deploy models from Hugging Face, the server node and the worker nodes where t
 For example, configure the `hf-mirror.com` mirror:
 
 ```diff
-sudo docker run -d --name gpustack \
+sudo docker run -d --name {{ brand.executable_name }} \
 +    -e HF_ENDPOINT=https://hf-mirror.com \
     ...
-    gpustack/gpustack
+    {{ brand.docker_image }}
 ```
 
 ---
@@ -164,7 +164,7 @@ If the allocatable GPU memory is less than 90%, but you are sure the model can r
 
 **Note**: If the model encounters an error after running and the logs show `CUDA: out of memory`, it means the allocated GPU memory is insufficient. You will need to further adjust `--gpu-memory-utilization`, add more resources, or deploy a smaller model.
 
-The context size for the model also affects the required GPU memory. You can adjust the `--max-model-len` parameter to set a smaller context. In GPUStack, if this parameter is not set, its default value is 8192. If it is specified in the backend parameters, the actual setting will take effect.
+The context size for the model also affects the required GPU memory. You can adjust the `--max-model-len` parameter to set a smaller context. In {{ brand.name }}, if this parameter is not set, its default value is 8192. If it is specified in the backend parameters, the actual setting will take effect.
 
 You can adjust it to a smaller context as needed, for example, `--max-model-len=2048`. However, keep in mind that the max tokens for each inference request cannot exceed the value of `--max-model-len`. Therefore, setting a very small context may cause inference truncation.
 
@@ -176,7 +176,7 @@ The `--enforce-eager` parameter also helps reduce GPU memory usage. However, thi
 
 ### What should I do if the model is stuck in `Scheduled` state?
 
-Try restarting the GPUStack container where the model is scheduled. If the issue persists, check the worker logs [here](troubleshooting.md#view-gpustack-logs) to analyze the cause.
+Try restarting the {{ brand.name }} container where the model is scheduled. If the issue persists, check the worker logs [here](troubleshooting.md#view-{{ brand.executable_name }}-logs) to analyze the cause.
 
 ### What should I do if the model is stuck in `Error` state?
 
@@ -189,7 +189,7 @@ When deploying a model using a custom vLLM backend version based on the official
 You may see an error similar to:
 
 ```bash
-/gpustack-command-xxxxxxxx: 40: /path/to/your_model: Permission denied
+/{{ brand.executable_name }}-command-xxxxxxxx: 40: /path/to/your_model: Permission denied
 ```
 
 This happens because the container starts with a custom command instead of the image’s default entrypoint.
@@ -214,16 +214,16 @@ This is a limitation of vLLM. You can adjust the `--limit-mm-per-prompt` paramet
 
 ---
 
-## Managing GPUStack
+## Managing {{ brand.name }}
 
-### How do I use GPUStack behind a proxy?
+### How do I use {{ brand.name }} behind a proxy?
 
-We recommend passing standard proxy environment variables when running GPUStack.
+We recommend passing standard proxy environment variables when running {{ brand.name }}.
 
-The following case demonstrates how to configure GPUStack to forward all requests to the target proxy, except for requests to addresses specified in the NO_PROXY environment variable.
+The following case demonstrates how to configure {{ brand.name }} to forward all requests to the target proxy, except for requests to addresses specified in the NO_PROXY environment variable.
 
 ```bash
-docker run -d --name gpustack \
+docker run -d --name {{ brand.executable_name }} \
     -e HTTPS_PROXY="http://proxy-server:port" \
     -e HTTP_PROXY="http://proxy-server:port" \
     -e NO_PROXY="127.0.0.1,10.0.0.0/8,192.168.0.0/16,172.16.0.0/16,localhost,cluster.local" \

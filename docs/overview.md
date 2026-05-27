@@ -1,33 +1,33 @@
 <br>
 
 <p align="center">
-    <img alt="GPUStack" src="https://raw.githubusercontent.com/gpustack/gpustack/main/docs/assets/gpustack-logo.png" width="300px"/>
+    <img alt="{{ brand.name }}" src="https://raw.githubusercontent.com/{{ brand.github_repo }}/main/docs/assets/logo.png" width="300px"/>
 </p>
 
 <br>
 
 <p align="center">
-  <a href="https://github.com/gpustack/gpustack/blob/main/LICENSE" target="_blank">
-    <img alt="License" src="https://img.shields.io/github/license/gpustack/gpustack?logo=github&logoColor=white&label=License&color=blue">
+  <a href="https://github.com/{{ brand.github_repo }}/blob/main/LICENSE" target="_blank">
+    <img alt="License" src="https://img.shields.io/github/license/{{ brand.docker_image }}?logo=github&logoColor=white&label=License&color=blue">
   </a>
   <a href="https://discord.gg/VXYJzuaqwD" target="_blank">
-    <img alt="Discord" src="https://img.shields.io/badge/Discord-GPUStack-blue?logo=discord&logoColor=white">
+    <img alt="Discord" src="https://img.shields.io/badge/Discord-{{ brand.name }}-blue?logo=discord&logoColor=white">
   </a>
-  <a href="https://github.com/gpustack/gpustack/blob/main/docs/assets/wechat-group-qrcode.jpg" target="_blank">
-    <img alt="WeChat" src="https://img.shields.io/badge/微信群-GPUStack-blue?logo=wechat&logoColor=white">
+  <a href="https://github.com/{{ brand.github_repo }}/blob/main/docs/assets/wechat-group-qrcode.jpg" target="_blank">
+    <img alt="WeChat" src="https://img.shields.io/badge/微信群-{{ brand.name }}-blue?logo=wechat&logoColor=white">
   </a>
 </p>
 
 <p align="center">
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <a class="github-button" href="https://github.com/gpustack/gpustack" data-show-count="true" data-size="large" aria-label="Star">Star</a>
-  <a class="github-button" href="https://github.com/gpustack/gpustack/subscription" data-icon="octicon-eye" data-size="large" aria-label="Watch">Watch</a>
-  <a class="github-button" href="https://github.com/gpustack/gpustack/fork" data-show-count="true" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork">Fork</a>
+  <a class="github-button" href="https://github.com/{{ brand.github_repo }}" data-show-count="true" data-size="large" aria-label="Star">Star</a>
+  <a class="github-button" href="https://github.com/{{ brand.github_repo }}/subscription" data-icon="octicon-eye" data-size="large" aria-label="Watch">Watch</a>
+  <a class="github-button" href="https://github.com/{{ brand.github_repo }}/fork" data-show-count="true" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork">Fork</a>
 </p>
 
 ## Overview
 
-GPUStack is an open-source GPU cluster manager designed for efficient AI model deployment. It configures and orchestrates inference engines — vLLM, SGLang, TensorRT-LLM, or your own — to optimize performance across GPU clusters.
+{{ brand.name }} is an open-source GPU cluster manager designed for efficient AI model deployment. It configures and orchestrates inference engines — vLLM, SGLang, TensorRT-LLM, or your own — to optimize performance across GPU clusters.
 
 <div class="grid cards" markdown>
 
@@ -47,7 +47,7 @@ GPUStack is an open-source GPU cluster manager designed for efficient AI model d
 
     ---
 
-    GPUStack's pluggable engine architecture enables you to deploy new models on the day they are released.
+    {{ brand.name }}'s pluggable engine architecture enables you to deploy new models on the day they are released.
 
 -   :material-speedometer:{ .lg .middle .icon-red } __Performance-Optimized__
 
@@ -65,15 +65,15 @@ GPUStack is an open-source GPU cluster manager designed for efficient AI model d
 
 ## Optimized Inference Performance
 
-GPUStack's automated engine selection and parameter optimization deliver strong inference performance out of the box. The following figure shows throughput improvements over default vLLM configurations:
+{{ brand.name }}'s automated engine selection and parameter optimization deliver strong inference performance out of the box. The following figure shows throughput improvements over default vLLM configurations:
 
 ![a100-throughput-comparison](assets/a100-throughput-comparison.png)
 
-For detailed benchmarking methods and results, visit our [Inference Performance Lab](https://docs.gpustack.ai/latest/performance-lab/overview/).
+For detailed benchmarking methods and results, visit our [Inference Performance Lab]({{ brand.docs_url }}/latest/performance-lab/overview/).
 
 ## Supported Accelerators
 
-GPUStack supports a wide range of accelerators for AI inference:
+{{ brand.name }} supports a wide range of accelerators for AI inference:
 
 <div class="logo-tile-grid">
     <div class="logo-tile" data-tooltip="NVIDIA GPU">

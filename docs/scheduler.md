@@ -41,13 +41,13 @@ This step is also a filter. Instead of filtering by metadata or worker state, it
 
 Resource requirements are determined differently depending on the model type:
 
-- **GGUF models:** resource requirements are estimated with the [GGUF parser](https://github.com/gpustack/gguf-parser-go).
+- **GGUF models:** resource requirements are estimated with the [GGUF parser](https://github.com/{{ brand.github_org }}/gguf-parser-go).
 - **Other model types:** resource requirements are estimated by the corresponding backend, such as vLLM, SGLang, MindIE, or VoxBox.
 
 Backend capabilities are different, so the available fallback paths are also different:
 
 - **vLLM, SGLang, MindIE:** mainly use GPU-based placements and do not use CPU-only or partial-offload fallback paths here.
-- **GGUF, custom backends, VoxBox:** Uses the [GGUF parser](https://github.com/gpustack/gguf-parser-go) to estimate the model's resource requirements.Support GPU offload, partial offload or CPU execution.
+- **GGUF, custom backends, VoxBox:** Uses the [GGUF parser](https://github.com/{{ brand.github_org }}/gguf-parser-go) to estimate the model's resource requirements.Support GPU offload, partial offload or CPU execution.
 - **Custom backends, VoxBox:** Support GPU offload or CPU execution.
 
 Candidates are then evaluated in order, and the process stops as soon as one strategy returns runnable candidates. In general, the scheduler tries:

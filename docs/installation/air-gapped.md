@@ -1,6 +1,6 @@
 # Air-Gapped Installation
 
-GPUStack can be installed in an air-gapped (offline) environment with no internet access.
+{{ brand.name }} can be installed in an air-gapped (offline) environment with no internet access.
 
 ## Prerequisites
 
@@ -18,24 +18,24 @@ If your system supports a container toolkit, install and configure it as needed 
 
 ### Container Images
 
-GPUStack offers an [Image Selector](https://docs.gpustack.ai/latest/image-selector/) site to help users easily pick the images they want to download. For more advanced or automated syncing, GPUStack also provides image management commands:
+{{ brand.name }} offers an [Image Selector]({{ brand.docs_url }}/latest/image-selector/) site to help users easily pick the images they want to download. For more advanced or automated syncing, {{ brand.name }} also provides image management commands:
 
-- `gpustack copy-images`: Sync images from one registry to another
-- `gpustack save-images`: Download images and save them locally
-- `gpustack load-images`: Import images from local packages
-- `gpustack list-images`: Show the manifest of images for the current version
+- `{{ brand.executable_name }} copy-images`: Sync images from one registry to another
+- `{{ brand.executable_name }} save-images`: Download images and save them locally
+- `{{ brand.executable_name }} load-images`: Import images from local packages
+- `{{ brand.executable_name }} list-images`: Show the manifest of images for the current version
 
 Below are the details on how to use these CLI commands.
 
 - **Copy Images**
 
-GPUStack provides various container images for different components and inference backends, available on [Docker Hub](https://hub.docker.com/u/gpustack) and [Quay.io](https://quay.io/user/gpustack/).
+{{ brand.name }} provides various container images for different components and inference backends, available on [Docker Hub]({{ brand.dockerhub_url }}) and [Quay.io]({{ brand.dockerhub_url }}).
 
-To transfer the required container images to your internal registry from a machine with internet access, use the GPUStack `copy-images` command:
+To transfer the required container images to your internal registry from a machine with internet access, use the {{ brand.name }} `copy-images` command:
 
 ```bash
-sudo docker run --rm -it --entrypoint "" gpustack/gpustack \
-    gpustack copy-images \
+sudo docker run --rm -it --entrypoint "" {{ brand.docker_image }} \
+    {{ brand.executable_name }} copy-images \
     --destination <your_internal_registry> \
     --destination-username <your_username> \
     --destination-password <your_password>
@@ -44,8 +44,8 @@ sudo docker run --rm -it --entrypoint "" gpustack/gpustack \
 If you cannot pull images from `Docker Hub` or the download is very slow, you can use our `Quay.io` mirror by pointing the source registry to `quay.io`:
 
 ```bash hl_lines="3"
-sudo docker run --rm -it --entrypoint "" gpustack/gpustack \
-    gpustack copy-images \
+sudo docker run --rm -it --entrypoint "" {{ brand.docker_image }} \
+    {{ brand.executable_name }} copy-images \
     --source quay.io \
     --destination <your_internal_registry> \
     --destination-username <your_username> \
@@ -54,23 +54,23 @@ sudo docker run --rm -it --entrypoint "" gpustack/gpustack \
 
 !!! note
 
-    This uses the latest version by default. To target a specific version, use the full image tag, e.g., gpustack/gpustack:vx.y.z.
+    This uses the latest version by default. To target a specific version, use the full image tag, e.g., {{ brand.docker_image }}:vx.y.z.
 
 For more details on `copy-images`, refer to the [CLI Reference](../cli-reference/copy-images.md).
 
 - **List Images**
 
-If you cannot access your internal registry directly, you can first pull the `gpustack/gpustack` image and then use `list-images` command to see which images need to be downloaded:
+If you cannot access your internal registry directly, you can first pull the `{{ brand.docker_image }}` image and then use `list-images` command to see which images need to be downloaded:
 
 ```bash
 sudo docker run --rm -it --entrypoint "" \
-    gpustack/gpustack \
-    gpustack list-images
+    {{ brand.docker_image }} \
+    {{ brand.executable_name }} list-images
 ```
 
 !!! note
 
-    This uses the latest version by default. To target a specific version, use the full image tag, e.g., gpustack/gpustack:vx.y.z.
+    This uses the latest version by default. To target a specific version, use the full image tag, e.g., {{ brand.docker_image }}:vx.y.z.
 
 The displayed image list includes all supported accelerators, inference backends, versions, and architectures. If you only need a subset, see the [CLI Reference](../cli-reference/list-images.md) for filtering options.
 
@@ -78,7 +78,7 @@ The displayed image list includes all supported accelerators, inference backends
 
 If your target environment is air-gapped or does not have internet access, you can first download the required images on a machine with internet connectivity, then transfer and load them into the offline environment.
 
-GPUStack provides the `save-images` and `load-images` commands for this workflow.
+{{ brand.name }} provides the `save-images` and `load-images` commands for this workflow.
 
 **Copy Images**
 
@@ -86,10 +86,10 @@ Run the following command on a machine that can access the internet to download 
 
 ```bash
 sudo docker run --rm -it --entrypoint "" \
- -v ./gpustack-air-gapped:/gpustack-air-gapped \
- --workdir /gpustack-air-gapped \
- gpustack/gpustack \
- gpustack save-images \
+ -v ./{{ brand.executable_name }}-air-gapped:/{{ brand.executable_name }}-air-gapped \
+ --workdir /{{ brand.executable_name }}-air-gapped \
+ {{ brand.docker_image }} \
+ {{ brand.executable_name }} save-images \
  --platform linux/amd64 \
  --backend cuda \
  --backend-version 12.9 \
@@ -99,11 +99,11 @@ sudo docker run --rm -it --entrypoint "" \
  --max-retries 3
 ```
 
-This command downloads all required container images based on the specified platform, backend, and service configuration, and saves them as local packages under the `gpustack-air-gapped` directory. The example command shows how to apply filtering options to download only a subset of images.
+This command downloads all required container images based on the specified platform, backend, and service configuration, and saves them as local packages under the `{{ brand.executable_name }}-air-gapped` directory. The example command shows how to apply filtering options to download only a subset of images.
 
 !!! note
 
-    This uses the latest version by default. To target a specific version, use the full image tag, e.g., gpustack/gpustack:vx.y.z.
+    This uses the latest version by default. To target a specific version, use the full image tag, e.g., {{ brand.docker_image }}:vx.y.z.
 
 You can adjust the filters to download only the images you need. See the [CLI Reference](../cli-reference/save-images.md) for all available options.
 
@@ -116,35 +116,35 @@ On the target machine, load the saved images into the local container runtime:
 ```bash
 sudo docker run --rm -it --entrypoint "" \
     --volume /var/run/docker.sock:/var/run/docker.sock \
-    --volume ./gpustack-air-gapped:/gpustack-air-gapped \
-    --workdir /gpustack-air-gapped \
-    gpustack/gpustack \
-    gpustack load-images \
+    --volume ./{{ brand.executable_name }}-air-gapped:/{{ brand.executable_name }}-air-gapped \
+    --workdir /{{ brand.executable_name }}-air-gapped \
+    {{ brand.docker_image }} \
+    {{ brand.executable_name }} load-images \
     --platform linux/amd64 \
     --max-workers 3 \
     --max-retries 3 \
-    /gpustack-air-gapped
+    /{{ brand.executable_name }}-air-gapped
 ```
 
-This command imports all image packages from the specified directory into the local Docker daemon, making them available for GPUStack.
+This command imports all image packages from the specified directory into the local Docker daemon, making them available for {{ brand.name }}.
 
 !!! note
 
-    This uses the latest version by default. To target a specific version, use the full image tag, e.g., gpustack/gpustack:vx.y.z.
+    This uses the latest version by default. To target a specific version, use the full image tag, e.g., {{ brand.docker_image }}:vx.y.z.
 
 For more details on `load-images`, see the [CLI Reference](../cli-reference/load-images.md).
 
 ## Installation
 
-After preparing the internal container registry with the required images, you can install GPUStack in the air-gapped environment.
+After preparing the internal container registry with the required images, you can install {{ brand.name }} in the air-gapped environment.
 
 ```diff
- sudo docker run -d --name gpustack \
+ sudo docker run -d --name {{ brand.executable_name }} \
      --restart unless-stopped \
      -p 80:80 \
-     --volume gpustack-data:/var/lib/gpustack \
--    gpustack/gpustack
-+    <your_internal_registry>/gpustack/gpustack \
+     --volume {{ brand.volume_name }}:{{ brand.data_dir }} \
+-    {{ brand.docker_image }}
++    <your_internal_registry>/{{ brand.docker_image }} \
 +    --system-default-container-registry <your_internal_registry>
 
 ```
@@ -152,27 +152,27 @@ After preparing the internal container registry with the required images, you ca
 ### Pulling Inference Backend Images from a Secure Registry
 
 If your internal container registry requires authentication,  
-set the following environment variables when starting the GPUStack worker to allow it to pull the runner image.
+set the following environment variables when starting the {{ brand.name }} worker to allow it to pull the runner image.
 
 ```diff
- sudo docker run -d --name gpustack \
+ sudo docker run -d --name {{ brand.executable_name }} \
      ...
-+    --env GPUSTACK_RUNTIME_DEPLOY_DEFAULT_CONTAINER_REGISTRY_USERNAME=<your_internal_registry_username> \
-+    --env GPUSTACK_RUNTIME_DEPLOY_DEFAULT_CONTAINER_REGISTRY_PASSWORD=<your_internal_registry_password> \
-     <your_internal_registry>/gpustack/gpustack \
++    --env {{ brand.env_prefix }}_RUNTIME_DEPLOY_DEFAULT_CONTAINER_REGISTRY_USERNAME=<your_internal_registry_username> \
++    --env {{ brand.env_prefix }}_RUNTIME_DEPLOY_DEFAULT_CONTAINER_REGISTRY_PASSWORD=<your_internal_registry_password> \
+     <your_internal_registry>/{{ brand.docker_image }} \
      --system-default-container-registry <your_internal_registry>
 
 ```
 
 ### Pulling Inference Backend Images from non-default Namespace
 
-If your internal container registry uses a different namespace than the default `gpustack`,  
-set the following environment variable when starting the GPUStack worker to allow it to pull the runner image.
+If your internal container registry uses a different namespace than the default `{{ brand.executable_name }}`,  
+set the following environment variable when starting the {{ brand.name }} worker to allow it to pull the runner image.
 
 ```diff
- sudo docker run -d --name gpustack \
+ sudo docker run -d --name {{ brand.executable_name }} \
      ...
-+    --env GPUSTACK_RUNTIME_DEPLOY_DEFAULT_CONTAINER_NAMESPACE=<your_namespace> \
-     <your_internal_registry>/gpustack/gpustack \
++    --env {{ brand.env_prefix }}_RUNTIME_DEPLOY_DEFAULT_CONTAINER_NAMESPACE=<your_namespace> \
+     <your_internal_registry>/{{ brand.docker_image }} \
      --system-default-container-registry <your_internal_registry>
 ```

@@ -1,6 +1,6 @@
 # Model Catalog
 
-The Model Catalog is an index of GPUStack-tuned models.
+The Model Catalog is an index of {{ brand.name }}-tuned models.
 
 ## Browse Models
 
@@ -14,7 +14,7 @@ You can deploy a model from the Model Catalog by clicking the model card. A mode
 
 ## Customize Model Catalog
 
-You can customize the Model Catalog by providing a YAML file via GPUStack server configuration using the `--model-catalog-file` flag. It accepts either a local file path or a URL. You can refer to the built-in model catalog file [here](https://github.com/gpustack/gpustack/blob/main/gpustack/assets/model-catalog.yaml) for the schema.
+You can customize the Model Catalog by providing a YAML file via {{ brand.name }} server configuration using the `--model-catalog-file` flag. It accepts either a local file path or a URL. You can refer to the built-in model catalog file [here](https://github.com/{{ brand.github_repo }}/blob/main/{{ brand.executable_name }}/assets/model-catalog.yaml) for the schema.
 
 The following is an example of a custom model catalog YAML file:
 
@@ -60,7 +60,7 @@ model_sets:
 
 ### Using Model Catalog in Air-Gapped Environments
 
-The built-in model catalog sources models from either Hugging Face or ModelScope. If you are using GPUStack in an air-gapped environment without internet access, you can customize the model catalog to use a local-path model source. Here is an example:
+The built-in model catalog sources models from either Hugging Face or ModelScope. If you are using {{ brand.name }} in an air-gapped environment without internet access, you can customize the model catalog to use a local-path model source. Here is an example:
 
 ```yaml
 model_sets:
@@ -135,7 +135,7 @@ Each deployment spec has the following fields:
 
 | Field               | Type          | Description                                                                                     |
 |---------------------|---------------|-------------------------------------------------------------------------------------------------|
-| mode                | string        | GPUStack provides both conventional and optimized modes for different use cases, including throughput, latency, and standard scenarios. Users can also define custom modes as needed. |
+| mode                | string        | {{ brand.name }} provides both conventional and optimized modes for different use cases, including throughput, latency, and standard scenarios. Users can also define custom modes as needed. |
 | quantization        | string        | The quantization type (e.g., FP16, FP8, INT8).                                               |
 | gpu_filters         | dict          | GPU filters to specify compatible GPUs.                                                  |
 

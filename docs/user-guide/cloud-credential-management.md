@@ -1,6 +1,6 @@
 # Cloud Credential Management
 
-GPUStack supports cloud credential management, allowing secure connections to external cloud providers. Cloud credentials contain provider information, keys, and options required for API access.
+{{ brand.name }} supports cloud credential management, allowing secure connections to external cloud providers. Cloud credentials contain provider information, keys, and options required for API access.
 
 ## Supported Providers
 

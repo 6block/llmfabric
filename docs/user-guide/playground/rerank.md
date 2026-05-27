@@ -22,7 +22,7 @@ Input a query and click the `Submit` button to get a ranked list of texts based 
 
 ## Select Model
 
-Select an available reranker model in GPUStack by clicking the model dropdown at the top-right corner of the playground UI.
+Select an available reranker model in {{ brand.name }} by clicking the model dropdown at the top-right corner of the playground UI.
 
 ## Customize Parameters
 

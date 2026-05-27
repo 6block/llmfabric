@@ -2,9 +2,9 @@
 
 ## OpenAI-Compatible APIs
 
-GPUStack provides [OpenAI-compatible APIs](https://platform.openai.com/docs/api-reference) at the `/v1` endpoint.
+{{ brand.name }} provides [OpenAI-compatible APIs](https://platform.openai.com/docs/api-reference) at the `/v1` endpoint.
 
-You can integrate and use models deployed on GPUStack with any application or framework that supports the OpenAI-compatible API, simply by pointing it to GPUStack's OpenAI-compatible endpoint.
+You can integrate and use models deployed on {{ brand.name }} with any application or framework that supports the OpenAI-compatible API, simply by pointing it to {{ brand.name }}'s OpenAI-compatible endpoint.
 
 ### Supported Endpoints
 
@@ -25,10 +25,10 @@ The following API endpoints are supported:
 #### cURL Example
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
-curl http://your_gpustack_server_url/v1/chat/completions \
+export {{ brand.env_prefix }}_API_KEY=your_api_key
+curl http://your_{{ brand.executable_name }}_server_url/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
   -d '{
     "model": "qwen3",
     "messages": [
@@ -47,15 +47,15 @@ curl http://your_gpustack_server_url/v1/chat/completions \
 
 ## Anthropic-Compatible APIs
 
-GPUStack provides the Anthropic-compatible [`/v1/messages` API](https://platform.claude.com/docs/en/api/messages/create).
+{{ brand.name }} provides the Anthropic-compatible [`/v1/messages` API](https://platform.claude.com/docs/en/api/messages/create).
 
 ### Usage
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
-curl http://your_gpustack_server_url/v1/messages \
+export {{ brand.env_prefix }}_API_KEY=your_api_key
+curl http://your_{{ brand.executable_name }}_server_url/v1/messages \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
   -d '{
     "model": "qwen3",
     "messages": [
@@ -72,17 +72,17 @@ curl http://your_gpustack_server_url/v1/messages \
 
 In the context of Retrieval-Augmented Generation (RAG), reranking refers to the process of selecting the most relevant information from retrieved documents or knowledge sources before presenting them to the user or utilizing them for answer generation.
 
-Note that the OpenAI-compatible APIs **do not** provide a `rerank` endpoint. To fill this gap, GPUStack provides a [Jina-compatible Rerank API](https://jina.ai/reranker/) at the `/v1/rerank` path.
+Note that the OpenAI-compatible APIs **do not** provide a `rerank` endpoint. To fill this gap, {{ brand.name }} provides a [Jina-compatible Rerank API](https://jina.ai/reranker/) at the `/v1/rerank` path.
 
 ### Usage
 
 #### cURL Example
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
-curl http://your_gpustack_server_url/v1/rerank \
+export {{ brand.env_prefix }}_API_KEY=your_api_key
+curl http://your_{{ brand.executable_name }}_server_url/v1/rerank \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+    -H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
     -d '{
         "model": "bge-reranker-v2-m3",
         "query": "What is a panda?",
@@ -133,22 +133,22 @@ Example output:
 
 ## Other APIs
 
-For other API types, GPUStack allows you to enable the **Generic Proxy** feature when deploying a model.
+For other API types, {{ brand.name }} allows you to enable the **Generic Proxy** feature when deploying a model.
 
-When the Generic Proxy is enabled, GPUStack determines which model to forward the request to by checking either:
+When the Generic Proxy is enabled, {{ brand.name }} determines which model to forward the request to by checking either:
 
 - the `model` field in the JSON body, or
-- the `X-GPUStack-Model` header.
+- the `X-{{ brand.name }}-Model` header.
 
 Once enabled, you can forward API requests to the target model via the `/model/proxy` endpoint. For example:
 
 ```bash
-export GPUSTACK_API_KEY=your_api_key
-curl http://your_gpustack_server_url/model/proxy/embed \
+export {{ brand.env_prefix }}_API_KEY=your_api_key
+curl http://your_{{ brand.executable_name }}_server_url/model/proxy/embed \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
-  -H "X-GPUStack-Model: bge-m3" \
+  -H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
+  -H "X-{{ brand.name }}-Model: bge-m3" \
   -d '{"inputs": ["What is Deep Learning?", "Deep Learning is not..."]}'
 ```
 

@@ -1,10 +1,10 @@
 # Model File Management
 
-GPUStack allows admins to download and manage model files.
+{{ brand.name }} allows admins to download and manage model files.
 
 ## Add Model File
 
-GPUStack currently supports models from [Hugging Face](https://huggingface.co), [ModelScope](https://modelscope.cn), and local paths. To add model files, navigate to the `Model Files` page.
+{{ brand.name }} currently supports models from [Hugging Face](https://huggingface.co), [ModelScope](https://modelscope.cn), and local paths. To add model files, navigate to the `Model Files` page.
 
 ### Add a Hugging Face Model
 
@@ -12,7 +12,7 @@ GPUStack currently supports models from [Hugging Face](https://huggingface.co), 
 2. Use the search bar in the top left to find a model by name, e.g., `Qwen/Qwen3-0.6B`.
 3. _(Optional)_ For GGUF models, select the desired quantization format from `Available Files`.
 4. Select the target worker to download the model file.
-5. _(Optional)_ Specify a `Local Directory` to download the model to a custom path instead of the GPUStack cache directory.
+5. _(Optional)_ Specify a `Local Directory` to download the model to a custom path instead of the {{ brand.name }} cache directory.
 6. Click the `Save` button.
 
 ### Add a ModelScope Model
@@ -21,7 +21,7 @@ GPUStack currently supports models from [Hugging Face](https://huggingface.co), 
 2. Use the search bar in the top left to find a model by name, e.g., `Qwen/Qwen3-0.6B`.
 3. _(Optional)_ For GGUF models, select the desired quantization format from `Available Files`.
 4. Select the target worker to download the model file.
-5. _(Optional)_ Specify a `Local Directory` to download the model to a custom path instead of the GPUStack cache directory.
+5. _(Optional)_ Specify a `Local Directory` to download the model to a custom path instead of the {{ brand.name }} cache directory.
 6. Click the `Save` button.
 
 ### Add a Local Path Model
@@ -40,11 +40,11 @@ If a model file download fails â€” or gets stuck at a very low download speed â€
 1. Navigate to the `Model Files` page.
 2. Locate the model file.
 3. Click the ellipsis button in the `Operations` column and select `Retry Download`.
-4. GPUStack will attempt to download the model file again from the specified source.
+4. {{ brand.name }} will attempt to download the model file again from the specified source.
 
 ## Deploy Model
 
-Models can be deployed from model files. Since the model is stored on a specific worker, GPUStack will add a worker selector using the `worker-name` key to ensure proper scheduling.
+Models can be deployed from model files. Since the model is stored on a specific worker, {{ brand.name }} will add a worker selector using the `worker-name` key to ensure proper scheduling.
 
 !!! tip
 

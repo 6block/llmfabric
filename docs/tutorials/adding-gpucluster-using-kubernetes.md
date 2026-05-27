@@ -1,6 +1,6 @@
 # Adding a GPU Cluster Using Kubernetes
 
-GPUStack supports adding a Kubernetes cluster as a GPU cluster.
+{{ brand.name }} supports adding a Kubernetes cluster as a GPU cluster.
 
 ## Preparation
 

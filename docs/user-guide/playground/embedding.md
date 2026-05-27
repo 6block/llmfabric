@@ -27,7 +27,7 @@ Click the `Clear` button to reset text entries and clear the output.
 
 ## Select Model
 
-You can select available models in GPUStack by clicking the model dropdown at the top-right corner of the playground UI.
+You can select available models in {{ brand.name }} by clicking the model dropdown at the top-right corner of the playground UI.
 
 ## View Code
 

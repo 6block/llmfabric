@@ -1,6 +1,6 @@
-# Contributing to GPUStack
+# Contributing to {{ brand.name }}
 
-Thanks for taking the time to contribute to GPUStack!
+Thanks for taking the time to contribute to {{ brand.name }}!
 
 Please review and follow the [Code of Conduct](./code-of-conduct.md).
 
@@ -10,7 +10,7 @@ If you find any bugs or are having any trouble, please search the reported issue
 
 If you can't find anything related to your issue, contact us by filing an issue. To help us diagnose and resolve, please include as much information as possible, including:
 
-- Software: GPUStack version, installation method, operating system info, etc.
+- Software: {{ brand.name }} version, installation method, operating system info, etc.
 - Hardware: Node info, GPU info, etc.
 - Steps to reproduce: Provide as much detail on how you got into the reported situation.
 - Logs: Please include any relevant logs, such as server logs, worker logs, etc.

@@ -1,10 +1,10 @@
 # Integrate with MaxKB
 
-MaxKB can integrate with GPUStack to leverage locally deployed **LLMs, embedding models, and reranking models** for building knowledge-based AI assistants.
+MaxKB can integrate with {{ brand.name }} to leverage locally deployed **LLMs, embedding models, and reranking models** for building knowledge-based AI assistants.
 
 ## Deploying Models
 
-1. In GPUStack UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
+1. In {{ brand.name }} UI, navigate to the `Deployments` page and click on `Deploy Model` to deploy the models you need. Here are some example models:
 
 * `qwen3.5-35b-a3b`
 
@@ -29,7 +29,7 @@ MaxKB can integrate with GPUStack to leverage locally deployed **LLMs, embedding
 
 ## Obtain Model Access Information
 
-1. In the GPUStack sidebar, open the **Routes** page.
+1. In the {{ brand.name }} sidebar, open the **Routes** page.
 
 2. Click the **More actions menu** next to the route and select **API Access Info**.
 
@@ -47,7 +47,7 @@ API Key
 Example:
 
 ```
-Base URL: http://your-gpustack-url/v1
+Base URL: http://your-{{ brand.executable_name }}-url/v1
 
 Model Name:
 qwen3.5-35b-a3b
@@ -55,7 +55,7 @@ qwen3-embedding-4b
 qwen3-reranker-4b
 
 API Key:
-gpustack_xxxxxxxxxxxxx
+{{ brand.executable_name }}_xxxxxxxxxxxxx
 ```
 
 !!! note
@@ -85,7 +85,7 @@ admin / MaxKB@123..
 
 After logging in for the first time, follow the prompt to change the password.
 
-## Integrating GPUStack into MaxKB
+## Integrating {{ brand.name }} into MaxKB
 
 1. In the MaxKB UI, navigate to **Model** in the top navigation bar.
 
@@ -99,9 +99,9 @@ After logging in for the first time, follow the prompt to change the password.
 
 When configuring the model:
 
-* **Base Model**: Must match the model name deployed in GPUStack.
-* **API URL**: `http://your-gpustack-url/v1`
-* **API Key**: The API key created in GPUStack.
+* **Base Model**: Must match the model name deployed in {{ brand.name }}.
+* **API URL**: `http://your-{{ brand.executable_name }}-url/v1`
+* **API Key**: The API key created in {{ brand.name }}.
 
 !!! note
 
@@ -173,4 +173,4 @@ Open the chat interface to start interacting with the assistant.
 ![](../assets/integrations/maxkb/65.png)
 ![](../assets/integrations/maxkb/66.png)
 
-The assistant can now answer questions based on the connected knowledge base and models deployed on GPUStack.
+The assistant can now answer questions based on the connected knowledge base and models deployed on {{ brand.name }}.

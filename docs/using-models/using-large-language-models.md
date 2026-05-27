@@ -2,7 +2,7 @@
 
 **Large Language Models (LLMs)** are powerful AI models capable of understanding and generating human-like text, making them essential for applications such as chatbots, content generation, code completion, and more.
 
-In this guide, you will learn how to deploy and interact with LLMs in GPUStack.
+In this guide, you will learn how to deploy and interact with LLMs in {{ brand.name }}.
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ Before you begin, ensure that you have the following:
 
 - A Linux machine with one or more GPUs that has at least 30 GB of VRAM in total. We will use the vLLM backend which only supports Linux.
 - Access to [Hugging Face](https://huggingface.co/) or [ModelScope](https://www.modelscope.cn/) for downloading the model files.
-- GPUStack installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
+- {{ brand.name }} installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
 
 ## Step 1: Deploy Large Language Models
 
@@ -22,7 +22,7 @@ Here, we take the deployment of `Qwen3 0.6B` as an example.
 
 Follow these steps to deploy the model from Catalog:
 
-1. Navigate to the `Catalog` page in the GPUStack UI.
+1. Navigate to the `Catalog` page in the {{ brand.name }} UI.
 2. In the model list page, use dropdown to filter with `LLM`.
 3. Review the model description, maximum context length and supported sizes.
 
@@ -40,7 +40,7 @@ After deployment, you can monitor the model deployment's status on the `Deployme
 
 ## Step 2: Use the LLMs for Text Generation
 
-1. Navigate to the `Playground` > `Chat` page in the GPUStack UI.
+1. Navigate to the `Playground` > `Chat` page in the {{ brand.name }} UI.
 2. Verify that the deployed model is selected from the top-right `Model` dropdown.
 3. Provide a prompt for the text generation.
 4. Adjust the `Parameters` on the right based on your needs.
@@ -50,4 +50,4 @@ The generated chain of thought and result will be displayed in the UI.
 
 ![Generated](../assets/using-models/using-large-language-models/playground-chat.png)
 
-By following these steps, you can leverage LLMs for AI-powered text generation and natural language tasks in GPUStack. Experiment with different prompts and settings to explore the full capabilities of LLMs!
+By following these steps, you can leverage LLMs for AI-powered text generation and natural language tasks in {{ brand.name }}. Experiment with different prompts and settings to explore the full capabilities of LLMs!

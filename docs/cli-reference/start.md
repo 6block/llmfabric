@@ -3,29 +3,29 @@ hide:
   - toc
 ---
 
-# gpustack start
+# {{ brand.executable_name }} start
 
-Run GPUStack server or worker.
+Run {{ brand.name }} server or worker.
 
 ```bash
-gpustack start [OPTIONS]
+{{ brand.executable_name }} start [OPTIONS]
 ```
 
 !!! note "CLI Argument Placement"
 
     In Docker, the actual command executed by `docker run` consists of **ENTRYPOINT** and **COMMAND**.
 
-    The `gpustack/gpustack` image sets its `ENTRYPOINT`, which can be simply understood as
+    The `{{ brand.docker_image }}` image sets its `ENTRYPOINT`, which can be simply understood as
     (or considered equivalent to):
 
-        gpustack start
+        {{ brand.executable_name }} start
 
-    Therefore, CLI arguments for `gpustack start` must be placed after the image name,
+    Therefore, CLI arguments for `{{ brand.executable_name }} start` must be placed after the image name,
     at the end of the `docker run` command, rather than as options to `docker run` itself.
 
     Example:
 
-        docker run [docker options] gpustack/gpustack <start-args>
+        docker run [docker options] {{ brand.docker_image }} <start-args>
 
     In Kubernetes, these arguments should be specified using the `args` field
     in the container specification.
@@ -44,14 +44,14 @@ gpustack start [OPTIONS]
 | `--huggingface-token` value                 | (empty)                                | User Access Token to authenticate to the Hugging Face Hub. Can also be configured via the `HF_TOKEN` environment variable.            |
 | `--bin-dir` value                           | (empty)                                | Directory to store additional binaries, e.g., versioned backend executables.                                                          |
 | `--pipx-path` value                         | (empty)                                | Path to the pipx executable, used to install versioned backends.                                                                      |
-| `--system-default-container-registry` value | `docker.io`                            | Default container registry for GPUStack to pull system and inference images.                                                          |
-| `--image-name-override` value               | (empty)                                | Override the default image name for the GPUStack container.                                                                           |
-| `--image-repo` value                        | `gpustack/gpustack`                    | Override the default image repository for the GPUStack container.                                                                     |
+| `--system-default-container-registry` value | `docker.io`                            | Default container registry for {{ brand.name }} to pull system and inference images.                                                          |
+| `--image-name-override` value               | (empty)                                | Override the default image name for the {{ brand.name }} container.                                                                           |
+| `--image-repo` value                        | `{{ brand.docker_image }}`                    | Override the default image repository for the {{ brand.name }} container.                                                                     |
 | `--gateway-mode` value                      | `auto`                                 | Gateway running mode. Options: embedded, in-cluster, external, disabled, or auto (default).                                           |
 | `--gateway-kubeconfig` value                | (empty)                                | Path to the kubeconfig file for gateway. Only useful for external gateway-mode.                                                       |
 | `--gateway-namespace` value                 | `higress-system`                       | The namespace where the gateway component is deployed.                                                                                |
 | `--service-discovery-name` value            | (empty)                                | The name of the service discovery service in DNS. Only useful when deployed in Kubernetes with service discovery.                     |
-| `--namespace` value                         | (empty)                                | Kubernetes namespace for GPUStack to deploy gateway routing rules and model instances.                                                |
+| `--namespace` value                         | (empty)                                | Kubernetes namespace for {{ brand.name }} to deploy gateway routing rules and model instances.                                                |
 
 ### Server Options
 
@@ -59,12 +59,12 @@ gpustack start [OPTIONS]
 | ------------------------------------------------ | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--port` value                                   | `80`                                   | Port to bind the server to.                                                                                                                                                                                                                                                                                                                   |
 | `--tls-port` value                               | `443`                                  | Port to bind the TLS server to.                                                                                                                                                                                                                                                                                                               |
-| `--api-port` value                               | `30080`                                | Port to bind the GPUStack API server to.                                                                                                                                                                                                                                                                                                      |
+| `--api-port` value                               | `30080`                                | Port to bind the {{ brand.name }} API server to.                                                                                                                                                                                                                                                                                                      |
 | `--database-port` value                          | `5432`                                 | Port of the embedded PostgresSQL database.                                                                                                                                                                                                                                                                                                    |
 | `--metrics-port` value                           | `10161`                                | Port to expose server metrics.                                                                                                                                                                                                                                                                                                                |
 | `--disable-metrics`                              | `False`                                | Disable server metrics.                                                                                                                                                                                                                                                                                                                       |
-| `--disable-worker`                               | (empty)                                | (DEPRECATED) Disable the embedded worker for the GPUStack server. New installations will not have the embedded worker by default. Use '--enable-worker' to enable the embedded worker if needed. If neither flag is set, for backward compatibility, the embedded worker will be enabled by default for legacy installations prior to v2.0.1. |
-| `--enable-worker`                                | `False`                                | Enable the embedded worker for the GPUStack server.                                                                                                                                                                                                                                                                                           |
+| `--disable-worker`                               | (empty)                                | (DEPRECATED) Disable the embedded worker for the {{ brand.name }} server. New installations will not have the embedded worker by default. Use '--enable-worker' to enable the embedded worker if needed. If neither flag is set, for backward compatibility, the embedded worker will be enabled by default for legacy installations prior to v2.0.1. |
+| `--enable-worker`                                | `False`                                | Enable the embedded worker for the {{ brand.name }} server.                                                                                                                                                                                                                                                                                           |
 | `--bootstrap-password` value                     | Auto-generated.                        | Initial password for the default admin user.                                                                                                                                                                                                                                                                                                  |
 | `--database-url` value                           | Embedded PostgreSQL.                   | URL of the database. Supports PostgreSQL 13.0+, and MySQL 8.0.36+. Example: postgresql://user:password@host:port/db_name or mysql://user:password@host:port/db_name                                                                                                                                                                           |
 | `--ssl-keyfile` value                            | (empty)                                | Path to the SSL key file.                                                                                                                                                                                                                                                                                                                     |
@@ -128,19 +128,19 @@ gpustack start [OPTIONS]
 | `--enable-hf-xet`                        | `False`                                | [Deprecated] Enable downloading model files using Hugging Face Xet.                                                                                                                                          |
 | `--worker-ifname` value                  | (empty)                                | Network interface name of the worker node. Auto-detected by default.                                                                                                                            |
 | `--proxy-mode` value                     | (empty)                                | Proxy mode for server accessing model instances: direct (server connects directly) or worker (via worker proxy). Default value is direct for embedded worker, and worker for standalone worker. |
-| `--benchmark-image-repo` value           | `gpustack/benchmark-runner`            | Override the default benchmark image repo for the GPUStack benchmark container.                                                                                                                 |
+| `--benchmark-image-repo` value           | `{{ brand.runtime_image_namespace }}/benchmark-runner`            | Override the default benchmark image repo for the {{ brand.name }} benchmark container.                                                                                                                 |
 | `--benchmark-dir` value                  | `<data-dir>/benchmarks`                | Directory to store benchmark results.                                                                                                                                                           |
 | `--benchmark-max-duration-seconds` value | (empty)                                | Max duration for a benchmark before timeout. Disabled when empty.                                                                                                                               |
 
 ### Available Environment Variables
 
-Most command line parameters can also be set via environment variables with the `GPUSTACK_` prefix and in uppercase format (e.g., `--data-dir` can be set via `GPUSTACK_DATA_DIR`).
+Most command line parameters can also be set via environment variables with the `{{ brand.env_prefix }}_` prefix and in uppercase format (e.g., `--data-dir` can be set via `{{ brand.env_prefix }}_DATA_DIR`).
 
 For environment variables beyond the command-line parameters mentioned above, please refer to the [environment variables documentation](../environment-variables.md).
 
 ## Config File
 
-You can configure start options using a YAML-format config file when starting GPUStack server or worker. Here is a complete example:
+You can configure start options using a YAML-format config file when starting {{ brand.name }} server or worker. Here is a complete example:
 
 ```yaml
 # Common Options
@@ -149,7 +149,7 @@ debug: false
 data_dir: /path/to/data_dir
 cache_dir: /path/to/cache_dir
 benchmark_dir: /path/to/benchmark_dir
-benchmark_image_repo: gpustack/benchmark-runner
+benchmark_image_repo: {{ brand.runtime_image_namespace }}/benchmark-runner
 token: your_token
 huggingface_token: your_huggingface_token
 
@@ -177,25 +177,25 @@ allow_headers: ["Authorization", "Content-Type", "X-API-Key"]
 oidc_issuer: https://your_oidc_issuer
 oidc_client_id: your_oidc_client_id
 oidc_client_secret: your_oidc_client_secret
-oidc_redirect_uri: http://your_gpustack_server_url/auth/oidc/callback
+oidc_redirect_uri: http://your_{{ brand.executable_name }}_server_url/auth/oidc/callback
 saml_idp_server_url: https://your_saml_idp_server_url
 saml_idp_entity_id: your_saml_idp_entity_id
 saml_idp_x509_cert: your_saml_idp_x509_cert_pem
 saml_sp_entity_id: your_saml_sp_entity_id
-saml_sp_acs_url: http://your_gpustack_server_url/auth/saml/callback
+saml_sp_acs_url: http://your_{{ brand.executable_name }}_server_url/auth/saml/callback
 saml_sp_x509_cert: your_saml_sp_x509_cert_pem
 saml_sp_private_key: your_saml_sp_private_key_pem
 saml_security: '{"wantAssertionsSigned": true, "wantMessagesSigned": true}'
 external_auth_name: email
 external_auth_full_name: name
 external_auth_avatar_url: picture
-server_external_url: http://your_gpustack_server_url_for_external_access
+server_external_url: http://your_{{ brand.executable_name }}_server_url_for_external_access
 disable_builtin_observability: false
 builtin_prometheus_port: 19090
 builtin_grafana_port: 13000
 
 # Worker Options
-server_url: http://your_gpustack_server_url
+server_url: http://your_{{ brand.executable_name }}_server_url
 worker_name: your_worker_name
 worker_ip: 192.168.1.101
 disable_worker_metrics: false

@@ -2,20 +2,20 @@
 
 **Reranker Models** are specialized models designed to improve the ranking of a list of items based on relevance to a given query. They are commonly used in information retrieval and search systems to refine initial search results, prioritizing items that are more likely to meet the user’s intent. Reranker models take the initial document list and reorder items to enhance precision in applications such as search engines, recommendation systems, and question-answering tasks.
 
-In this guide, we will demonstrate how to deploy and use reranker models in GPUStack.
+In this guide, we will demonstrate how to deploy and use reranker models in {{ brand.name }}.
 
 ## Prerequisites
 
 Before you begin, ensure that you have the following:
 
-- GPUStack is installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
+- {{ brand.name }} is installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
 - Access to Hugging Face for downloading the model files.
 
 ## Step 1: Deploy the Model
 
 Follow these steps to deploy the model from Catalog:
 
-1. Navigate to the `Catalog` page in the GPUStack UI.
+1. Navigate to the `Catalog` page in the {{ brand.name }} UI.
 2. In the model list page, use dropdown to filter with `Reranker`.
 3. Review the model description, maximum context length and supported sizes.
 
@@ -27,7 +27,7 @@ After deployment, you can monitor the model deployment's status on the `Deployme
 
 ## Step 2: Generate an API Key
 
-We will use the GPUStack API to interact with the model. To do this, you need to generate an API key:
+We will use the {{ brand.name }} API to interact with the model. To do this, you need to generate an API key:
 
 1. Hover over the user avatar and navigate to the `API Keys` page.
 2. Click the `New API Key` button.
@@ -36,14 +36,14 @@ We will use the GPUStack API to interact with the model. To do this, you need to
 
 ## Step 3: Reranking
 
-With the model deployed and an API key, you can rerank a list of documents via the GPUStack API. Here is an example script using `curl`:
+With the model deployed and an API key, you can rerank a list of documents via the {{ brand.name }} API. Here is an example script using `curl`:
 
 ```bash
 export SERVER_URL=<your-server-url>
-export GPUSTACK_API_KEY=<your-api-key>
+export {{ brand.env_prefix }}_API_KEY=<your-api-key>
 curl $SERVER_URL/v1/rerank \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+    -H "Authorization: Bearer ${{ brand.env_prefix }}_API_KEY" \
     -d '{
         "model": "qwen3-reranker-4b",
         "query": "What is a panda?",
@@ -56,7 +56,7 @@ curl $SERVER_URL/v1/rerank \
     }' | jq
 ```
 
-Replace `<your-server-url>` with the URL of your GPUStack server and `<your-api-key>` with the API key you generated in the previous step.
+Replace `<your-server-url>` with the URL of your {{ brand.name }} server and `<your-api-key>` with the API key you generated in the previous step.
 
 Example response:
 

@@ -1,6 +1,6 @@
 # Compatibility Check
 
-GPUStack performs a compatibility check prior to model deployment. This check provides detailed information about the model’s compatibility with the current GPUStack environment. The following compatibility checks are performed:
+{{ brand.name }} performs a compatibility check prior to model deployment. This check provides detailed information about the model’s compatibility with the current {{ brand.name }} environment. The following compatibility checks are performed:
 
 ## Inference Backend Compatibility
 
@@ -20,10 +20,10 @@ Scheduling rules (including worker selectors, GPU selectors, and scheduling poli
 
 ### Resource Check
 
-The resource check ensures that sufficient system resources are available to deploy the model. GPUStack estimates the required resources and compares them with available resources in the environment. Estimations are performed using the following methods:
+The resource check ensures that sufficient system resources are available to deploy the model. {{ brand.name }} estimates the required resources and compares them with available resources in the environment. Estimations are performed using the following methods:
 
-1. **For GGUF models**: GPUStack uses the [GGUF parser](https://github.com/gpustack/gguf-parser-go) to estimate the model's resource requirements.
-2. **For other models**: GPUStack estimates VRAM usage using the following formula:
+1. **For GGUF models**: {{ brand.name }} uses the [GGUF parser](https://github.com/{{ brand.github_org }}/gguf-parser-go) to estimate the model's resource requirements.
+2. **For other models**: {{ brand.name }} estimates VRAM usage using the following formula:
 
 $$
 \text{VRAM} = \text{WEIGHT\_SIZE} \times 1.2 + \text{FRAMEWORK\_FOOTPRINT}

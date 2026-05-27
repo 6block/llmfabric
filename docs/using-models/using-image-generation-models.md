@@ -1,20 +1,20 @@
 # Using Image Generation Models
 
-GPUStack supports deploying and running **Image Generation Models**. This guide walks you through deploying the **Z-Image-Turbo** text-to-image model and generating images from textual prompts in the GPUStack UI.
+{{ brand.name }} supports deploying and running **Image Generation Models**. This guide walks you through deploying the **Z-Image-Turbo** text-to-image model and generating images from textual prompts in the {{ brand.name }} UI.
 
 ## Prerequisites
 
 Before you begin, ensure that you have the following:
 
 - A GPU with at least 24 GB of VRAM, e.g., NVIDIA RTX 4090.
-- GPUStack installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
+- {{ brand.name }} installed and running. If not, refer to the [Quickstart Guide](../quickstart.md).
 - Access to Hugging Face or ModelScope to download the model files.
 
 ## Step 1: Deploy the Z-Image-Turbo Model
 
 Follow these steps to deploy the model:
 
-1. Navigate to the `Model Catalog` page in the GPUStack UI.
+1. Navigate to the `Model Catalog` page in the {{ brand.name }} UI.
 2. Select `Image` in the category filter.
 3. Click the `Z-Image-Turbo` model card to open the deployment page.
 4. Keep the default settings and click the `Save` button to deploy.

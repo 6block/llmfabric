@@ -1,19 +1,19 @@
 # Installation Requirements
 
-This page outlines the software and networking requirements for nodes running GPUStack.
+This page outlines the software and networking requirements for nodes running {{ brand.name }}.
 
 ## Operating System Requirements
 
-GPUStack supports most modern Linux distributions on **AMD64** and **ARM64** architectures.
+{{ brand.name }} supports most modern Linux distributions on **AMD64** and **ARM64** architectures.
 
 !!! note
 
-    - GPUStack is not supported for direct installation via PyPi. For best compatibility, use the provided Docker images.
+    - {{ brand.name }} is not supported for direct installation via PyPi. For best compatibility, use the provided Docker images.
     - The Network Time Protocol (NTP) package must be installed to ensure consistent state synchronization between nodes.
 
 ## Accelerator Runtime Requirements
 
-GPUStack supports a variety of General-Purpose Accelerators as inference backends, including:
+{{ brand.name }} supports a variety of General-Purpose Accelerators as inference backends, including:
 
 - [x] NVIDIA GPU
 - [x] AMD GPU
@@ -25,7 +25,7 @@ GPUStack supports a variety of General-Purpose Accelerators as inference backend
 - [x] Cambricon MLU (Experimental)
 - [x] T-Head PPU (Experimental)
 
-Ensure all required drivers and toolkits are installed before running GPUStack.
+Ensure all required drivers and toolkits are installed before running {{ brand.name }}.
 
 ### NVIDIA GPU
 
@@ -49,7 +49,7 @@ sudo docker info 2>/dev/null | grep -q "nvidia" \
 
 - [x] [vLLM](https://github.com/vllm-project/vllm)
 - [x] [SGLang](https://github.com/sgl-project/sglang)
-- [x] [VoxBox](https://github.com/gpustack/vox-box)
+- [x] [VoxBox](https://github.com/{{ brand.github_org }}/vox-box)
 - [x] Custom
 
 ### AMD GPU
@@ -235,7 +235,7 @@ sudo ppu-smi
 
 ### Connectivity Requirements
 
-The following network connectivity is required for GPUStack to function properly:
+The following network connectivity is required for {{ brand.name }} to function properly:
 
 **Server-to-Worker:** The server must be able to reach workers to proxy inference requests.
 
@@ -245,34 +245,34 @@ The following network connectivity is required for GPUStack to function properly
 
 ### Port Requirements
 
-GPUStack uses these ports for communication:
+{{ brand.name }} uses these ports for communication:
 
 #### Server Ports
 
 | Port      | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| TCP 80    | Default port for GPUStack UI and API endpoints               |
-| TCP 443   | Default port for GPUStack UI and API endpoints (TLS enabled) |
+| TCP 80    | Default port for {{ brand.name }} UI and API endpoints               |
+| TCP 443   | Default port for {{ brand.name }} UI and API endpoints (TLS enabled) |
 | TCP 10161 | Default port for server metrics endpoint                     |
-| TCP 30080 | Default port for GPUStack server internal API                |
+| TCP 30080 | Default port for {{ brand.name }} server internal API                |
 | TCP 5432  | Default port for embedded Postgres Database                  |
 
 #### Worker Ports
 
 | Port            | Description                                                    |
 | --------------- | -------------------------------------------------------------- |
-| TCP 10150       | Default port for GPUStack worker                               |
+| TCP 10150       | Default port for {{ brand.name }} worker                               |
 | TCP 10151       | Default port for worker metrics endpoint                       |
 | TCP 40000-40063 | Port range for inference services                              |
 | TCP 41000-41999 | Port range for Ray services(vLLM distributed deployment using) |
 
 ##### Distributed vLLM with Ray Ports
 
-When using distributed vLLM, GPUStack will parse the above port range for Ray services,
+When using distributed vLLM, {{ brand.name }} will parse the above port range for Ray services,
 and assign them in order as below:
 
 1. GCS server port (the first port of the range)
-2. Client Server port (reserved for compatibility, not used anymore, see https://github.com/gpustack/gpustack/issues/4171)
+2. Client Server port (reserved for compatibility, not used anymore, see https://github.com/{{ brand.github_repo }}/issues/4171)
 3. Dashboard port
 4. Dashboard gRPC port (no longer used since Ray 2.45.0, kept for backward compatibility)
 5. Dashboard agent gRPC port
