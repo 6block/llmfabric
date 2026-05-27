@@ -25,4 +25,4 @@ rm -rf "${GPUSTACK_GATEWAY_CONFIG}"
 export S6_STAGE2_HOOK="/etc/s6-overlay/scripts/gpustack-prerun.sh"
 
 # shellcheck disable=SC2068
-exec /init gpustack start $@
+exec /init llmfabric start $@

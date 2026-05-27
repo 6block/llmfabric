@@ -1,20 +1,20 @@
 services:
-  gpustack-server:
-    image: ${IMAGE_REGISTRY:-docker.io}/${GPUSTACK_IMAGE_NAMESPACE:-gpustack}/gpustack:${GPUSTACK_TAG:-latest}
-    container_name: gpustack-server
+  llmfabric-server:
+    image: ${IMAGE_REGISTRY:-docker.io}/${LLMFABRIC_IMAGE_NAMESPACE:-6block}/llmfabric:${LLMFABRIC_TAG:-latest}
+    container_name: llmfabric-server
     restart: unless-stopped
     environment:
       - GPUSTACK_DISABLE_BUILTIN_OBSERVABILITY=true
       - GPUSTACK_GRAFANA_URL=${GPUSTACK_GRAFANA_URL:?set to browser-reachable Grafana URL}
     volumes:
-      - gpustack-data:/var/lib/gpustack
+      - llmfabric-data:/var/lib/gpustack
     ports:
       - "80:80"
       - "10161:10161"
 
   prometheus:
     image: ${IMAGE_REGISTRY:-docker.io}/${PROMETHEUS_IMAGE_NAMESPACE:-prom}/prometheus:${PROMETHEUS_TAG:-latest}
-    container_name: gpustack-prometheus
+    container_name: llmfabric-prometheus
     restart: unless-stopped
     ports:
       - "9090:9090"
@@ -27,7 +27,7 @@ services:
 
   grafana:
     image: ${IMAGE_REGISTRY:-docker.io}/${GRAFANA_IMAGE_NAMESPACE:-grafana}/grafana:${GRAFANA_TAG:-latest}
-    container_name: gpustack-grafana
+    container_name: llmfabric-grafana
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -42,4 +42,4 @@ services:
 
 volumes:
   prom_data: {}
-  gpustack-data: {}
+  llmfabric-data: {}

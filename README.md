@@ -1,19 +1,19 @@
 <br>
 
 <p align="center">
-    <img alt="GPUStack" src="https://raw.githubusercontent.com/gpustack/gpustack/main/docs/assets/gpustack-logo.png" width="300px"/>
+    <img alt="LLMFabric" src="https://raw.githubusercontent.com/gpustack/gpustack/main/docs/assets/gpustack-logo.png" width="300px"/>
 </p>
 <br>
 
 <p align="center">
     <a href="https://docs.gpustack.ai" target="_blank">
-        <img alt="Documentation" src="https://img.shields.io/badge/Docs-GPUStack-blue?logo=readthedocs&logoColor=white"></a>
+        <img alt="Documentation" src="https://img.shields.io/badge/Docs-LLMFabric-blue?logo=readthedocs&logoColor=white"></a>
     <a href="./LICENSE" target="_blank">
         <img alt="License" src="https://img.shields.io/github/license/gpustack/gpustack?logo=github&logoColor=white&label=License&color=blue"></a>
     <a href="./docs/assets/wechat-group-qrcode.jpg" target="_blank">
-        <img alt="WeChat" src="https://img.shields.io/badge/WeChat-GPUStack-blue?logo=wechat&logoColor=white"></a>
+        <img alt="WeChat" src="https://img.shields.io/badge/WeChat-LLMFabric-blue?logo=wechat&logoColor=white"></a>
     <a href="https://discord.gg/VXYJzuaqwD" target="_blank">
-        <img alt="Discord" src="https://img.shields.io/badge/Discord-GPUStack-blue?logo=discord&logoColor=white"></a>
+        <img alt="Discord" src="https://img.shields.io/badge/Discord-LLMFabric-blue?logo=discord&logoColor=white"></a>
     <a href="https://twitter.com/intent/follow?screen_name=gpustack_ai" target="_blank">
         <img alt="Follow on X(Twitter)" src="https://img.shields.io/twitter/follow/gpustack_ai?logo=X"></a>
 </p>
@@ -22,39 +22,38 @@
 <p align="center">
   <a href="./README.md">English</a> |
   <a href="./README_CN.md">简体中文</a> |
-  <a href="./README_JP.md">日本語</a>
 </p>
 
 <br>
 
 ## Overview
 
-GPUStack is an open-source GPU cluster manager designed for efficient AI model deployment. It configures and orchestrates inference engines — vLLM, SGLang, TensorRT-LLM, or your own — to optimize performance across GPU clusters. Its core features include:
+LLMFabric is an open-source GPU cluster manager designed for efficient AI model deployment. It configures and orchestrates inference engines — vLLM, SGLang, TensorRT-LLM, or your own — to optimize performance across GPU clusters. Its core features include:
 - **Multi-Cluster GPU Management.** Manages GPU clusters across multiple environments. This includes on-premises servers, Kubernetes clusters, and cloud providers.
 - **Pluggable Inference Engines.** Automatically configures high-performance inference engines such as vLLM, SGLang, and TensorRT-LLM. You can also add custom inference engines as needed.
-- **Day 0 Model Support.** GPUStack's pluggable engine architecture enables you to deploy new models on the day they are released.
-- **Performance-Optimized Configurations.** Offers pre-tuned modes for low latency or high throughput. GPUStack supports extended KV cache systems like LMCache and HiCache to reduce TTFT. It also includes built-in support for speculative decoding methods such as EAGLE3, MTP, and N-grams.
+- **Day 0 Model Support.** LLMFabric's pluggable engine architecture enables you to deploy new models on the day they are released.
+- **Performance-Optimized Configurations.** Offers pre-tuned modes for low latency or high throughput. LLMFabric supports extended KV cache systems like LMCache and HiCache to reduce TTFT. It also includes built-in support for speculative decoding methods such as EAGLE3, MTP, and N-grams.
 - **Enterprise-Grade Operations.** Offers support for automated failure recovery, load balancing, monitoring, authentication, and access control.
 
 ## Architecture
 
-GPUStack enables development teams, IT organizations, and service providers to deliver Model-as-a-Service at scale. It supports industry-standard APIs for LLM, voice, image, and video models. The platform includes built-in user authentication and access control, real-time monitoring of GPU performance and utilization, and detailed metering of token usage and API request rates.
+LLMFabric enables development teams, IT organizations, and service providers to deliver Model-as-a-Service at scale. It supports industry-standard APIs for LLM, voice, image, and video models. The platform includes built-in user authentication and access control, real-time monitoring of GPU performance and utilization, and detailed metering of token usage and API request rates.
 
-The figure below illustrates how a single GPUStack server can manage multiple GPU clusters across both on-premises and cloud environments. The GPUStack scheduler allocates GPUs to maximize resource utilization and selects the appropriate inference engines for optimal performance. Administrators also gain full visibility into system health and metrics through integrated Grafana and Prometheus dashboards.
+The figure below illustrates how a single LLMFabric server can manage multiple GPU clusters across both on-premises and cloud environments. The LLMFabric scheduler allocates GPUs to maximize resource utilization and selects the appropriate inference engines for optimal performance. Administrators also gain full visibility into system health and metrics through integrated Grafana and Prometheus dashboards.
 
 ![gpustack-v2-architecture](docs/assets/gpustack-v2-architecture.png)
 
 ## Optimized Inference Performance
 
-GPUStack's automated engine selection and parameter optimization deliver strong inference performance out of the box. The following figure shows throughput improvements over default vLLM configurations:
+LLMFabric's automated engine selection and parameter optimization deliver strong inference performance out of the box. The following figure shows throughput improvements over default vLLM configurations:
 
 ![a100-throughput-comparison](docs/assets/a100-throughput-comparison.png)
 
-For detailed benchmarking methods and results, visit our [Inference Performance Lab](https://docs.gpustack.ai/latest/performance-lab/overview/).
+For detailed benchmarking methods and results, visit our [Inference Performance Lab](https://docs.llmfabric.ai/latest/performance-lab/overview/).
 
 ## Supported Accelerators
 
-GPUStack supports a wide range of accelerators for AI inference:
+LLMFabric supports a wide range of accelerators for AI inference:
 
 - **NVIDIA GPU**
 - **AMD GPU**
@@ -66,27 +65,27 @@ GPUStack supports a wide range of accelerators for AI inference:
 - **Cambricon MLU**
 - **T-Head PPU**
 
-For detailed requirements and setup instructions, see the [Installation Requirements](https://docs.gpustack.ai/latest/installation/requirements/) documentation.
+For detailed requirements and setup instructions, see the [Installation Requirements](https://docs.llmfabric.ai/latest/installation/requirements/) documentation.
 
 ## Quick Start
 
 ### Prerequisites
 
-1. A node with at least one NVIDIA GPU. For other GPU types, please check the guidelines in the GPUStack UI when adding a worker, or refer to the [Installation documentation](https://docs.gpustack.ai/latest/installation/requirements/) for more details.
+1. A node with at least one NVIDIA GPU. For other GPU types, please check the guidelines in the LLMFabric UI when adding a worker, or refer to the [Installation documentation](https://docs.llmfabric.ai/latest/installation/requirements/) for more details.
 2. Ensure the NVIDIA driver, [Docker](https://docs.docker.com/engine/install/) and [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) are installed on the worker node.
-3. (Optional) A CPU node for hosting the GPUStack server. The GPUStack server does not require a GPU and can run on a CPU-only machine. [Docker](https://docs.docker.com/engine/install/) must be installed. Docker Desktop (for Windows and macOS) is also supported. If no dedicated CPU node is available, the GPUStack server can be installed on the same machine as a GPU worker node.
-4. Only Linux is supported for GPUStack worker nodes. If you use Windows, consider using WSL2 and avoid using Docker Desktop. macOS is not supported for GPUStack worker nodes.
+3. (Optional) A CPU node for hosting the LLMFabric server. The LLMFabric server does not require a GPU and can run on a CPU-only machine. [Docker](https://docs.docker.com/engine/install/) must be installed. Docker Desktop (for Windows and macOS) is also supported. If no dedicated CPU node is available, the LLMFabric server can be installed on the same machine as a GPU worker node.
+4. Only Linux is supported for LLMFabric worker nodes. If you use Windows, consider using WSL2 and avoid using Docker Desktop. macOS is not supported for LLMFabric worker nodes.
 
-### Install GPUStack
+### Install LLMFabric
 
-Run the following command to install and start the GPUStack server using Docker:
+Run the following command to install and start the LLMFabric server using Docker:
 
 ```bash
-sudo docker run -d --name gpustack \
+sudo docker run -d --name llmfabric \
     --restart unless-stopped \
     -p 80:80 \
-    --volume gpustack-data:/var/lib/gpustack \
-    gpustack/gpustack
+    --volume llmfabric-data:/var/lib/gpustack \
+    6block/llmfabric
 ```
 
 <details>
@@ -95,32 +94,32 @@ sudo docker run -d --name gpustack \
 If you cannot pull images from `Docker Hub` or the download is very slow, you can use our `Quay.io` mirror by pointing your registry to `quay.io`:
 
 ```bash
-sudo docker run -d --name gpustack \
+sudo docker run -d --name llmfabric \
     --restart unless-stopped \
     -p 80:80 \
-    --volume gpustack-data:/var/lib/gpustack \
-    quay.io/gpustack/gpustack \
+    --volume llmfabric-data:/var/lib/gpustack \
+    quay.io/6block/llmfabric \
     --system-default-container-registry quay.io
 ```
 </details>
 
-Check the GPUStack startup logs:
+Check the LLMFabric startup logs:
 
 ```bash
-sudo docker logs -f gpustack
+sudo docker logs -f llmfabric
 ```
 
-After GPUStack starts, run the following command to get the default admin password:
+After LLMFabric starts, run the following command to get the default admin password:
 
 ```bash
-sudo docker exec gpustack cat /var/lib/gpustack/initial_admin_password
+sudo docker exec llmfabric cat /var/lib/gpustack/initial_admin_password
 ```
 
-Open your browser and navigate to `http://your_host_ip` to access the GPUStack UI. Use the default username `admin` and the password you retrieved above to log in.
+Open your browser and navigate to `http://your_host_ip` to access the LLMFabric UI. Use the default username `admin` and the password you retrieved above to log in.
 
 ### Set Up a GPU Cluster
 
-1. On the GPUStack UI, navigate to the `Clusters` page.
+1. On the LLMFabric UI, navigate to the `Clusters` page.
 
 2. Click the `Add Cluster` button.
 
@@ -128,29 +127,29 @@ Open your browser and navigate to `http://your_host_ip` to access the GPUStack U
 
 4. Fill in the `Name` and `Description` fields for the new cluster, then click the `Save` button.
 
-5. Follow the UI guidelines to configure the new worker node. You will need to run a Docker command on the worker node to connect it to the GPUStack server. The command will look similar to the following:
+5. Follow the UI guidelines to configure the new worker node. You will need to run a Docker command on the worker node to connect it to the LLMFabric server. The command will look similar to the following:
 
     ```bash
-    sudo docker run -d --name gpustack-worker \
+    sudo docker run -d --name llmfabric-worker \
           --restart=unless-stopped \
           --privileged \
           --network=host \
           --volume /var/run/docker.sock:/var/run/docker.sock \
-          --volume gpustack-data:/var/lib/gpustack \
+          --volume llmfabric-data:/var/lib/gpustack \
           --runtime nvidia \
-          gpustack/gpustack \
-          --server-url http://your_gpustack_server_url \
+          6block/llmfabric \
+          --server-url http://your_llmfabric_server_url \
           --token your_worker_token \
           --advertise-address 192.168.1.2
     ```
 
-6. Execute the command on the worker node to connect it to the GPUStack server.
+6. Execute the command on the worker node to connect it to the LLMFabric server.
 
-7. After the worker node connects successfully, it will appear on the `Workers` page in the GPUStack UI.
+7. After the worker node connects successfully, it will appear on the `Workers` page in the LLMFabric UI.
 
 ### Deploy a Model
 
-1. Navigate to the `Catalog` page in the GPUStack UI.
+1. Navigate to the `Catalog` page in the LLMFabric UI.
 
 2. Select the `Qwen3 0.6B` model from the list of available models.
 
@@ -158,7 +157,7 @@ Open your browser and navigate to `http://your_host_ip` to access the GPUStack U
 
 ![deploy qwen3 from catalog](docs/assets/quick-start/quick-start-qwen3.png)
 
-4. GPUStack will start downloading the model files and deploying the model. When the deployment status shows `Running`, the model has been deployed successfully.
+4. LLMFabric will start downloading the model files and deploying the model. When the deployment status shows `Running`, the model has been deployed successfully.
 
 ![model is running](docs/assets/quick-start/model-running.png)
 
@@ -174,15 +173,15 @@ Open your browser and navigate to `http://your_host_ip` to access the GPUStack U
 
 3. Copy the generated API key and save it somewhere safe. Please note that you can only see it once on creation.
 
-4. You can now use the API key to access the OpenAI-compatible API endpoints provided by GPUStack. For example, use curl as the following:
+4. You can now use the API key to access the OpenAI-compatible API endpoints provided by LLMFabric. For example, use curl as the following:
 
 ```bash
-# Replace `your_api_key` and `your_gpustack_server_url`
-# with your actual API key and GPUStack server URL.
-export GPUSTACK_API_KEY=your_api_key
-curl http://your_gpustack_server_url/v1/chat/completions \
+# Replace `your_api_key` and `your_llmfabric_server_url`
+# with your actual API key and LLMFabric server URL.
+export LLMFABRIC_API_KEY=your_api_key
+curl http://your_llmfabric_server_url/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $GPUSTACK_API_KEY" \
+  -H "Authorization: Bearer $LLMFABRIC_API_KEY" \
   -d '{
     "model": "qwen3-0.6b",
     "messages": [
@@ -201,7 +200,7 @@ curl http://your_gpustack_server_url/v1/chat/completions \
 
 ## Documentation
 
-Please see the [official docs site](https://docs.gpustack.ai) for complete documentation.
+Please see the [official docs site](https://docs.llmfabric.ai) for complete documentation.
 
 ## Build
 
@@ -213,7 +212,7 @@ You can find the built wheel package in `dist` directory.
 
 ## Contributing
 
-Please read the [Contributing Guide](./docs/contributing.md) if you're interested in contributing to GPUStack.
+Please read the [Contributing Guide](./docs/contributing.md) if you're interested in contributing to LLMFabric.
 
 ## Join Community
 
@@ -221,7 +220,7 @@ Any issues or have suggestions, feel free to join our [Community](https://discor
 
 ## License
 
-Copyright (c) 2024-2025 The GPUStack authors
+Copyright (c) 2024-2025 The LLMFabric authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

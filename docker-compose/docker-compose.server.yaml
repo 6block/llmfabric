@@ -1,12 +1,12 @@
 services:
-  gpustack-server:
-    image: ${IMAGE_REGISTRY:-docker.io}/${IMAGE_NAMESPACE:-gpustack}/gpustack:${GPUSTACK_TAG:-latest}
-    container_name: gpustack-server
+  llmfabric-server:
+    image: ${IMAGE_REGISTRY:-docker.io}/${IMAGE_NAMESPACE:-6block}/llmfabric:${LLMFABRIC_TAG:-latest}
+    container_name: llmfabric-server
     restart: unless-stopped
     volumes:
-      - gpustack-data:/var/lib/gpustack
+      - llmfabric-data:/var/lib/gpustack
     ports:
-      - "80:80"
+      - "8888:80"
 
 volumes:
-  gpustack-data: {}
+  llmfabric-data: {}
