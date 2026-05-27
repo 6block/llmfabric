@@ -1,8 +1,8 @@
 [project]
-name = "gpustack"
+name = "llmfabric"
 version = "v0.0.0"
-description = "GPUStack"
-authors = [{name = "GPUStack Authors", email = "contact@gpustack.ai"}]
+description = "LLMFabric"
+authors = [{name = "6block Authors", email = "contact@6block.ai"}]
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 dependencies = [
@@ -113,6 +113,7 @@ all = [
 
 [project.scripts]
 gpustack = "gpustack.main:main"
+llmfabric = "gpustack.main:main"
 
 [build-system]
 requires = ["hatchling<1.27"]
