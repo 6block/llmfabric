@@ -2,11 +2,11 @@
 
 The diagram below provides a high-level view of the {{ brand.name }} architecture.
 
-![gpustack-v2-architecture](assets/gpustack-v2-architecture.png)
+![llmfabric-v2-architecture](assets/llmfabric-v2-architecture.png)
 
 The diagram below details the internal components and their interactions.
 
-![gpustack-v2-components](assets/gpustack-v2-components.png)
+![llmfabric-v2-components](assets/llmfabric-v2-components.png)
 
 ### Server
 

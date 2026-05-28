@@ -1,7 +1,7 @@
 services:
-  llmfabric-server:
+  llmfabric:
     image: ${IMAGE_REGISTRY:-docker.io}/${IMAGE_NAMESPACE:-6block}/llmfabric:${LLMFABRIC_TAG:-latest}
-    container_name: llmfabric-server
+    container_name: llmfabric
     restart: unless-stopped
     volumes:
       - llmfabric-data:/var/lib/gpustack

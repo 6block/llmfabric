@@ -1,7 +1,7 @@
 <br>
 
 <p align="center">
-    <img alt="LLMFabric" src="https://raw.githubusercontent.com/gpustack/gpustack/main/docs/assets/gpustack-logo.png" width="300px"/>
+    <img alt="LLMFabric" src="docs/assets/llmfabric-logo.png" width="300px"/>
 </p>
 <br>
 
@@ -10,8 +10,6 @@
         <img alt="Documentation" src="https://img.shields.io/badge/Docs-LLMFabric-blue?logo=readthedocs&logoColor=white"></a>
     <a href="./LICENSE" target="_blank">
         <img alt="License" src="https://img.shields.io/github/license/gpustack/gpustack?logo=github&logoColor=white&label=License&color=blue"></a>
-    <a href="./docs/assets/wechat-group-qrcode.jpg" target="_blank">
-        <img alt="WeChat" src="https://img.shields.io/badge/WeChat-LLMFabric-blue?logo=wechat&logoColor=white"></a>
     <a href="https://discord.gg/VXYJzuaqwD" target="_blank">
         <img alt="Discord" src="https://img.shields.io/badge/Discord-LLMFabric-blue?logo=discord&logoColor=white"></a>
     <a href="https://twitter.com/intent/follow?screen_name=gpustack_ai" target="_blank">
@@ -41,7 +39,7 @@ LLMFabric enables development teams, IT organizations, and service providers to 
 
 The figure below illustrates how a single LLMFabric server can manage multiple GPU clusters across both on-premises and cloud environments. The LLMFabric scheduler allocates GPUs to maximize resource utilization and selects the appropriate inference engines for optimal performance. Administrators also gain full visibility into system health and metrics through integrated Grafana and Prometheus dashboards.
 
-![gpustack-v2-architecture](docs/assets/gpustack-v2-architecture.png)
+![llmfabric-v2-architecture](docs/assets/llmfabric-v2-architecture.png)
 
 ## Optimized Inference Performance
 
