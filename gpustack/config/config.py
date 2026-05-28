@@ -817,7 +817,7 @@ class Config(WorkerConfig, BaseSettings):
 def get_image_name(
     image_name_override: Optional[str],
     registry: Optional[str] = None,
-    image_repo: str = "gpustack/gpustack",
+    image_repo: str = "6block/llmfabric",
 ) -> str:
     if image_name_override:
         return image_name_override
