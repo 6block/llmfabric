@@ -146,7 +146,7 @@ def upgrade() -> None:
         batch_op.add_column(sa.Column('external_id', sa.String(length=255), nullable=True))
         batch_op.add_column(sa.Column('ssh_key_id', sa.Integer(), nullable=True))
         batch_op.add_column(sa.Column('provider_config', sa.JSON(), nullable=True))
-        batch_op.add_column(sa.Column('token', sa.String(length=58), nullable=True))
+        batch_op.add_column(sa.Column('token', sa.String(length=128), nullable=True))
 
     op.execute("""
         UPDATE workers
