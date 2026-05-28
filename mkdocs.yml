@@ -85,8 +85,8 @@ extra:
   brand:
     name: "LLMFabric"
     executable_name: "llmfabric"
-    env_prefix: "LLMFABRIC"
-    data_dir: "/var/lib/llmfabric"
+    env_prefix: "GPUSTACK"
+    data_dir: "/var/lib/gpustack"
     volume_name: "llmfabric-data"
     company: "6block"
     docs_url: "https://docs.llmfabric.ai"
@@ -109,8 +109,6 @@ extra:
       link: https://pypi.org/project/llmfabric/
     - icon: fontawesome/brands/discord
       link: https://discord.gg/QAzGncGs
-    - icon: fontawesome/brands/weixin
-      link: https://github.com/6block/llmfabric/blob/main/docs/assets/wechat-group-qrcode.jpg
 extra_javascript:
   - image-selector/assets/extra.js
   - https://unpkg.com/katex@0/dist/katex.min.js
