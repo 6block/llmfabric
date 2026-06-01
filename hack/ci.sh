@@ -19,6 +19,6 @@ function ci() {
 # main
 #
 
-gpustack::log::info "+++ CI +++"
+llmfabric::log::info "+++ CI +++"
 ci "$@"
-gpustack::log::info "--- CI ---"
+llmfabric::log::info "--- CI ---"

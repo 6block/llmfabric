@@ -15,6 +15,6 @@ function generate() {
 # main
 #
 
-gpustack::log::info "+++ GENERATE +++"
+llmfabric::log::info "+++ GENERATE +++"
 generate
-gpustack::log::info "--- GENERATE ---"
+llmfabric::log::info "--- GENERATE ---"

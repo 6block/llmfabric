@@ -50,7 +50,7 @@ jobs:
         if: matrix.python-version == '3.11'
         uses: actions/upload-artifact@v4
         with:
-          name: gpustack-dist
+          name: llmfabric-dist
           path: dist/*.whl
           retention-days: 5
 

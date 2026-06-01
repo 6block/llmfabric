@@ -154,7 +154,6 @@ __pycache__/
 # IDEA
 .idea
 
-# GPUStack related
 */third_party/bin
 */ui/
 *.ma

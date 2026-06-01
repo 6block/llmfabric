@@ -598,9 +598,9 @@ if __name__ == "__main__":
         "--server-url",
         type=str,
         default="http://127.0.0.1",
-        help="URL of the GPUStack server",
+        help="URL of the LLMFabric server",
     )
-    parser.add_argument("--api-key", type=str, default="fake", help="GPUStack API key")
+    parser.add_argument("--api-key", type=str, default="fake", help="LLMFabric API key")
     parser.add_argument(
         "--result-file",
         type=str,

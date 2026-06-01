@@ -10,7 +10,7 @@ source "${ROOT_DIR}/hack/lib/init.sh"
 function lint() {
   local path="$1"
 
-  gpustack::log::info "linting ${path}"
+  llmfabric::log::info "linting ${path}"
   uv run pre-commit run --all-files --show-diff-on-failure
 }
 
@@ -18,6 +18,6 @@ function lint() {
 # main
 #
 
-gpustack::log::info "+++ LINT +++"
+llmfabric::log::info "+++ LINT +++"
 lint "llmfabric"
-gpustack::log::info "--- LINT ---"
+llmfabric::log::info "--- LINT ---"

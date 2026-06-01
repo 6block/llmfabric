@@ -19,5 +19,5 @@ for file in "${ROOT_DIR}/hack/lib/"*; do
   fi
 done
 
-gpustack::log::install_errexit
-gpustack::version::get_version_vars
+llmfabric::log::install_errexit
+llmfabric::version::get_version_vars

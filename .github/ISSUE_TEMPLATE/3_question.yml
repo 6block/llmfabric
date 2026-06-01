@@ -1,5 +1,5 @@
 name: ❓ Question
-description: Ask a question about GPUStack
+description: Ask a question about LLMFabric
 type: "Question"
 assignees: [ ]
 
@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        🙋‍♂️ Have a question about GPUStack? Please fill in the details below so we can help you quickly.
+        🙋‍♂️ Have a question about LLMFabric? Please fill in the details below so we can help you quickly.
 
   - type: textarea
     id: question

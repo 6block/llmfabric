@@ -16,12 +16,12 @@ PACKAGE_PUSH=${PACKAGE_PUSH:-false}
 
 function pack() {
     if ! command -v docker &>/dev/null; then
-        gpustack::log::fatal "Docker is not installed. Please install Docker to use this target."
+        llmfabric::log::fatal "Docker is not installed. Please install Docker to use this target."
         exit 1
     fi
 
     if ! docker buildx inspect --builder "llmfabric" &>/dev/null; then
-        gpustack::log::info "Creating new buildx builder 'llmfabric'"
+        llmfabric::log::info "Creating new buildx builder 'llmfabric'"
         docker run --rm --privileged tonistiigi/binfmt:qemu-v9.2.2-52 --uninstall qemu-*
         docker run --rm --privileged tonistiigi/binfmt:qemu-v9.2.2-52 --install all
         docker buildx create \
@@ -44,7 +44,7 @@ function pack() {
 	for label in "${LABELS[@]}"; do
 		EXTRA_ARGS+=("--label" "${label}")
 	done
-    gpustack::log::info "Building '${TAG}' platform 'linux/${PACKAGE_ARCH}'"
+    llmfabric::log::info "Building '${TAG}' platform 'linux/${PACKAGE_ARCH}'"
     set -x
     docker buildx build \
         --pull \
@@ -63,6 +63,6 @@ function pack() {
     set +x
 }
 
-gpustack::log::info "+++ PACKAGE +++"
+llmfabric::log::info "+++ PACKAGE +++"
 pack
-gpustack::log::info "--- PACKAGE ---"
+llmfabric::log::info "--- PACKAGE ---"

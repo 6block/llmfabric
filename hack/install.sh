@@ -36,19 +36,19 @@ function download_ui() {
   rm -rf "${ui_path}"
   mkdir -p "${tmp_ui_path}/ui"
 
-  gpustack::log::info "downloading '${tag}' UI assets"
+  llmfabric::log::info "downloading '${tag}' UI assets"
 
   if ! curl --retry 3 --retry-connrefused --retry-delay 3 -sSfL "https://github.com/6block/llmfabric-ui/releases/download/${tag}/${tag}.tar.gz" 2>/dev/null |
     tar -xzf - --directory "${tmp_ui_path}/ui" 2>/dev/null; then
 
     if [[ "${tag:-}" =~ ^v([0-9]+)\.([0-9]+)(\.[0-9]+)?(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
-      gpustack::log::fatal "failed to download '${tag}' ui archive"
+      llmfabric::log::fatal "failed to download '${tag}' ui archive"
     fi
 
-    gpustack::log::warn "failed to download '${tag}' ui archive, fallback to '${default_tag}' ui archive"
+    llmfabric::log::warn "failed to download '${tag}' ui archive, fallback to '${default_tag}' ui archive"
     if ! curl --retry 3 --retry-connrefused --retry-delay 3 -sSfL "https://github.com/6block/llmfabric-ui/releases/download/${default_tag}/${default_tag}.tar.gz" |
       tar -xzf - --directory "${tmp_ui_path}/ui" 2>/dev/null; then
-      gpustack::log::fatal "failed to download '${default_tag}' ui archive"
+      llmfabric::log::fatal "failed to download '${default_tag}' ui archive"
     fi
   fi
   cp -a "${tmp_ui_path}/ui/dist/." "${ui_path}"
@@ -75,7 +75,7 @@ function make_community_backends() {
 
   local target_dir="${ROOT_DIR}/gpustack/assets/"
 
-  gpustack::log::info "pulling community backends"
+  llmfabric::log::info "pulling community backends"
 
   # Clone the repository
   git clone https://github.com/gpustack/community-inference-backends "${tmp_dir}"
@@ -96,16 +96,16 @@ function make_community_backends() {
   mkdir -p "${target_dir}"
   cp "${tmp_dir}/dist/community-inference-backends.yaml" "${target_dir}/community-inference-backends.yaml"
 
-  gpustack::log::info "community backends updated successfully"
+  llmfabric::log::info "community backends updated successfully"
 }
 
 #
 # main
 #
 
-gpustack::log::info "+++ DEPENDENCIES +++"
+llmfabric::log::info "+++ DEPENDENCIES +++"
 download_deps
 download_ui
 copy_extra_static
 make_community_backends
-gpustack::log::info "--- DEPENDENCIES ---"
+llmfabric::log::info "--- DEPENDENCIES ---"

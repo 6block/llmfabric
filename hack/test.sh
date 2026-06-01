@@ -15,6 +15,6 @@ function test() {
 # main
 #
 
-gpustack::log::info "+++ TEST +++"
+llmfabric::log::info "+++ TEST +++"
 test
-gpustack::log::info "--- TEST ---"
+llmfabric::log::info "--- TEST ---"

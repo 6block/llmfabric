@@ -12,8 +12,8 @@
         <img alt="License" src="https://img.shields.io/github/license/6block/llmfabric?logo=github&logoColor=white&label=License&color=blue"></a>
     <a href="https://discord.gg/VXYJzuaqwD" target="_blank">
         <img alt="Discord" src="https://img.shields.io/badge/Discord-LLMFabric-blue?logo=discord&logoColor=white"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=gpustack_ai" target="_blank">
-        <img alt="Follow on X(Twitter)" src="https://img.shields.io/twitter/follow/gpustack_ai?logo=X"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=llmfabric_ai" target="_blank">
+        <img alt="Follow on X(Twitter)" src="https://img.shields.io/twitter/follow/llmfabric_ai?logo=X"></a>
 </p>
 <br>
 

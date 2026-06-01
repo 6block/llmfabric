@@ -17,6 +17,6 @@ function deps() {
 # main
 #
 
-gpustack::log::info "+++ DEPS +++"
+llmfabric::log::info "+++ DEPS +++"
 deps
-gpustack::log::info "--- DEPS ---"
+llmfabric::log::info "--- DEPS ---"
