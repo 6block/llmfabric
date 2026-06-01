@@ -47,8 +47,8 @@ from gpustack.envs import GATEWAY_MIRROR_INGRESS_NAME
 logger = logging.getLogger(__name__)
 
 default_mcp_bridge_name = "default"
-gpustack_ai_proxy_name = "gpustack-ai-proxy"
-gpustack_model_mapper_name = "gpustack-model-mapper"
+gpustack_ai_proxy_name = "llmfabric-ai-proxy"
+gpustack_model_mapper_name = "llmfabric-model-mapper"
 model_ingress_prefix = "ai-route-model-"
 model_route_ingress_prefix = "ai-route-route-"
 provider_id_prefix = "provider-"

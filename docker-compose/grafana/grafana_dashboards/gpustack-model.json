@@ -2675,7 +2675,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "GPUStack Model",
-  "uid": "gpustack-model",
+  "title": "LLMFabric Model",
+  "uid": "llmfabric-model",
   "version": 1
 }

@@ -62,7 +62,7 @@ class PredefinedConfig(SensitivePredefinedConfig):
     gateway_kubeconfig: Optional[str] = None
     gateway_namespace: str = "higress-system"
     service_discovery_name: Optional[str] = None
-    namespace: str = "gpustack-system"
+    namespace: str = "llmfabric-system"
 
     # Worker options
     disable_worker_metrics: bool = False

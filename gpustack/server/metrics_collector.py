@@ -105,8 +105,8 @@ def parse_sample_label_to_usage(sample: Sample) -> Optional[ModelUsageMetrics]:
     if consumer is not None and consumer != "none":
         consumer_parts = consumer.split(".")
         user = consumer_parts[-1]
-        if user.startswith("gpustack-"):
-            user_id = int(user[len("gpustack-") :])
+        if user.startswith("llmfabric-"):
+            user_id = int(user[len("llmfabric-") :])
         if len(consumer_parts) == 2:
             access_key = consumer_parts[0]
     ai_cluster = labels.get("ai_cluster", None)

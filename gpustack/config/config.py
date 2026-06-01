@@ -193,8 +193,8 @@ class Config(WorkerConfig, BaseSettings):
     builtin_prometheus_port: int = 19090
     builtin_grafana_port: int = 13000
     grafana_url: Optional[str] = None
-    grafana_worker_dashboard_uid: Optional[str] = "gpustack-worker"
-    grafana_model_dashboard_uid: Optional[str] = "gpustack-model"
+    grafana_worker_dashboard_uid: Optional[str] = "llmfabric-worker"
+    grafana_model_dashboard_uid: Optional[str] = "llmfabric-model"
 
     _set_worker_fields = {}
 
@@ -750,9 +750,9 @@ class Config(WorkerConfig, BaseSettings):
             return None
         hostname = self.get_external_hostname()
         if hostname:
-            return f"gpustack-tls-{hostname.replace('.', '-')}"
+            return f"llmfabric-tls-{hostname.replace('.', '-')}"
         else:
-            return "gpustack-tls-default"
+            return "llmfabric-tls-default"
 
     def get_server_url(self) -> str:
         # returns server if not None else returns embedded server url

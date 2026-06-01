@@ -50,7 +50,7 @@ credentials_exception = UnauthorizedException(
 
 def client_ip_getter(request: Request) -> str:
     if request.app.state.server_config.gateway_mode == GatewayModeEnum.embedded:
-        return request.headers.get("X-GPUStack-Real-IP", "")
+        return request.headers.get("X-LLMFabric-Real-IP", "")
     else:
         return request.client.host
 

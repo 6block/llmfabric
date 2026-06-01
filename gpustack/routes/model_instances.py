@@ -107,7 +107,7 @@ async def get_model_instance_dashboard(
     query_params["var-model_instance_name"] = model_instance.name
 
     grafana_base = resolve_grafana_base_url(cfg, request)
-    slug = "gpustack-model"
+    slug = "llmfabric-model"
     dashboard_url = f"{grafana_base}/d/{cfg.grafana_model_dashboard_uid}/{slug}"
     if query_params:
         dashboard_url = f"{dashboard_url}?{urlencode(query_params)}"

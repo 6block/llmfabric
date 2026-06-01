@@ -56,7 +56,7 @@ supported_anthropic_routes = [
 ]
 
 async_gateway_config: Configuration = None
-router_header_key = "x-gpustack-model"
+router_header_key = "x-llmfabric-model"
 
 
 def init_async_k8s_config(cfg: Config):
@@ -288,10 +288,10 @@ def get_match_rules(
 
 
 def ext_auth_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
-    resource_name = "gpustack-llm-ext-auth"
+    resource_name = "llmfabric-llm-ext-auth"
     registry = get_gpustack_higress_registry(cfg=cfg)
 
-    # this is to auth requests except for gpustack
+    # this is to auth requests except for llmfabric
     default_match_rule = get_match_rules(
         match_type="blacklist",
         paths=[("/", "prefix")],
@@ -304,7 +304,7 @@ def ext_auth_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
     http_service = {
         "authorization_request": {
             "allowed_headers": [
-                {"exact": "X-GPUStack-Real-IP"},
+                {"exact": "X-LLMFabric-Real-IP"},
                 {"exact": "x-higress-llm-model"},
                 {"exact": "x-api-key"},
                 {"exact": "cookie"},
@@ -315,8 +315,8 @@ def ext_auth_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
                 {"exact": "X-Mse-Consumer"},
                 {"exact": "Authorization"},
                 {"exact": "cookie"},
-                {"exact": "X-GPUStack-Original-Cookies"},
-                {"exact": "X-GPUStack-Original-Authorization"},
+                {"exact": "X-LLMFabric-Original-Cookies"},
+                {"exact": "X-LLMFabric-Original-Authorization"},
             ]
         },
         "endpoint": {
@@ -361,7 +361,7 @@ def ext_auth_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
 
 
 def ai_statistics_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
-    resource_name = "gpustack-ai-statistics"
+    resource_name = "llmfabric-ai-statistics"
     expected_spec = WasmPluginSpec(
         defaultConfig={
             "enable_content_types": envs.GATEWAY_AI_STATISTICS_PLUGIN_CONTENT_TYPES,
@@ -389,7 +389,7 @@ def ai_statistics_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
 
 
 def model_router_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
-    resource_name = "gpustack-model-router"
+    resource_name = "llmfabric-model-router"
     enabled_paths = supported_openai_routes + supported_anthropic_routes
     enabled_paths.append("/model/proxy")
     expected_spec = WasmPluginSpec(
@@ -411,13 +411,13 @@ def model_router_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
 
 
 def model_pre_route_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
-    resource_name = "gpustack-set-model-pre-route"
+    resource_name = "llmfabric-set-model-pre-route"
     enabled_path_suffixes = supported_openai_routes + supported_anthropic_routes
     enabled_path_prefixes = ["/model/proxy"]
     expected_spec = WasmPluginSpec(
         defaultConfig={
-            'clusterNameHeader': 'X-GPUStack-Model',
-            'routeNameHeader': 'X-GPUStack-Route-Name',
+            'clusterNameHeader': 'X-LLMFabric-Model',
+            'routeNameHeader': 'X-LLMFabric-Route-Name',
             'enableOnPathSuffix': enabled_path_suffixes,
             'enableOnPathPrefix': enabled_path_prefixes,
         },
@@ -475,33 +475,33 @@ def transform_header(
 
 
 def transformer_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
-    resource_name = "gpustack-header-transformer"
+    resource_name = "llmfabric-header-transformer"
     expected_spec = WasmPluginSpec(
         defaultConfig={
             "reqRules": [
                 transform_header(
                     "rename",
                     HeaderRule(
-                        oldKey="x-gpustack-model",
+                        oldKey="x-llmfabric-model",
                         newKey="x-higress-llm-model",
                     ),
                     HeaderRule(
-                        oldKey="x-gpustack-original-path",
+                        oldKey="x-llmfabric-original-path",
                         newKey=":path",
                     ),
                     HeaderRule(
-                        oldKey="x-gpustack-original-cookies",
+                        oldKey="x-llmfabric-original-cookies",
                         newKey="cookie",
                     ),
                     HeaderRule(
-                        oldKey="x-gpustack-original-authorization",
+                        oldKey="x-llmfabric-original-authorization",
                         newKey="authorization",
                     ),
                 ),
                 transform_header(
                     "dedupe",
                     HeaderRule(
-                        key="x-gpustack-model",
+                        key="x-llmfabric-model",
                         strategy="RETAIN_FIRST",
                     ),
                     HeaderRule(
@@ -525,7 +525,7 @@ def transformer_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
                     "map",
                     HeaderRule(
                         fromKey=':path',
-                        toKey='x-gpustack-original-path',
+                        toKey='x-llmfabric-original-path',
                     ),
                 ),
             ],
@@ -544,10 +544,10 @@ def transformer_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
 
 
 def token_usage_plugin(cfg: Config) -> Tuple[str, WasmPluginSpec]:
-    resource_name = "gpustack-token-usage"
+    resource_name = "llmfabric-token-usage"
     expected_spec = WasmPluginSpec(
         defaultConfig={
-            'realIPToHeader': "X-GPUStack-Real-IP",
+            'realIPToHeader': "X-LLMFabric-Real-IP",
         },
         defaultConfigDisable=False,
         failStrategy="FAIL_OPEN",

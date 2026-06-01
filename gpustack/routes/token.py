@@ -60,7 +60,7 @@ async def server_auth(
         api_key = getattr(request.state, "api_key", None)
         access_key = None if api_key is None else api_key.access_key
         consumer = '.'.join(
-            [part for part in [access_key, f"gpustack-{user.id}"] if part is not None]
+            [part for part in [access_key, f"llmfabric-{user.id}"] if part is not None]
         )
     except UnauthorizedException:
         logger.debug("Unauthenticated request to server token-auth endpoint")
@@ -110,9 +110,9 @@ async def server_auth(
         # bearer overrides api key in header, but we still want to keep the original api key for backward compatibility and some special use cases.
         auth_to_keep = f'Bearer {x_api_key}'
     if auth_to_keep is not None:
-        headers["x-gpustack-original-authorization"] = auth_to_keep
+        headers["x-llmfabric-original-authorization"] = auth_to_keep
     if cookie_token is not None:
-        headers["x-gpustack-original-cookies"] = request.headers.get("cookie", "")
+        headers["x-llmfabric-original-cookies"] = request.headers.get("cookie", "")
         # backup the cookie in higress
         headers["cookie"] = "dummy=dummy"
     return Response(
@@ -142,6 +142,6 @@ async def worker_auth(
     return Response(
         status_code=200,
         headers={
-            "X-Mse-Consumer": "gpustack-server",
+            "X-Mse-Consumer": "llmfabric-server",
         },
     )

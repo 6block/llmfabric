@@ -47,7 +47,7 @@ def plot_throughput_comparison(
 
     _, ax = plt.subplots(figsize=(10, 6))
     ax.bar(x - width / 2, baseline_tps, width, label='vLLM Baseline')
-    ax.bar(x + width / 2, optimized_tps, width, label='GPUStack-Optimized')
+    ax.bar(x + width / 2, optimized_tps, width, label='LLMFabric-Optimized')
 
     # Add text annotations
     for i in range(len(case_names)):
@@ -92,7 +92,7 @@ def plot_throughput_comparison(
 
     ax.set_ylabel(ylabel)
     ax.set_title(
-        f'{model_name} Throughput on {gpu_type} GPUs: vLLM Baseline vs. GPUStack-Optimized'
+        f'{model_name} Throughput on {gpu_type} GPUs: vLLM Baseline vs. LLMFabric-Optimized'
     )
     ax.set_xticks(x)
     ax.set_xticklabels(case_names)

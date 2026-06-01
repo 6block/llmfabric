@@ -40,9 +40,9 @@ class TemplateConfig(ClusterRegistrationTokenPublic):
         else:
             super().__init__(**data)
         if self.namespace is None and self.cluster_suffix is not None:
-            self.namespace = f"gpustack-system-{self.cluster_suffix}"
+            self.namespace = f"llmfabric-system-{self.cluster_suffix}"
         elif self.namespace is None:
-            self.namespace = "gpustack-system"
+            self.namespace = "llmfabric-system"
         self.runtime = (
             self.runtime_enum.value if self.runtime_enum is not None else None
         )

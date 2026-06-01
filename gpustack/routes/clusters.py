@@ -459,7 +459,7 @@ async def get_cluster_dashboard(
     query_params = {"var-cluster_name": cluster.name}
 
     grafana_base = resolve_grafana_base_url(cfg, request)
-    slug = "gpustack-worker"
+    slug = "llmfabric-worker"
     dashboard_url = f"{grafana_base}/d/{cfg.grafana_worker_dashboard_uid}/{slug}"
     if query_params:
         dashboard_url = f"{dashboard_url}?{urlencode(query_params)}"

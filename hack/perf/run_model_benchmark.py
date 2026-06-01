@@ -21,8 +21,8 @@ Typical usage:
 python3 hack/perf/run_model_benchmark.py \
   --config .cache/plan/benchmark/high-throughput/qwen_3.5_35b_fp8.yaml \
   --profile gpustack/assets/profiles_config/profiles_config.yaml \
-  --gpustack-url https://YOUR_GPUSTACK \
-  --gpustack-token $GPUSTACK_TOKEN \
+  --llmfabric-url https://YOUR_GPUSTACK \
+  --llmfabric-token $GPUSTACK_TOKEN \
   --cluster-id 1 \
   --output-dir benchmark_results
 ```
@@ -33,8 +33,8 @@ Run only a subset of runs:
 python3 hack/perf/benchmark_serving.py \
   --config .../qwen_3.5_9b.yaml \
   --profile .../profiles_config.yaml \
-  --gpustack-url https://YOUR_GPUSTACK \
-  --gpustack-token $GPUSTACK_TOKEN \
+  --llmfabric-url https://YOUR_GPUSTACK \
+  --llmfabric-token $GPUSTACK_TOKEN \
   --cluster-id 1 \
   --run-names vllm-standard,sgl-throughput-bundle
 ```
@@ -45,8 +45,8 @@ Override test cases or request rates from the profile:
 python3 hack/perf/benchmark_serving.py \
   --config .../qwen_3.5_122b_a10b_fp8.yaml \
   --profile .../profiles_config.yaml \
-  --gpustack-url https://YOUR_GPUSTACK \
-  --gpustack-token $GPUSTACK_TOKEN \
+  --llmfabric-url https://YOUR_GPUSTACK \
+  --llmfabric-token $GPUSTACK_TOKEN \
   --cluster-id 1 \
   --test-cases Throughput,Long\\ Context \
   --request-rates 1,4,8
@@ -1104,15 +1104,15 @@ def main():
         "--profile", default="profile.yaml", help="Path to profile YAML file"
     )
     parser.add_argument("--model", help="Override the model repo id from config")
-    parser.add_argument("--gpustack-url", required=True, help="GPUStack URL")
-    parser.add_argument("--gpustack-token", required=True, help="GPUStack token")
+    parser.add_argument("--llmfabric-url", required=True, help="LLMFabric URL")
+    parser.add_argument("--llmfabric-token", required=True, help="LLMFabric token")
     parser.add_argument(
         "--cluster-id",
-        "--gpustack-cluster-id",
+        "--llmfabric-cluster-id",
         dest="cluster_id",
         type=int,
         required=True,
-        help="GPUStack cluster id",
+        help="LLMFabric cluster id",
     )
     parser.add_argument(
         "--output-dir",
@@ -1169,8 +1169,8 @@ def main():
     manager = EngineManager(
         model,
         source,
-        args.gpustack_url,
-        args.gpustack_token,
+        args.llmfabric_url,
+        args.llmfabric_token,
         args.cluster_id,
         output_dir,
     )

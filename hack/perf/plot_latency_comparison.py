@@ -77,7 +77,7 @@ Examples:
         "--optimized",
         nargs="+",
         required=True,
-        help="GPUStack-Optimized benchmark JSON files.",
+        help="LLMFabric-Optimized benchmark JSON files.",
     )
     parser.add_argument(
         "--output",
@@ -86,7 +86,7 @@ Examples:
     )
     parser.add_argument(
         "--title",
-        default="Latency Comparison: Baseline vs. GPUStack-Optimized",
+        default="Latency Comparison: Baseline vs. LLMFabric-Optimized",
         help="Plot title.",
     )
     parser.add_argument(
@@ -269,7 +269,7 @@ def plot_series(
         marker="o",
         linewidth=2,
         color="#F58518",
-        label="GPUStack-Optimized",
+        label="LLMFabric-Optimized",
     )
 
     annotate_series(ax, baseline_points, color="#4C78A8", direction=1, metric=metric)

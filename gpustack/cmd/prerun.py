@@ -277,12 +277,12 @@ global:
   scrape_timeout: 10s
   evaluation_interval: 15s
 scrape_configs:
-  - job_name: gpustack-worker-discovery
+  - job_name: llmfabric-worker-discovery
     scrape_interval: 5s
     http_sd_configs:
       - url: "http://127.0.0.1:{cfg.metrics_port}/metrics/targets"
         refresh_interval: 1m
-  - job_name: gpustack-server
+  - job_name: llmfabric-server
     scrape_interval: 5s
     static_configs:
       - targets:

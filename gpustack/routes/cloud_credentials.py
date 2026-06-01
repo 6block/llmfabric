@@ -143,5 +143,5 @@ async def proxy_cluster_provider_api(
     if response.status_code in [401, 403, 404]:
         original_status = response.status_code
         response.status_code = 400
-        response.headers.append("X-GPUStack-Original-Status", str(original_status))
+        response.headers.append("X-LLMFabric-Original-Status", str(original_status))
     return response

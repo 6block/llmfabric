@@ -5,13 +5,13 @@ Redump complete benchmark detail JSON from GPUStack into local benchmark result 
 Examples:
   python3 hack/perf/fill_benchmark_raw_metrics.py \
     --dir $RESULTS_DIR \
-    --gpustack-url $GPUSTACK_URL \
-    --gpustack-token $GPUSTACK_TOKEN
+    --llmfabric-url $GPUSTACK_URL \
+    --llmfabric-token $GPUSTACK_TOKEN
 
   python3 hack/perf/fill_benchmark_raw_metrics.py \
     --dir $RESULTS_DIR \
-    --gpustack-url $GPUSTACK_URL \
-    --gpustack-token $GPUSTACK_TOKEN \
+    --llmfabric-url $GPUSTACK_URL \
+    --llmfabric-token $GPUSTACK_TOKEN \
     --force
 """
 
@@ -57,9 +57,11 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         help="Directory containing benchmark result JSON files. The scan is recursive.",
     )
-    parser.add_argument("--gpustack-url", required=True, help="GPUStack base URL.")
+    parser.add_argument("--llmfabric-url", required=True, help="LLMFabric base URL.")
     parser.add_argument(
-        "--gpustack-token", required=True, help="GPUStack API token for authentication."
+        "--llmfabric-token",
+        required=True,
+        help="LLMFabric API token for authentication.",
     )
     parser.add_argument(
         "--force",
@@ -177,8 +179,8 @@ def main() -> None:
         try:
             result = process_file(
                 file_path,
-                base_url=args.gpustack_url,
-                token=args.gpustack_token,
+                base_url=args.llmfabric_url,
+                token=args.llmfabric_token,
                 timeout=args.timeout,
                 ssl_context=ssl_context,
                 force=args.force,

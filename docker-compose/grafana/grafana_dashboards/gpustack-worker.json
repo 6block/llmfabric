@@ -1916,7 +1916,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "GPUStack Worker",
-  "uid": "gpustack-worker",
+  "title": "LLMFabric Worker",
+  "uid": "llmfabric-worker",
   "version": 1
 }
