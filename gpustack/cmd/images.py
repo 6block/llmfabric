@@ -12,7 +12,7 @@ from gpustack_runtime.cmds import (
 
 # Append images used by GPUStack here.
 append_images(
-    f"gpustack/gpustack:{'dev' if __version__.removeprefix('v') == '0.0.0' else __version__}",
+    f"6block/llmfabric:{'dev' if __version__.removeprefix('v') == '0.0.0' else __version__}",
     f"gpustack/benchmark-runner:{__benchmark_runner_version__}",
 )
 

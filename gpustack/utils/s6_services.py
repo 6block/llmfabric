@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional, Set, List, Dict
 
-gpustack_service_name = "gpustack"
+gpustack_service_name = "llmfabric"
 
 
 @dataclass

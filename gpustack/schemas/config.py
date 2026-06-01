@@ -54,7 +54,7 @@ class PredefinedConfig(SensitivePredefinedConfig):
     benchmark_dir: Optional[str] = None
     system_default_container_registry: Optional[str] = None
     image_name_override: Optional[str] = None
-    image_repo: str = "gpustack/gpustack"
+    image_repo: str = "6block/llmfabric"
     benchmark_image_repo: str = (
         f"gpustack/benchmark-runner:{__benchmark_runner_version__}"
     )

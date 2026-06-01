@@ -615,7 +615,7 @@ class Config(WorkerConfig, BaseSettings):
 
     @staticmethod
     def get_data_dir():
-        app_name = "gpustack"
+        app_name = "llmfabric"
         if os.name == "nt":  # Windows
             data_dir = os.path.join(os.environ["APPDATA"], app_name)
         elif os.name == "posix":

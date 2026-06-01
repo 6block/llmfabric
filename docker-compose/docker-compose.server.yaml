@@ -4,7 +4,7 @@ services:
     container_name: llmfabric
     restart: unless-stopped
     volumes:
-      - llmfabric-data:/var/lib/gpustack
+      - llmfabric-data:/var/lib/llmfabric
     ports:
       - "8888:80"
 

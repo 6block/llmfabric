@@ -37,8 +37,8 @@ const CONFIG = {
             'inference_backend': '推理后端',
             'inference_backend_tooltip': '如果未找到所需的内置推理后端或对应版本，可尝试切换到较低版本的计算框架。一般来说，高版本驱动能够兼容运行低版本的计算框架。',
             'optional_images': '可选镜像',
-            'optional_postgres_images_tooltip': '使用外部数据库：<a href="https://docs.gpustack.ai/latest/installation/installation/#using-an-external-database" target="_blank">https://docs.gpustack.ai/latest/installation/installation/#using-an-external-database</a>',
-            'optional_monitoring_images_tooltip': '配置外部可观测性：<a href="https://docs.gpustack.ai/latest/user-guide/observability/#external-observability-optional" target="_blank">https://docs.gpustack.ai/latest/user-guide/observability/#external-observability-optional</a>',
+            'optional_postgres_images_tooltip': '使用外部数据库：<a href="https://docs.llmfabric.ai/latest/installation/installation/#using-an-external-database" target="_blank">https://docs.llmfabric.ai/latest/installation/installation/#using-an-external-database</a>',
+            'optional_monitoring_images_tooltip': '配置外部可观测性：<a href="https://docs.llmfabric.ai/latest/user-guide/observability/#external-observability-optional" target="_blank">https://docs.llmfabric.ai/latest/user-guide/observability/#external-observability-optional</a>',
             'postgres': 'PostgreSQL',
             'monitoring': '监控套件 (Prometheus + Grafana)',
             'required_images': '所需镜像',
@@ -59,20 +59,20 @@ const CONFIG = {
                 <ol>
                     <li>在联网机器拉取镜像（参考上方镜像拉取命令）。</li>
                     <li>导出镜像为打包文件：
-                        <pre><code>docker save -o gpustack-server-images.tar {{server_images}}\n\ndocker save -o gpustack-worker-images.tar {{worker_images}}</code></pre>
+                        <pre><code>docker save -o llmfabric-server-images.tar {{server_images}}\n\ndocker save -o llmfabric-worker-images.tar {{worker_images}}</code></pre>
                     </li>
                     <li>将镜像文件拷贝至离线机器。</li>
                     <li>按节点角色导入镜像：
                         <div style="margin-top:10px"><strong>Server 节点：</strong></div>
-                        <pre><code>docker load -i gpustack-server-images.tar</code></pre>
+                        <pre><code>docker load -i llmfabric-server-images.tar</code></pre>
                         <div style="margin-top:10px"><strong>Worker 节点：</strong></div>
-                        <pre><code>docker load -i gpustack-worker-images.tar</code></pre>
+                        <pre><code>docker load -i llmfabric-worker-images.tar</code></pre>
                         <div style="margin-top:10px"><strong>Server + Worker 节点：</strong></div>
-                        <pre><code>docker load -i gpustack-server-images.tar\ndocker load -i gpustack-worker-images.tar</code></pre>
+                        <pre><code>docker load -i llmfabric-server-images.tar\ndocker load -i llmfabric-worker-images.tar</code></pre>
                     </li>
                     <li>
-                        运行 GPUStack Server 和 Worker 容器时通过 <code class="inline-code">--system-default-container-registry</code> 参数指定镜像源：
-                        <pre><code>sudo docker run -d --name gpustack \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume gpustack-data:/var/lib/gpustack \\\n    {{registry}}/gpustack/gpustack:{{version}} \\\n    --system-default-container-registry {{registry}}</code></pre>
+                        运行 LLMFabric Server 和 Worker 容器时通过 <code class="inline-code">--system-default-container-registry</code> 参数指定镜像源：
+                        <pre><code>sudo docker run -d --name llmfabric \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume llmfabric-data:/var/lib/llmfabric \\\n    {{registry}}/6block/llmfabric:{{version}} \\\n    --system-default-container-registry {{registry}}</code></pre>
                     </li>
                 </ol>`,
             'guide_tag_content': `
@@ -82,27 +82,27 @@ const CONFIG = {
                     <li>重新打标签并推送至私有仓库：
                         <pre><code>export PrivateRegistry=&lt;您的私有仓库地址&gt;\n{{tag_push_commands}}</code></pre>
                     </li>
-                    <li>运行 GPUStack Server 和 Worker 容器时，通过启动参数指定镜像源：
-                        <pre><code>sudo docker run -d --name gpustack \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume gpustack-data:/var/lib/gpustack \\\n    $PrivateRegistry/gpustack/gpustack:{{version}} \\\n    --system-default-container-registry $PrivateRegistry</code></pre>
+                    <li>运行 LLMFabric Server 和 Worker 容器时，通过启动参数指定镜像源：
+                        <pre><code>sudo docker run -d --name llmfabric \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume llmfabric-data:/var/lib/llmfabric \\\n    $PrivateRegistry/6block/llmfabric:{{version}} \\\n    --system-default-container-registry $PrivateRegistry</code></pre>
                     </li>
                 </ol>`,
             'guide_auto_content': `
-                <p>若需要更自动化的镜像同步手段，GPUStack 提供镜像管理命令，用于同步与管理所需镜像：</p>
+                <p>若需要更自动化的镜像同步手段，LLMFabric 提供镜像管理命令，用于同步与管理所需镜像：</p>
                 <ul style="list-style:none; padding-left:0">
-                    <li style="margin-bottom:8px"><code>gpustack copy-images</code>：从源仓库同步镜像到目标仓库</li>
-                    <li style="margin-bottom:8px"><code>gpustack save-images</code>：下载并保存镜像到本地路径</li>
-                    <li style="margin-bottom:8px"><code>gpustack load-images</code>：导入本地镜像包</li>
-                    <li style="margin-bottom:8px"><code>gpustack list-images</code>：列出当前版本镜像清单</li>
+                    <li style="margin-bottom:8px"><code>llmfabric copy-images</code>：从源仓库同步镜像到目标仓库</li>
+                    <li style="margin-bottom:8px"><code>llmfabric save-images</code>：下载并保存镜像到本地路径</li>
+                    <li style="margin-bottom:8px"><code>llmfabric load-images</code>：导入本地镜像包</li>
+                    <li style="margin-bottom:8px"><code>llmfabric list-images</code>：列出当前版本镜像清单</li>
                 </ul>
                 <div style="margin-top:15px; font-size:13px; color:var(--text-color)">
                     以上命令均支持镜像过滤与自定义配置，具体用法请参考：
-                    <a href="https://docs.gpustack.ai/latest/installation/air-gapped/#container-images" target="_blank" style="color:var(--primary-color); font-weight:600">准备容器镜像 &rarr;</a>
+                    <a href="https://docs.llmfabric.ai/latest/installation/air-gapped/#container-images" target="_blank" style="color:var(--primary-color); font-weight:600">准备容器镜像 &rarr;</a>
                 </div>`,
             'view_full_docs': '查看完整离线部署文档 &rarr;',
             'copied': '已复制到剪贴板',
             'no_images': '# 未找到匹配的镜像',
             'comments': {
-                'main': 'GPUStack 镜像 - GPUStack 核心服务，Server 和 Worker 节点均需此镜像',
+                'main': 'LLMFabric 镜像 - LLMFabric 核心服务，Server 和 Worker 节点均需此镜像',
                 'runner': '推理后端镜像',
                 'pause': 'Pause 镜像 - 提供模型实例容器的共享网络和 IPC 环境，仅 Docker 环境需要',
                 'benchmark': 'Benchmark 镜像 - 用于运行模型性能基准测试',
@@ -128,8 +128,8 @@ const CONFIG = {
             'inference_backend': 'Inference Backend',
             'inference_backend_tooltip': 'If you cannot find the desired built-in inference backend or version, try switching the computing framework version to select a lower version image. High-version drivers are generally compatible with lower-version computing frameworks.',
             'optional_images': 'Optional Images',
-            'optional_postgres_images_tooltip': 'Using an external database: <a href="https://docs.gpustack.ai/latest/installation/installation/#using-an-external-database" target="_blank">https://docs.gpustack.ai/latest/installation/installation/#using-an-external-database</a>',
-            'optional_monitoring_images_tooltip': 'Configuring external observability: <a href="https://docs.gpustack.ai/latest/user-guide/observability/#external-observability-optional" target="_blank">https://docs.gpustack.ai/latest/user-guide/observability/#external-observability-optional</a>',
+            'optional_postgres_images_tooltip': 'Using an external database: <a href="https://docs.llmfabric.ai/latest/installation/installation/#using-an-external-database" target="_blank">https://docs.llmfabric.ai/latest/installation/installation/#using-an-external-database</a>',
+            'optional_monitoring_images_tooltip': 'Configuring external observability: <a href="https://docs.llmfabric.ai/latest/user-guide/observability/#external-observability-optional" target="_blank">https://docs.llmfabric.ai/latest/user-guide/observability/#external-observability-optional</a>',
             'postgres': 'PostgreSQL',
             'monitoring': 'Monitoring (Prometheus + Grafana)',
             'required_images': 'Required Images',
@@ -149,20 +149,20 @@ const CONFIG = {
                 <ol>
                     <li>Pull images on a machine with internet access (refer to commands above).</li>
                     <li>Export images to tar files:
-                        <pre><code>docker save -o gpustack-server-images.tar {{server_images}}\n\ndocker save -o gpustack-worker-images.tar {{worker_images}}</code></pre>
+                        <pre><code>docker save -o llmfabric-server-images.tar {{server_images}}\n\ndocker save -o llmfabric-worker-images.tar {{worker_images}}</code></pre>
                     </li>
                     <li>Copy files to the offline machine.</li>
                     <li>Import images by node role:
                         <div style="margin-top:10px"><strong>Server Node:</strong></div>
-                        <pre><code>docker load -i gpustack-server-images.tar</code></pre>
+                        <pre><code>docker load -i llmfabric-server-images.tar</code></pre>
                         <div style="margin-top:10px"><strong>Worker Node:</strong></div>
-                        <pre><code>docker load -i gpustack-worker-images.tar</code></pre>
+                        <pre><code>docker load -i llmfabric-worker-images.tar</code></pre>
                         <div style="margin-top:10px"><strong>Server + Worker Node:</strong></div>
-                        <pre><code>docker load -i gpustack-server-images.tar\ndocker load -i gpustack-worker-images.tar</code></pre>
+                        <pre><code>docker load -i llmfabric-server-images.tar\ndocker load -i llmfabric-worker-images.tar</code></pre>
                     </li>
                     <li>
-                        When running GPUStack Server and Worker containers, specify the container registry using the <code class="inline-code">--system-default-container-registry</code> parameter:
-                        <pre><code>sudo docker run -d --name gpustack \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume gpustack-data:/var/lib/gpustack \\\n    {{registry}}/gpustack/gpustack:{{version}} \\\n    --system-default-container-registry {{registry}}</code></pre>
+                        When running LLMFabric Server and Worker containers, specify the container registry using the <code class="inline-code">--system-default-container-registry</code> parameter:
+                        <pre><code>sudo docker run -d --name llmfabric \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume llmfabric-data:/var/lib/llmfabric \\\n    {{registry}}/6block/llmfabric:{{version}} \\\n    --system-default-container-registry {{registry}}</code></pre>
                     </li>
                 </ol>`,
             'guide_tag_content': `
@@ -173,26 +173,26 @@ const CONFIG = {
                         <pre><code>export PrivateRegistry=&lt;your-private-registry&gt;\n{{tag_push_commands}}</code></pre>
                     </li>
                     <li>Specify the image registry via start parameters when running containers:
-                        <pre><code>sudo docker run -d --name gpustack \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume gpustack-data:/var/lib/gpustack \\\n    $PrivateRegistry/gpustack/gpustack:{{version}} \\\n    --system-default-container-registry $PrivateRegistry</code></pre>
+                        <pre><code>sudo docker run -d --name llmfabric \\\n    --restart unless-stopped \\\n    -p 80:80 \\\n    -p 10161:10161 \\\n    --volume llmfabric-data:/var/lib/llmfabric \\\n    $PrivateRegistry/6block/llmfabric:{{version}} \\\n    --system-default-container-registry $PrivateRegistry</code></pre>
                     </li>
                 </ol>`,
             'guide_auto_content': `
-                <p>For more automated sync methods, GPUStack provides image management commands:</p>
+                <p>For more automated sync methods, LLMFabric provides image management commands:</p>
                 <ul style="list-style:none; padding-left:0">
-                    <li style="margin-bottom:8px"><code>gpustack copy-images</code>: Sync images from source to destination registry</li>
-                    <li style="margin-bottom:8px"><code>gpustack save-images</code>: Download and save images to local path</li>
-                    <li style="margin-bottom:8px"><code>gpustack load-images</code>: Import images from local packages</li>
-                    <li style="margin-bottom:8px"><code>gpustack list-images</code>: List image manifest for current version</li>
+                    <li style="margin-bottom:8px"><code>llmfabric copy-images</code>: Sync images from source to destination registry</li>
+                    <li style="margin-bottom:8px"><code>llmfabric save-images</code>: Download and save images to local path</li>
+                    <li style="margin-bottom:8px"><code>llmfabric load-images</code>: Import images from local packages</li>
+                    <li style="margin-bottom:8px"><code>llmfabric list-images</code>: List image manifest for current version</li>
                 </ul>
                 <div style="margin-top:15px; font-size:13px; color:var(--text-color)">
                     All commands support filtering and custom config. For details, refer to:
-                    <a href="https://docs.gpustack.ai/latest/installation/air-gapped/#container-images" target="_blank" style="color:var(--primary-color); font-weight:600">Prepare Container Images &rarr;</a>
+                    <a href="https://docs.llmfabric.ai/latest/installation/air-gapped/#container-images" target="_blank" style="color:var(--primary-color); font-weight:600">Prepare Container Images &rarr;</a>
                 </div>`,
             'view_full_docs': 'View full air-gapped docs &rarr;',
             'copied': 'Copied to clipboard',
             'no_images': '# No matching images found',
             'comments': {
-                'main': 'GPUStack Image - GPUStack core service, required for both Server and Worker nodes',
+                'main': 'LLMFabric Image - LLMFabric core service, required for both Server and Worker nodes',
                 'runner': 'Inference Backend Images',
                 'pause': 'Pause Image - Provides shared network and IPC environment for model instance containers, required for Docker environment only',
                 'benchmark': 'Benchmark Image - Used for running model performance benchmarks',
@@ -594,7 +594,13 @@ function updateSelectedBackends() {
 // Get full image name supporting Overrides and Registry logic
 function getFullImageName(baseName, tag, registryKey) {
     const reg = CONFIG.registries[registryKey];
-    let path = `${reg.prefix}${baseName}`;
+    let prefix = reg.prefix;
+
+    if (baseName === 'llmfabric') {
+        prefix = prefix.replace('gpustack', '6block');
+    }
+
+    let path = `${prefix}${baseName}`;
     if (reg.overrides && reg.overrides[baseName]) {
         path = reg.overrides[baseName];
     }
@@ -611,7 +617,7 @@ function generateImageList() {
     
     if (state.selectedGpuStackVersion) {
         cmds.push(`# ${t.comments.main}`);
-        cmds.push(`docker pull ${plat} ${getFullImageName('gpustack', state.selectedGpuStackVersion, state.selectedRegistry)}`);
+        cmds.push(`docker pull ${plat} ${getFullImageName('llmfabric', state.selectedGpuStackVersion, state.selectedRegistry)}`);
     }
 
     if (!state.selectedCard || !state.selectedFrameworkVersion) {

@@ -19,5 +19,5 @@ function lint() {
 #
 
 gpustack::log::info "+++ LINT +++"
-lint "gpustack"
+lint "llmfabric"
 gpustack::log::info "--- LINT ---"

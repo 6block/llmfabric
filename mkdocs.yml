@@ -86,7 +86,7 @@ extra:
     name: "LLMFabric"
     executable_name: "llmfabric"
     env_prefix: "GPUSTACK"
-    data_dir: "/var/lib/gpustack"
+    data_dir: "/var/lib/llmfabric"
     volume_name: "llmfabric-data"
     company: "6block"
     docs_url: "https://docs.llmfabric.ai"

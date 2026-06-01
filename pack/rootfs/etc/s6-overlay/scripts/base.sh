@@ -141,17 +141,17 @@ function handleOptionalServiceExit() {
 }
 
 
-export GPUSTACK_GATEWAY_DIR="${GPUSTACK_GATEWAY_DIR:-/var/lib/gpustack/higress}"
+export GPUSTACK_GATEWAY_DIR="${GPUSTACK_GATEWAY_DIR:-/var/lib/llmfabric/higress}"
 createDir "$GPUSTACK_GATEWAY_DIR"
 # shellcheck disable=SC2034
 export GPUSTACK_GATEWAY_CONFIG="${GPUSTACK_GATEWAY_DIR}/.env"
 
-export GPUSTACK_POSTGRES_DIR="${GPUSTACK_POSTGRES_DIR:-/var/lib/gpustack/postgresql}"
+export GPUSTACK_POSTGRES_DIR="${GPUSTACK_POSTGRES_DIR:-/var/lib/llmfabric/postgresql}"
 createDir "$GPUSTACK_POSTGRES_DIR"
 # shellcheck disable=SC2034
 export GPUSTACK_POSTGRES_CONFIG="${GPUSTACK_POSTGRES_DIR}/.env"
 
-export GPUSTACK_OBSERVABILITY_DIR="${GPUSTACK_OBSERVABILITY_DIR:-/var/lib/gpustack/observability}"
+export GPUSTACK_OBSERVABILITY_DIR="${GPUSTACK_OBSERVABILITY_DIR:-/var/lib/llmfabric/observability}"
 createDir "$GPUSTACK_OBSERVABILITY_DIR"
 # shellcheck disable=SC2034
 export GPUSTACK_OBSERVABILITY_CONFIG="${GPUSTACK_OBSERVABILITY_DIR}/.env"

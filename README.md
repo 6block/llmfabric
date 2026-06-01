@@ -6,10 +6,10 @@
 <br>
 
 <p align="center">
-    <a href="https://docs.gpustack.ai" target="_blank">
+    <a href="https://docs.llmfabric.ai" target="_blank">
         <img alt="Documentation" src="https://img.shields.io/badge/Docs-LLMFabric-blue?logo=readthedocs&logoColor=white"></a>
     <a href="./LICENSE" target="_blank">
-        <img alt="License" src="https://img.shields.io/github/license/gpustack/gpustack?logo=github&logoColor=white&label=License&color=blue"></a>
+        <img alt="License" src="https://img.shields.io/github/license/6block/llmfabric?logo=github&logoColor=white&label=License&color=blue"></a>
     <a href="https://discord.gg/VXYJzuaqwD" target="_blank">
         <img alt="Discord" src="https://img.shields.io/badge/Discord-LLMFabric-blue?logo=discord&logoColor=white"></a>
     <a href="https://twitter.com/intent/follow?screen_name=gpustack_ai" target="_blank">
@@ -82,7 +82,7 @@ Run the following command to install and start the LLMFabric server using Docker
 sudo docker run -d --name llmfabric \
     --restart unless-stopped \
     -p 80:80 \
-    --volume llmfabric-data:/var/lib/gpustack \
+    --volume llmfabric-data:/var/lib/llmfabric \
     6block/llmfabric
 ```
 
@@ -95,7 +95,7 @@ If you cannot pull images from `Docker Hub` or the download is very slow, you ca
 sudo docker run -d --name llmfabric \
     --restart unless-stopped \
     -p 80:80 \
-    --volume llmfabric-data:/var/lib/gpustack \
+    --volume llmfabric-data:/var/lib/llmfabric \
     quay.io/6block/llmfabric \
     --system-default-container-registry quay.io
 ```
@@ -110,7 +110,7 @@ sudo docker logs -f llmfabric
 After LLMFabric starts, run the following command to get the default admin password:
 
 ```bash
-sudo docker exec llmfabric cat /var/lib/gpustack/initial_admin_password
+sudo docker exec llmfabric cat /var/lib/llmfabric/initial_admin_password
 ```
 
 Open your browser and navigate to `http://your_host_ip` to access the LLMFabric UI. Use the default username `admin` and the password you retrieved above to log in.
@@ -133,7 +133,7 @@ Open your browser and navigate to `http://your_host_ip` to access the LLMFabric 
           --privileged \
           --network=host \
           --volume /var/run/docker.sock:/var/run/docker.sock \
-          --volume llmfabric-data:/var/lib/gpustack \
+          --volume llmfabric-data:/var/lib/llmfabric \
           --runtime nvidia \
           6block/llmfabric \
           --server-url http://your_llmfabric_server_url \

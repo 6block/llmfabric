@@ -7,7 +7,7 @@ services:
       - GPUSTACK_DISABLE_BUILTIN_OBSERVABILITY=true
       - GPUSTACK_GRAFANA_URL=${GPUSTACK_GRAFANA_URL:?set to browser-reachable Grafana URL}
     volumes:
-      - llmfabric-data:/var/lib/gpustack
+      - llmfabric-data:/var/lib/llmfabric
     ports:
       - "80:80"
       - "10161:10161"

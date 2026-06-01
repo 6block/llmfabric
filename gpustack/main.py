@@ -13,7 +13,7 @@ from gpustack.cmd.prerun import setup_prerun_cmd
 
 def main():
     parser = argparse.ArgumentParser(
-        description="GPUStack",
+        description="LLMFabric",
         conflict_handler="resolve",
         add_help=True,
         formatter_class=lambda prog: argparse.HelpFormatter(

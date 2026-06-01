@@ -1,4 +1,4 @@
-/var/lib/gpustack/log/higress/access.log
+/var/lib/llmfabric/log/higress/access.log
 {
 su root root
 rotate 5

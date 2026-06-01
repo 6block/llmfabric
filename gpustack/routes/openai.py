@@ -82,7 +82,7 @@ async def list_models(
                 id=model.name,
                 object="model",
                 created=int(model.created_at.timestamp()),
-                owned_by="gpustack",
+                owned_by="llmfabric",
                 meta=model.meta if with_meta else None,
             )
         )

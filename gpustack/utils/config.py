@@ -87,9 +87,9 @@ def apply_registry_override_to_image(
     2) If the image does not have an explicit registry and a system default registry is configured,
        prefix the image with the system default registry in config.
     3) If the image does not have an explicit registry and no system default registry is configured,
-       using docker.io as default if image without "gpustack" prefix.
+       using docker.io as default if image without "llmfabric" prefix.
     4) If the image does not have an explicit registry and no system default registry is configured,
-       and with "gpustack" prefix, using docker.io as default if docker.io is reachable.
+       and with "llmfabric" prefix, using docker.io as default if docker.io is reachable.
        Otherwise, using quay.io.
     """
     registry_cfg = (_config.system_default_container_registry or "").strip()
@@ -111,10 +111,10 @@ def apply_registry_override_to_image(
         )
         return final
 
-    # 3) no explicit or configured, and not start with "gpustack" using "docker.io" as default.
-    if not image.startswith("gpustack"):
+    # 3) no explicit or configured, and not start with "llmfabric" using "docker.io" as default.
+    if "llmfabric" not in image:
         logger.info(
-            f"Using Docker Hub for non-gpustack image; image resolved to: {image}"
+            f"Using Docker Hub for non-llmfabric image; image resolved to: {image}"
         )
         return image
 

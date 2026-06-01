@@ -9,7 +9,7 @@
     <a href="https://docs.llmfabric.ai" target="_blank">
         <img alt="Documentation" src="https://img.shields.io/badge/文档-LLMFabric-blue?logo=readthedocs&logoColor=white"></a>
     <a href="./LICENSE" target="_blank">
-        <img alt="License" src="https://img.shields.io/github/license/llmfabric/llmfabric?logo=github&logoColor=white&label=License&color=blue"></a>
+        <img alt="License" src="https://img.shields.io/github/license/6block/llmfabric?logo=github&logoColor=white&label=License&color=blue"></a>
     <a href="https://discord.gg/VXYJzuaqwD" target="_blank">
         <img alt="Discord" src="https://img.shields.io/badge/Discord-LLMFabric-blue?logo=discord&logoColor=white"></a>
     <a href="https://twitter.com/intent/follow?screen_name=llmfabric_ai" target="_blank">
@@ -83,7 +83,7 @@ sudo docker run -d --name llmfabric \
     --restart unless-stopped \
     -p 80:80 \
     --volume llmfabric-data:/var/lib/llmfabric \
-    llmfabric/llmfabric
+    6block/llmfabric
 ```
 
 <details>
@@ -95,8 +95,8 @@ sudo docker run -d --name llmfabric \
 sudo docker run -d --name llmfabric \
     --restart unless-stopped \
     -p 80:80 \
-    --volume llmfabric-data:/var/lib/gpustack \
-    quay.io/llmfabric/llmfabric \
+    --volume llmfabric-data:/var/lib/llmfabric \
+    quay.io/6block/llmfabric \
     --system-default-container-registry quay.io
 ```
 </details>
@@ -110,7 +110,7 @@ sudo docker logs -f llmfabric
 LLMFabric 启动后，运行以下命令获取默认管理员密码：
 
 ```bash
-sudo docker exec llmfabric cat /var/lib/gpustack/initial_admin_password
+sudo docker exec llmfabric cat /var/lib/llmfabric/initial_admin_password
 ```
 
 打开浏览器，访问 `http://你的主机IP` 以进入 LLMFabric UI。使用默认用户名 `admin` 和上面获取的密码登录。
@@ -128,9 +128,9 @@ sudo docker exec llmfabric cat /var/lib/gpustack/initial_admin_password
           --privileged \
           --network=host \
           --volume /var/run/docker.sock:/var/run/docker.sock \
-          --volume llmfabric-data:/var/lib/gpustack \
+          --volume llmfabric-data:/var/lib/llmfabric \
           --runtime nvidia \
-          llmfabric/llmfabric \
+          6block/llmfabric \
           --server-url http://你的_llmfabric_server_url \
           --token 你的_worker_token \
           --advertise-address 192.168.1.2

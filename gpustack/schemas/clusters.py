@@ -276,7 +276,10 @@ class Cluster(ClusterBase, BaseModelMixin, table=True):
     )
     id: Optional[int] = Field(default=None, primary_key=True)
     hashed_suffix: str = Field(nullable=False, default=secrets.token_hex(6))
-    registration_token: str = Field(nullable=False, default=secrets.token_hex(16))
+    registration_token: str = Field(
+        default_factory=lambda: secrets.token_hex(16),
+        sa_column=Column(String(128), nullable=False),
+    )
     cluster_worker_pools: List[WorkerPool] = Relationship(
         sa_relationship_kwargs={"cascade": "delete", "lazy": "noload"},
         back_populates="cluster",

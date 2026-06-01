@@ -128,7 +128,7 @@ def start_cmd_options(parser_server: argparse.ArgumentParser):
     common_group.add_argument(
         "--image-repo",
         type=str,
-        help="Override the default image repository gpustack/gpustack for the GPUStack container.",
+        help="Override the default image repository 6block/llmfabric for the LLMFabric container.",
         default=get_gpustack_env("IMAGE_REPO"),
     )
     common_group.add_argument(

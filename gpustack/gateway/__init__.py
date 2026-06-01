@@ -128,9 +128,9 @@ def get_gpustack_higress_registry(cfg: Config) -> McpBridgeRegistry:
         domain = f"{address}:{port}"
 
     mcp_registry_name = (
-        "gpustack"
+        "llmfabric"
         if cfg.server_role() != Config.ServerRole.WORKER
-        else "gpustack-worker"
+        else "llmfabric-worker"
     )
     registry = McpBridgeRegistry(
         type=registry_type,

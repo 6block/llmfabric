@@ -8,7 +8,7 @@ from gpustack_runtime.detector import ManufacturerEnum
 # are pre-installed on the base image
 default_user_data_template_jinja = """#cloud-config
 write_files:
-  - path: /var/lib/gpustack/config.yaml
+  - path: /var/lib/llmfabric/config.yaml
     permissions: '0600'
     content: |
       server_url: "{{ server_url }}"
@@ -25,23 +25,23 @@ write_files:
     content: |-
       #!/bin/bash
       set -e
-      echo "$(date): trying to bring up gpustack worker container..." >> /var/log/post-reboot.log
+      echo "$(date): trying to bring up llmfabric worker container..." >> /var/log/post-reboot.log
 
-      docker run -d --name gpustack-worker \\
-      -e "GPUSTACK_RUNTIME_DEPLOY_MIRRORED_NAME=gpustack-worker" \\
+      docker run -d --name llmfabric-worker \\
+      -e "GPUSTACK_RUNTIME_DEPLOY_MIRRORED_NAME=llmfabric-worker" \\
       --restart=unless-stopped \\
       --privileged \\
       --network=host \\
-      -v /var/lib/gpustack:/var/lib/gpustack \\
+      -v /var/lib/llmfabric:/var/lib/llmfabric \\
       -v /var/run/docker.sock:/var/run/docker.sock \\
       {{ image_name }} \\
-      --config-file=/var/lib/gpustack/config.yaml
+      --config-file=/var/lib/llmfabric/config.yaml
 
-      echo "$(date): gpustack worker container started" >> /var/log/post-reboot.log
+      echo "$(date): llmfabric worker container started" >> /var/log/post-reboot.log
 """
 
 post_boot_service = """[Unit]
-Description=bootstrap gpustack worker container
+Description=bootstrap llmfabric worker container
 After=network.target docker.service
 Wants=network.target docker.service
 

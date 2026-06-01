@@ -65,7 +65,7 @@ function Remove-BOM {
 GPUStack.Log.Info "+++ LINT +++"
 try {
     Get-PSScriptAnalyzer
-    Lint "gpustack"
+    Lint "llmfabric"
     Remove-BOM
 }
 catch {

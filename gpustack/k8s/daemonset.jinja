@@ -76,7 +76,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - name: gpustack-data-dir
-              mountPath: /var/lib/gpustack
+              mountPath: /var/lib/llmfabric
             - name: cdi
               mountPath: /var/run/cdi
             - name: kubelet-device-plugins
@@ -155,7 +155,7 @@ spec:
       volumes:
         - name: gpustack-data-dir
           hostPath:
-            path: /var/lib/gpustack
+            path: /var/lib/llmfabric
             type: DirectoryOrCreate
         - name: cdi
           hostPath:
